@@ -40,6 +40,27 @@ public class SceneController {
         stage.show();
     }
     
+           public void switchToSceneComputerScene(ActionEvent event) throws IOException{
+  
+        root = FXMLLoader.load(getClass().getResource("/view/PlayervsComputerEasyMode.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    
+           }
+           
+            public void switchToLoginScene(ActionEvent event) throws IOException{
+  
+        root = FXMLLoader.load(getClass().getResource("/view/loginFxml.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+     
+     
+     
     
     
     

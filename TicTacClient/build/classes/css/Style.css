@@ -1,0 +1,55 @@
+.userName {
+-fx-border: 10px solid  #0d5f5f;
+  
+ -fx-width: 100px;
+  -fx-height: 10px;
+   -fx-text-color:white;
+   -fx-background-radius: 20px;
+     
+}
+.button {
+ -fx-radius: 30px;
+ -fx-border: 10px solid  #0d5f5f;
+  -fx-text: login;
+   -fx-text-color:white;
+   -fx-background-radius: 20px;
+     
+}
+
+.userEmail {
+ -fx-border: 10px solid  #0d5f5f;
+ -fx-width: 150px;
+  -fx-height: 10px;
+   -fx-text-color:white;}
+
+ .withicon {    
+    -fx-background-position: right 4px center;
+    -fx-background-size: 14;
+    -fx-background-repeat: no-repeat;
+}
+
+
+.gradpane{
+  background-image: linear-gradient(to bottom right, red, yellow);
+}
+
+.cardpane{
+  
+ 
+     background-image: linear-gradient(red, yellow, green);
+}
+.anchor{
+   -fx-background-color: blue;
+   
+    
+}
+.userName1{
+   
+    -fx-text-color:white;
+     -fx-background-radius: 20px;
+    
+}
+
+
+
+
