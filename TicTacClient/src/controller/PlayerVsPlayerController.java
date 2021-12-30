@@ -297,7 +297,7 @@ public class PlayerVsPlayerController implements Initializable {
             pref.putInt("firstPlayerScore", firstPlayerScore);
 
             replayAgain("first player");
-
+            
         } else if (secondPlayerWinner) {
             System.out.println("O is win");
             scorePlayerTwo.setText(String.valueOf(secondPlayerScore));
@@ -318,6 +318,7 @@ public class PlayerVsPlayerController implements Initializable {
     public void replayAgain(String winner) throws BackingStoreException {
 
         boolean result = CustomDialog.askPlayAgain(winner);
+            
         if (result) {
 
             //get scene
@@ -339,6 +340,7 @@ public class PlayerVsPlayerController implements Initializable {
             pref.clear();
             //TODO navigate to main to main menu ya 5elan portsaid
         }
+
 
     }
 
@@ -367,5 +369,6 @@ public class PlayerVsPlayerController implements Initializable {
 
         }
     }
+  
 
 }
