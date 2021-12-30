@@ -18,11 +18,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Line;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import javax.lang.model.element.Element;
 import model.GameSession;
 import model.PlayerMove;
 
@@ -73,15 +76,17 @@ public class PlayerVsPlayerController implements Initializable {
 
     @FXML
     private BorderPane borderPane;
-    
-    @FXML
-    private Label scorePlayerOne;
-    
-    @FXML
-    private Label scorePlayerTwo;
 
     @FXML
+    private Label scorePlayerOne;
+
+    @FXML
+    private Label scorePlayerTwo;
+        
+    @FXML
     private Button restartButton;
+    @FXML
+    private ImageView image1;
 
     @FXML
     private void buttonBackPressed(ActionEvent event) {
@@ -93,11 +98,30 @@ public class PlayerVsPlayerController implements Initializable {
         }
     }
 
+   
+
     @FXML
     private void buttonOnePressed(ActionEvent event) {
-        ((Button) event.getSource()).setDisable(true);
-        gameSession.addMove(returnMove((Button) event.getSource()));
-        ((Button) event.getSource()).setText(returnSymbol());
+        Button clickedButton = (Button) event.getSource();
+        Image imgo = new Image(getClass().getResourceAsStream("/resource/oimage.jpeg"));
+
+        Image imgx = new Image(getClass().getResourceAsStream("/resource/ximage.jpeg"));
+        
+        ImageView image=new ImageView(imgx);
+        image.setFitHeight(50);
+        image.setFitWidth(50);
+        clickedButton.setDisable(true);
+        gameSession.addMove(returnMove(clickedButton));
+        clickedButton.setText(returnSymbol());
+         clickedButton.setDisable(true);
+        System.out.println(clickedButton.getText());
+        if (clickedButton.getText() .equalsIgnoreCase("o") ) {
+            clickedButton.setGraphic(new ImageView(imgo));
+        } else if (clickedButton.getText().equalsIgnoreCase("x")) { {
+            clickedButton.setGraphic(new ImageView(imgx));
+
+        }
+          
         try {
             checkState();
         } catch (BackingStoreException ex) {
@@ -105,7 +129,7 @@ public class PlayerVsPlayerController implements Initializable {
         }
 
     }
-
+    }
     private PlayerMove returnMove(Button btn) {
         PlayerMove move = new PlayerMove();
         if (btn == btn00) {
@@ -134,6 +158,7 @@ public class PlayerVsPlayerController implements Initializable {
         String symbol;
         if (isXSymbol == true) {
             symbol = "X";
+            
         } else {
             symbol = "O";
         }
@@ -269,7 +294,7 @@ public class PlayerVsPlayerController implements Initializable {
             winner = true;
         }
     }
-
+ 
     private boolean isFullGrid() {
         if (!btn00.getText().equals("")
                 && !btn01.getText().equals("")
@@ -286,7 +311,7 @@ public class PlayerVsPlayerController implements Initializable {
         }
     }
 
-     private void checkState() throws BackingStoreException {
+    private void checkState() throws BackingStoreException {
         checkRows();
         checkColumns();
         checkDiagonal();
@@ -363,7 +388,7 @@ public class PlayerVsPlayerController implements Initializable {
             firstPlayerScore = pref.getInt("firstPlayerScore", 0);
             secondPlayerScore = pref.getInt("secondPlayerScore", 0);
             if (firstPlayerScore > 0 || secondPlayerScore > 0) {
-                scorePlayerOne.setText( String.valueOf(firstPlayerScore));
+                scorePlayerOne.setText(String.valueOf(firstPlayerScore));
                 scorePlayerTwo.setText(String.valueOf(secondPlayerScore));
             }
 
