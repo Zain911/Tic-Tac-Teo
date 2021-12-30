@@ -21,6 +21,7 @@ public class SceneController {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+        
     }
     
     public void switchToPlayerVsPlayerScene(ActionEvent event) throws IOException{
@@ -57,6 +58,7 @@ public class SceneController {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+         //((Node)(event.getSource())).getScene().getWindow().hide();
     }
      
      
