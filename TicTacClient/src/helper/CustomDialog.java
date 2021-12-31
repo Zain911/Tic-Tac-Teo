@@ -15,7 +15,7 @@ import javafx.scene.control.ButtonType;
  */
 public class CustomDialog {
     
-    public static boolean askPlayAgain(String s)
+    public static boolean askPlayAgain(String headerText ,String ButtonString )
     {   
         
         ButtonType Yes = new ButtonType("Play Again"); 
@@ -23,7 +23,7 @@ public class CustomDialog {
         Alert a = new Alert(Alert.AlertType.NONE); 
         a.setTitle("Paly Again");
         a.getDialogPane().getButtonTypes().addAll(Yes,No);
-        a.setHeaderText(s);
+        a.setHeaderText(headerText);
          a.showAndWait();
         if(a.getResult()==Yes){  
              return true; 

@@ -1,5 +1,6 @@
 package controller;
 
+import helper.AccessFile;
 import helper.CustomDialog;
 import java.io.IOException;
 import java.net.URL;
@@ -73,10 +74,10 @@ public class PlayerVsPlayerController implements Initializable {
 
     @FXML
     private BorderPane borderPane;
-    
+
     @FXML
     private Label scorePlayerOne;
-    
+
     @FXML
     private Label scorePlayerTwo;
 
@@ -95,11 +96,14 @@ public class PlayerVsPlayerController implements Initializable {
 
     @FXML
     private void buttonOnePressed(ActionEvent event) {
+        Button buttonPressed = (Button) event.getSource();
+
         ((Button) event.getSource()).setDisable(true);
         gameSession.addMove(returnMove((Button) event.getSource()));
         ((Button) event.getSource()).setText(returnSymbol());
         try {
             checkState();
+
         } catch (BackingStoreException ex) {
             Logger.getLogger(PlayerVsPlayerController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -286,7 +290,7 @@ public class PlayerVsPlayerController implements Initializable {
         }
     }
 
-     private void checkState() throws BackingStoreException {
+    private void checkState() throws BackingStoreException {
         checkRows();
         checkColumns();
         checkDiagonal();
@@ -298,6 +302,9 @@ public class PlayerVsPlayerController implements Initializable {
 
             replayAgain("first player");
 
+            if (MainSceneController.isRecord) {
+                AccessFile.writeFile(gameSession.getPlayersMoves());
+            }
         } else if (secondPlayerWinner) {
             System.out.println("O is win");
             scorePlayerTwo.setText(String.valueOf(secondPlayerScore));
@@ -317,8 +324,19 @@ public class PlayerVsPlayerController implements Initializable {
 
     public void replayAgain(String winner) throws BackingStoreException {
 
-        boolean result = CustomDialog.askPlayAgain(winner);
+        boolean result = CustomDialog.askPlayAgain(winner, "play again");
         if (result) {
+            boolean check = CustomDialog.askPlayAgain("Do you want record game",
+                    "Record");
+            if (check) {
+                MainSceneController.isRecord = false;
+
+                AccessFile.createFile("local-mode");
+               // AccessFile.writeFile();
+
+                AccessFile.writeFile(pref.get("fristPlayer", "") + ".");
+                 AccessFile.writeFile(pref.get("secondPlayer", "") + ".");
+            }
 
             //get scene
             Parent buttonParent;
@@ -361,7 +379,7 @@ public class PlayerVsPlayerController implements Initializable {
             firstPlayerScore = pref.getInt("firstPlayerScore", 0);
             secondPlayerScore = pref.getInt("secondPlayerScore", 0);
             if (firstPlayerScore > 0 || secondPlayerScore > 0) {
-                scorePlayerOne.setText( String.valueOf(firstPlayerScore));
+                scorePlayerOne.setText(String.valueOf(firstPlayerScore));
                 scorePlayerTwo.setText(String.valueOf(secondPlayerScore));
             }
 

@@ -22,7 +22,7 @@ import javafx.scene.control.Label;
 
 public class MainSceneController implements Initializable {
     SceneController controller;
-    
+    public static boolean isRecord=false;
     
     @FXML
     private void handleVsAiBtn(ActionEvent event){
