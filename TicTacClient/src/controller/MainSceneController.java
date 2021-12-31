@@ -48,7 +48,7 @@ public class MainSceneController implements Initializable {
     private void handleVsPlayerOnlineBtn(ActionEvent event){
         controller = new SceneController();
         try {
-            controller.switchToOnlineScene(event);
+            controller.switchToLoginScene(event);
         } catch (IOException ex) {
             Logger.getLogger(MainSceneController.class.getName()).log(Level.SEVERE, null, ex);
         }

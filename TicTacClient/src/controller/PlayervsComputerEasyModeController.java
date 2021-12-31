@@ -6,7 +6,6 @@
 package controller;
 
 import java.net.URL;
-import java.util.HashSet;
 import java.util.Optional;
 import java.util.Random;
 import java.util.ResourceBundle;
@@ -102,11 +101,32 @@ public class PlayervsComputerEasyModeController implements Initializable {
                 isFirstPlayerTurn = false;
                 for (;;) {
                     randomNumber = random.nextInt(9);
-                    if (boardButtons[randomNumber].getText().equals("")) {
-                        boardButtons[randomNumber].setTextFill(oForeground);
-                        boardButtons[randomNumber].setText("O");
+                    if (button00.getText().equals(button02.getText())) {
+                        boardButtons[1].setTextFill(oForeground);
+                        boardButtons[1].setText("O");
                         break;
-                    }
+                    }else if (button02.getText().equals(button22.getText())) {
+                        boardButtons[5].setTextFill(oForeground);
+                        boardButtons[5].setText("O");
+                        break;
+                    }else if (button10.getText().equals(button12.getText())) {
+                        boardButtons[4].setTextFill(oForeground);
+                        boardButtons[4].setText("O");
+                        break;
+                    }else if (button20.getText().equals(button22.getText())) {
+                        boardButtons[7].setTextFill(oForeground);
+                        boardButtons[7].setText("O");
+                        break;
+                    }else if (button00.getText().equals(button20.getText())) {
+                        boardButtons[3].setTextFill(oForeground);
+                        boardButtons[3].setText("O");
+                        break;
+                    }else if (button01.getText().equals(button21.getText())) {
+                        boardButtons[4].setTextFill(oForeground);
+                        boardButtons[4].setText("O");
+                        break;
+                    }else
+                        easyMode();
                 }
                 checkIfGameEnds();
 
@@ -114,6 +134,16 @@ public class PlayervsComputerEasyModeController implements Initializable {
 
         }
 
+    }
+    public void easyMode(){
+        for (;;) {
+                    randomNumber = random.nextInt(9);
+                    if (boardButtons[randomNumber].getText().equals("")) {
+                        boardButtons[randomNumber].setTextFill(oForeground);
+                        boardButtons[randomNumber].setText("O");
+                        break;
+                    }
+                }
     }
 
     private void checkIfGameEnds() {

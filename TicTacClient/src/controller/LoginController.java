@@ -8,6 +8,7 @@ package controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.prefs.Preferences;
 import java.util.regex.Pattern;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -53,20 +54,31 @@ public class LoginController implements Initializable {
     private Label emptypassword;
     @FXML
     private Label emptyUseName;
-      
+     //for save the user's status
+    Preferences  preferences;
     
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-        
-        // TODO
+        //for save the user's status
+        preferences = Preferences.userNodeForPackage(LoginController.class);
+         if (preferences != null) {
+             if (!(preferences.get("username", null).isEmpty() && preferences.get("password", null).isEmpty())) {
+                 userName_Email.setText(preferences.get("username", null));
+                 userPsaaword.setText(preferences.get("password", null));
+             }
+        }
     }    
     
     
     
       private boolean isValidDta(){
-        
+        //for save the user's status
+          if (!(userName_Email.getText().isEmpty() && userPsaaword.getText().isEmpty())) {
+              preferences.put("username", userName_Email.getText());
+              preferences.put("password", userPsaaword.getText());
+          }
+          
         if(!(isValidPassword())|!(isValidateEmail())){
                   return false;
              }
@@ -186,8 +198,6 @@ public class LoginController implements Initializable {
    private void hiddenPasswordErrorMeesage(){
    
     emptypassword.setText(" ");
-   
-   
    }
     
     
