@@ -82,9 +82,8 @@ public class GameBoardComponentController implements Initializable {
     @FXML
     private void buttonOnePressed(ActionEvent event) {
         ((Button) event.getSource()).setDisable(true);
-        gameSession.addMove(returnMove  ((Button) event.getSource()));
+        gameSession.addMove(returnMove ((Button) event.getSource()));
         
-       
         checkState();
     }
 

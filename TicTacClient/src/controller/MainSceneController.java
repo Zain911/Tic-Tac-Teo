@@ -5,7 +5,9 @@
  */
 package controller;
 
+import com.sun.javafx.scene.control.skin.CustomColorDialog;
 import controller.SceneController;
+import helper.CustomDialog;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -52,6 +54,8 @@ public class MainSceneController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(MainSceneController.class.getName()).log(Level.SEVERE, null, ex);
         }
+         CustomDialog.showIpDialog(event);
+        
     }
     
     @Override
