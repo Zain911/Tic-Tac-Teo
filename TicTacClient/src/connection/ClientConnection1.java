@@ -19,7 +19,7 @@ import model.Player;
  *
  * @author Mohamed Galal
  */
-public class ClientConnection {
+public class ClientConnection1 {
 
     ObjectOutputStream objectOutputStream;
     OutputStream outputStream;
@@ -27,17 +27,18 @@ public class ClientConnection {
     InputStream inputStream;
     Socket mySocket;
 
-    public ClientConnection() {
+    public ClientConnection1() {
 
         try {
             mySocket = new Socket("10.178.241.71", 5000);
             System.out.println("Connected!");
+            
             outputStream = mySocket.getOutputStream();
             objectOutputStream = new ObjectOutputStream(outputStream);
             inputStream = mySocket.getInputStream();
             objInputStream = new ObjectInputStream(inputStream);
         } catch (IOException ex) {
-            Logger.getLogger(ClientConnection.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ClientConnection1.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
@@ -60,10 +61,10 @@ public class ClientConnection {
                         objectOutputStream.flush();
                         System.out.println(objInputStream.readObject());
                     } catch (ClassNotFoundException ex) {
-                        Logger.getLogger(ClientConnection.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(ClientConnection1.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 } catch (IOException ex) {
-                    Logger.getLogger(ClientConnection.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ClientConnection1.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }).start();

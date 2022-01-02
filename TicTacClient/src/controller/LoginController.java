@@ -5,9 +5,13 @@
  */
 package controller;
 
+import connection.ClientConnection1;
+import connection.ClientConnection;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.prefs.Preferences;
 import java.util.regex.Pattern;
 import javafx.event.ActionEvent;
@@ -53,6 +57,8 @@ public class LoginController implements Initializable {
     @FXML
     private Label emptypassword;
     @FXML
+    private Button backButton;
+    @FXML
     private Label emptyUseName;
     @FXML
     private CheckBox rememberCheckbox;
@@ -60,7 +66,8 @@ public class LoginController implements Initializable {
     Preferences preference;
     Boolean rememberMeFlag;
 
-  
+   SceneController controller=new SceneController();
+
     private void rememberMy() {
         //for save the user's status
         preference = Preferences.userNodeForPackage(LoginController.class);
@@ -89,6 +96,9 @@ public class LoginController implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+     //Image img = new Image(getClass().getResourceAsStream("/ressource/bbbbb.jpg"));
+     //ImageView image=new ImageView(img);
+     //backButton.setGraphic(new ImageView(img));
         
     }
 
@@ -147,10 +157,8 @@ public class LoginController implements Initializable {
     }
 
     public void getDatafromUser() {
-
         model.setUser_name(userName_Email.getText());
         model.setUser_password(userPsaaword.getText());
-
     }
 
     @FXML
@@ -160,24 +168,30 @@ public class LoginController implements Initializable {
     @FXML
     private void login(ActionEvent event) throws IOException {
         getDatafromUser();
-        if (isValidDta()) {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("/view/PlayervsComputerEasyMode.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 600, 400);
-            Stage stage = new Stage();
-
-            stage.setScene(scene);
-            stage.show();
-            ((Node) (event.getSource())).getScene().getWindow().hide();
-
-        } else {
-
-        }
+        ClientConnection.createSocket("10.178.241.71", 5000);
+        ClientConnection cliServer = new ClientConnection();
+        
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    cliServer.sendLoginDataToServer(model);
+                } catch (IOException ex) {
+                    // doaa please handle send data exception
+                }
+            }
+        }).start();
     }
 
     @FXML
     private void register(MouseEvent event) {
-
+        try {
+            
+            controller.switchToRegisterScene(event);
+        } catch (IOException ex) {
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 
     @FXML
@@ -207,6 +221,16 @@ public class LoginController implements Initializable {
     private void hiddenPasswordErrorMeesage() {
 
         emptypassword.setText(" ");
+    }
+    
+     @FXML
+    private void back(ActionEvent event) {
+        try {
+            controller.switchToMainScene(event);
+        } catch (IOException ex) {
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
     }
 
 }

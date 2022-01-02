@@ -6,6 +6,7 @@
 package controller;
 
 import helper.CustomDialog;
+import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.Random;
@@ -74,7 +75,7 @@ public class PlayervsComputerEasyModeController implements Initializable {
     Button[] boardButtons = new Button[3 * 3];
     // Label currentPlayerSymbol = new Label();
    
-    boolean winer=false;
+    boolean winer;
     boolean isGameEnded;
     boolean isPlayerTurn = true;
     boolean isPcTurn = false;
@@ -110,40 +111,16 @@ public class PlayervsComputerEasyModeController implements Initializable {
                 
                 for (;;) {
                     randomNumber = random.nextInt(9);
-<<<<<<< HEAD
-                    if (button00.getText().equals(button02.getText())) {
-                        boardButtons[1].setTextFill(oForeground);
-                        boardButtons[1].setText("O");
-=======
+                    
                     if (boardButtons[randomNumber].getText().equals("")) {
                         boardButtons[randomNumber].setTextFill(oForeground);
                         boardButtons[randomNumber].setText("O");
                         
->>>>>>> aedd2ce844ece07a97a553c52a12686a482f1e6d
                         break;
-                    }else if (button02.getText().equals(button22.getText())) {
-                        boardButtons[5].setTextFill(oForeground);
-                        boardButtons[5].setText("O");
-                        break;
-                    }else if (button10.getText().equals(button12.getText())) {
-                        boardButtons[4].setTextFill(oForeground);
-                        boardButtons[4].setText("O");
-                        break;
-                    }else if (button20.getText().equals(button22.getText())) {
-                        boardButtons[7].setTextFill(oForeground);
-                        boardButtons[7].setText("O");
-                        break;
-                    }else if (button00.getText().equals(button20.getText())) {
-                        boardButtons[3].setTextFill(oForeground);
-                        boardButtons[3].setText("O");
-                        break;
-                    }else if (button01.getText().equals(button21.getText())) {
-                        boardButtons[4].setTextFill(oForeground);
-                        boardButtons[4].setText("O");
-                        break;
-                    }else
-                        easyMode();
-                }
+                    }
+                    }
+                 
+                  
                 checkIfGameEnds();
 
             }
@@ -151,27 +128,20 @@ public class PlayervsComputerEasyModeController implements Initializable {
         }
 
     }
-    public void easyMode(){
-        for (;;) {
-                    randomNumber = random.nextInt(9);
-                    if (boardButtons[randomNumber].getText().equals("")) {
-                        boardButtons[randomNumber].setTextFill(oForeground);
-                        boardButtons[randomNumber].setText("O");
-                        break;
-                    }
-                }
-    }
+    
+   
 
     private void checkIfGameEnds() {
         if (button00.getText().equals(button01.getText()) && button00.getText().equals(button02.getText()) && !button00.getText().equals("")) {
             isGameEnded = true;
+            winer=true;
             colorBackgroundWinnerButtons(button00, button01, button02);
             if(button00.getText().equals("X"))
                 showWinnerGif();
             else
                 showLoserGif();
-            winer=true;
-            colorBackgroundWinnerButtons(button00, button01, button01);
+            //winer=true;
+           // colorBackgroundWinnerButtons(button00, button01, button01);
             System.out.println("0");
         }
 
@@ -257,7 +227,7 @@ public class PlayervsComputerEasyModeController implements Initializable {
         if (XOCounter >= 9) {
             System.out.println("vvvv");
             isGameEnded = true;
-            isPlayerTurn = true;
+           // isPlayerTurn = true;
             XOCounter = 0;
         }
 ////////// found bug
@@ -342,6 +312,19 @@ public class PlayervsComputerEasyModeController implements Initializable {
         CustomDialog.creatLoseDialog();
     }
     
-    
+     
+     
+     
+     
+      @FXML
+    private void back(ActionEvent event) {
+        SceneController controller=new  SceneController();
+        try {
+            controller.switchToMainScene(event);
+        } catch (IOException ex) {
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+    }
 }
 

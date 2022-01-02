@@ -6,6 +6,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -14,14 +16,8 @@ public class SceneController {
     private Stage stage;
     private Scene scene;
     private Parent root;
-<<<<<<< HEAD
 
     public void switchToOnlineScene(ActionEvent event) throws IOException {
-
-=======
-    
-    public void switchToOnlineScene(ActionEvent event) throws IOException{
->>>>>>> aedd2ce844ece07a97a553c52a12686a482f1e6d
         root = FXMLLoader.load(getClass().getResource("/view/OnlineScene.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -29,14 +25,8 @@ public class SceneController {
         stage.show();
 
     }
-<<<<<<< HEAD
 
     public void switchToPlayerVsPlayerScene(ActionEvent event) throws IOException {
-
-=======
-    
-    public void switchToPlayerVsPlayerScene(ActionEvent event) throws IOException{    
->>>>>>> aedd2ce844ece07a97a553c52a12686a482f1e6d
         root = FXMLLoader.load(getClass().getResource("/view/PlayerVsPlayerView.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -51,21 +41,16 @@ public class SceneController {
         stage.setScene(scene);
         stage.show();
     }
-<<<<<<< HEAD
 
     public void switchToSceneComputerScene(ActionEvent event) throws IOException {
 
-=======
-    
-    public void switchToSceneComputerScene(ActionEvent event) throws IOException{
-  
->>>>>>> aedd2ce844ece07a97a553c52a12686a482f1e6d
         root = FXMLLoader.load(getClass().getResource("/view/PlayervsComputerEasyMode.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
+        stage.setMinHeight(700);
+        stage.setMinWidth(800);
         stage.show();
-<<<<<<< HEAD
 
     }
 
@@ -75,40 +60,45 @@ public class SceneController {
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
+        stage.setMaxHeight(700);
+        stage.setWidth(800);
+        stage.setMinHeight(700);
+        stage.setMinWidth(800);
         stage.show();
-        //((Node)(event.getSource())).getScene().getWindow().hide();
+
     }
 
-    public void switchToRegisterScene(ActionEvent event) throws IOException {
+    public void switchToRegisterScene(MouseEvent event) throws IOException {
 
         root = FXMLLoader.load(getClass().getResource("/view/registerFxml.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-=======
-    
-    }
-           
-    public void switchToLoginScene(ActionEvent event) throws IOException{
-  
-        root = FXMLLoader.load(getClass().getResource("/view/loginFxml.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-         //((Node)(event.getSource())).getScene().getWindow().hide();
-    }
-    
-    public void switchToChoosePlayerScene(ActionEvent event) throws IOException{
-        root = FXMLLoader.load(getClass().getResource("/view/PlayerVsPlayerOnlineMode.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
->>>>>>> aedd2ce844ece07a97a553c52a12686a482f1e6d
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-<<<<<<< HEAD
+        this.stage.setScene(scene);
 
-=======
- 
-    
->>>>>>> aedd2ce844ece07a97a553c52a12686a482f1e6d
+        this.stage.show();
+
+    }
+
+    public void switchToChoosePlayerScene(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("/view/PlayerVsPlayerOnlineMode.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void switchToIpScene(ActionEvent event) throws IOException {
+
+        root = FXMLLoader.load(getClass().getResource("/view/Dialg.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene =new Scene(root);
+        
+        stage.setFullScreen(false);
+        stage.setMaxHeight(600);
+        stage.setMaxWidth(600);
+        stage.setScene(scene);
+
+        stage.show();
+    }
+
 }

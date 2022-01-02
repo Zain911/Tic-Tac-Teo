@@ -17,13 +17,14 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ProgressIndicator;
 
 
 
 public class MainSceneController implements Initializable {
     SceneController controller;
     
-    
+     
     @FXML
     private void handleVsAiBtn(ActionEvent event){
         controller=new SceneController();
@@ -45,21 +46,32 @@ public class MainSceneController implements Initializable {
         }
     }
     
-    @FXML
+     @FXML
+    private void handleVsPlayerOnlineBtn(ActionEvent event){
+        
+        try {
+            SceneController conttroller=new SceneController();
+            
+            conttroller.switchToIpScene(event);
+            
+  
+        } catch (IOException ex) {
+            Logger.getLogger(MainSceneController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+     
+   /* @FXML
     private void handleVsPlayerOnlineBtn(ActionEvent event){
         controller = new SceneController();
         try {
-<<<<<<< HEAD
             controller.switchToLoginScene(event);
-=======
             controller.switchToChoosePlayerScene(event);
->>>>>>> aedd2ce844ece07a97a553c52a12686a482f1e6d
         } catch (IOException ex) {
             Logger.getLogger(MainSceneController.class.getName()).log(Level.SEVERE, null, ex);
         }
          CustomDialog.showIpDialog(event);
         
-    }
+    }*/
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {

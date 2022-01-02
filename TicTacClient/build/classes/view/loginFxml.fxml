@@ -64,7 +64,7 @@
                   <Insets bottom="30.0" top="30.0" />
                </opaqueInsets>
             </TextField>
-            <Button fx:id="button_login" ellipsisString="" mnemonicParsing="false" onAction="#login" onMouseClicked="#handleButtonAction" prefHeight="43.0" prefWidth="115.0" style="-fx-background-color: #0d5f5f;" stylesheets="@Style.cs" text="login" textAlignment="JUSTIFY" textFill="#f3f8f4" textOverrun="CLIP" GridPane.columnIndex="1" GridPane.rowIndex="6">
+            <Button fx:id="button_login" ellipsisString="" mnemonicParsing="false" onAction="#login" onMouseClicked="#handleButtonAction" prefHeight="43.0" prefWidth="115.0" style="-fx-background-color: #0d5f5f;" stylesheets="@../css/Style.css" text="login" textAlignment="JUSTIFY" textFill="#f3f8f4" textOverrun="CLIP" GridPane.columnIndex="1" GridPane.rowIndex="6">
                <GridPane.margin>
                   <Insets left="300.0" right="70.0" />
                </GridPane.margin>
@@ -132,6 +132,25 @@
                   <Font size="13.0" />
                </font>
             </CheckBox>
+            
+            <fx:define>
+         <Image fx:id="btnImage" url="/resource/bbbbb.jpg" />
+      </fx:define>
+      <Button fx:id="backButton" layoutX="252.0" layoutY="177.0" mnemonicParsing="false" onAction="#back" prefHeight="37.0" prefWidth="75.0" style="-fx-background-color: #0d5f5f;" textFill="BLUE" GridPane.rowIndex="7">
+     <font>
+        <Font name="Avenir Next Regular" size="13.0" />
+     </font>
+
+     <graphic>
+        <ImageView fitHeight="40.0" fitWidth="60.0">
+                     <image>
+                        <Image url="@../resource/bbbbb.jpg" />
+                     </image></ImageView>
+     </graphic>
+               <GridPane.margin>
+                  <Insets left="50.0" />
+               </GridPane.margin>
+  </Button>
          </children>
       </GridPane>
    </children>
