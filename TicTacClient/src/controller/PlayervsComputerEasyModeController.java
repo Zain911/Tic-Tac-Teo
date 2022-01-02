@@ -62,7 +62,6 @@ public class PlayervsComputerEasyModeController implements Initializable {
     Button[] boardButtons = new Button[3 * 3];
     Button[] cornersButtons = new Button[4];
     // Label currentPlayerSymbol = new Label();
-
     boolean winer = false;
     boolean isGameEnded;
     boolean isPlayerTurn = true;
@@ -73,6 +72,7 @@ public class PlayervsComputerEasyModeController implements Initializable {
     Color oForeground = Color.RED;
     Random random = new Random();
     int randomNumber;
+    String mode;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -100,16 +100,259 @@ public class PlayervsComputerEasyModeController implements Initializable {
 
                 XOCounter++;
                 isPlayerTurn = false;
-
-                //randomChoseBtn();
-                hardMode();
-
-                checkIfGameEnds();
+                if (mode.equals("easy")) {
+                    randomChoseBtn();
+                } else {
+                    hardMode();
+                }
+                System.out.println("mm/" + mode);
 
             }
 
         }
+    }
 
+    /*private void randomChoseBtn(){
+               for (;;) {
+                    randomNumber = random.nextInt(9);
+
+                    if (boardButtons[randomNumber].getText().equals("")) {
+                        boardButtons[randomNumber].setTextFill(oForeground);
+                        boardButtons[randomNumber].setText("O");
+                        
+                        break;
+                }
+                checkIfGameEnds();
+
+            }
+    }*/
+    ////////////////////////////////
+    private void hardMode() {
+        if (XOCounter == 2) {
+            if (boardButtons[4].getText().isEmpty()) {
+                boardButtons[4].setText("O");
+                System.out.println("center x");
+            } else {
+                setMarkToCornerButton();
+                System.out.println("corner x");
+            }
+        } else {
+            setMarkToOtherButtons();
+            System.out.println("other btn");
+        }
+    }
+
+    private Button[] cornerButtonsInit() {
+        cornersButtons[0] = button00;
+        cornersButtons[1] = button02;
+        cornersButtons[2] = button20;
+        cornersButtons[3] = button22;
+        return cornersButtons;
+    }
+
+    private void setMarkToCornerButton() {
+        int randomCorner;
+        for (;;) {
+            randomCorner = random.nextInt(4);
+            if (cornerButtonsInit()[randomCorner].getText().isEmpty()) {
+                cornerButtonsInit()[randomCorner].setTextFill(oForeground);
+                cornerButtonsInit()[randomCorner].setText("O");
+                break;
+            }
+        }
+    }
+
+    private void setMarkToOtherButtons() {
+
+        // check first row
+        if ((boardButtons[0].getText().equals(boardButtons[1].getText())
+                && !boardButtons[1].getText().isEmpty() && boardButtons[2].getText().isEmpty())
+                || (boardButtons[1].getText().equals(boardButtons[2].getText())
+                && !boardButtons[2].getText().isEmpty() && boardButtons[0].getText().isEmpty())
+                || (boardButtons[0].getText().equals(boardButtons[2].getText())
+                && !boardButtons[2].getText().isEmpty() && boardButtons[1].getText().isEmpty())) {
+
+            checkFirstRow();
+
+            //check secound row
+        } else if ((boardButtons[3].getText().equals(boardButtons[4].getText())
+                && !boardButtons[4].getText().isEmpty() && boardButtons[5].getText().isEmpty())
+                || (boardButtons[4].getText().equals(boardButtons[5].getText())
+                && !boardButtons[5].getText().isEmpty() && boardButtons[3].getText().isEmpty())
+                || (boardButtons[3].getText().equals(boardButtons[5].getText())
+                && !boardButtons[5].getText().isEmpty() && boardButtons[4].getText().isEmpty())) {
+
+            checkSecoundRow();
+
+            // check third row
+        } else if ((boardButtons[6].getText().equals(boardButtons[7].getText())
+                && !boardButtons[7].getText().isEmpty() && boardButtons[8].getText().isEmpty())
+                || (boardButtons[7].getText().equals(boardButtons[8].getText())
+                && !boardButtons[8].getText().isEmpty() && boardButtons[6].getText().isEmpty())
+                || (boardButtons[6].getText().equals(boardButtons[8].getText())
+                && !boardButtons[8].getText().isEmpty() && boardButtons[7].getText().isEmpty())) {
+
+            checkThirdRow();
+
+            //check first column
+        } else if ((boardButtons[0].getText().equals(boardButtons[3].getText())
+                && !boardButtons[3].getText().isEmpty() && boardButtons[6].getText().isEmpty())
+                || (boardButtons[3].getText().equals(boardButtons[6].getText())
+                && !boardButtons[6].getText().isEmpty() && boardButtons[0].getText().isEmpty())
+                || (boardButtons[0].getText().equals(boardButtons[6].getText())
+                && !boardButtons[6].getText().isEmpty() && boardButtons[3].getText().isEmpty())) {
+
+            checkFirstColumn();
+
+            // check secound column
+        } else if ((boardButtons[1].getText().equals(boardButtons[4].getText())
+                && !boardButtons[4].getText().isEmpty() && boardButtons[7].getText().isEmpty())
+                || (boardButtons[4].getText().equals(boardButtons[7].getText())
+                && !boardButtons[7].getText().isEmpty() && boardButtons[1].getText().isEmpty())
+                || (boardButtons[1].getText().equals(boardButtons[7].getText())
+                && !boardButtons[7].getText().isEmpty() && boardButtons[4].getText().isEmpty())) {
+
+            checkSecoundCoulmn();
+
+            // check third column
+        } else if ((boardButtons[2].getText().equals(boardButtons[5].getText())
+                && !boardButtons[5].getText().isEmpty() && boardButtons[8].getText().isEmpty())
+                || (boardButtons[5].getText().equals(boardButtons[8].getText())
+                && !boardButtons[8].getText().isEmpty() && boardButtons[2].getText().isEmpty())
+                || (boardButtons[2].getText().equals(boardButtons[8].getText())
+                && !boardButtons[8].getText().isEmpty() && boardButtons[5].getText().isEmpty())) {
+
+            checkThirdColumn();
+
+            // check first diagonal
+        } else if ((boardButtons[0].getText().equals(boardButtons[4].getText())
+                && !boardButtons[4].getText().isEmpty() && boardButtons[8].getText().isEmpty())
+                || (boardButtons[4].getText().equals(boardButtons[8].getText())
+                && !boardButtons[8].getText().isEmpty() && boardButtons[0].getText().isEmpty())
+                || (boardButtons[8].getText().equals(boardButtons[0].getText()))
+                && !boardButtons[0].getText().isEmpty() && boardButtons[4].getText().isEmpty()) {
+
+            checkFirstDigonal();
+
+            // check secound diagonal
+        } else if ((boardButtons[2].getText().equals(boardButtons[4].getText())
+                && !boardButtons[4].getText().isEmpty() && boardButtons[6].getText().isEmpty())
+                || (boardButtons[4].getText().equals(boardButtons[6].getText())
+                && !boardButtons[6].getText().isEmpty() && boardButtons[2].getText().isEmpty())
+                || (boardButtons[2].getText().equals(boardButtons[6].getText())
+                && !boardButtons[6].getText().isEmpty() && boardButtons[4].getText().isEmpty())) {
+
+            checkSecoundDiagonal();
+
+        } else {
+            randomChoseBtn();
+        }
+    }
+
+    private void randomChoseBtn() {
+        for (;;) {
+
+            randomNumber = random.nextInt(9);
+            if (boardButtons[randomNumber].getText().equals("")) {
+                boardButtons[randomNumber].setTextFill(oForeground);
+                boardButtons[randomNumber].setText("O");
+                System.out.println("randomm");
+                break;
+            }
+        }
+    }
+
+    private void checkFirstRow() {
+        System.out.println("first row");
+        if (boardButtons[0].getText().isEmpty()) {
+            boardButtons[0].setText("O");
+        } else if (boardButtons[1].getText().isEmpty()) {
+            boardButtons[1].setText("O");
+        } else if (boardButtons[2].getText().isEmpty()) {
+            boardButtons[2].setText("O");
+        }
+    }
+
+    private void checkSecoundRow() {
+        System.out.println("secound row");
+        if (boardButtons[3].getText().isEmpty()) {
+            boardButtons[3].setText("O");
+        } else if (boardButtons[4].getText().isEmpty()) {
+            boardButtons[4].setText("O");
+        } else if (boardButtons[5].getText().isEmpty()) {
+            boardButtons[5].setText("O");
+        }
+    }
+
+    private void checkThirdRow() {
+        System.out.println("third row");
+        if (boardButtons[6].getText().isEmpty()) {
+            boardButtons[6].setText("O");
+        } else if (boardButtons[7].getText().isEmpty()) {
+            boardButtons[7].setText("O");
+        } else if (boardButtons[8].getText().isEmpty()) {
+            boardButtons[8].setText("O");
+        }
+    }
+
+    private void checkFirstColumn() {
+        System.out.println("first coulmn");
+        if (boardButtons[0].getText().isEmpty()) {
+            boardButtons[0].setText("O");
+        } else if (boardButtons[3].getText().isEmpty()) {
+            boardButtons[3].setText("O");
+        } else if (boardButtons[6].getText().isEmpty()) {
+            boardButtons[6].setText("O");
+        }
+    }
+
+    private void checkSecoundCoulmn() {
+        System.out.println("secound coulmn");
+        if (boardButtons[1].getText().isEmpty()) {
+            boardButtons[1].setText("O");
+        } else if (boardButtons[4].getText().isEmpty()) {
+            boardButtons[4].setText("O");
+        } else if (boardButtons[7].getText().isEmpty()) {
+            boardButtons[7].setText("O");
+        }
+    }
+
+    private void checkThirdColumn() {
+        System.out.println("third coulmn");
+        if (boardButtons[2].getText().isEmpty()) {
+            boardButtons[2].setText("O");
+        } else if (boardButtons[5].getText().isEmpty()) {
+            boardButtons[5].setText("O");
+        } else if (boardButtons[8].getText().isEmpty()) {
+            boardButtons[8].setText("O");
+        }
+    }
+
+    private void checkFirstDigonal() {
+        System.out.println("first diagonal");
+        if (boardButtons[0].getText().isEmpty()) {
+            boardButtons[0].setText("O");
+        } else if (boardButtons[4].getText().isEmpty()) {
+            boardButtons[4].setText("O");
+        } else if (boardButtons[8].getText().isEmpty()) {
+            boardButtons[8].setText("O");
+        }
+    }
+
+    private void checkSecoundDiagonal() {
+        System.out.println("secound diagonal");
+        if (boardButtons[2].getText().isEmpty()) {
+            boardButtons[2].setText("O");
+        } else if (boardButtons[4].getText().isEmpty()) {
+            boardButtons[4].setText("O");
+        } else if (boardButtons[6].getText().isEmpty()) {
+            boardButtons[6].setText("O");
+        }
+    }
+
+    ////////////////////////////////
+    public void checkHardOrEasy(String modeFromUser) {
+      mode= modeFromUser;
     }
 
     private void checkIfGameEnds() {
@@ -258,6 +501,7 @@ public class PlayervsComputerEasyModeController implements Initializable {
     @FXML
     private void playAgin() {
 
+        XOCounter = 0;
         isGameEnded = false;
         XOCounter = 0;
        
@@ -304,226 +548,4 @@ public class PlayervsComputerEasyModeController implements Initializable {
         CustomDialog.creatLoseDialog();
     }
 
-    private void hardMode() {
-        if (XOCounter == 2) {
-            if (boardButtons[4].getText().isEmpty()) {
-                boardButtons[4].setText("O");
-                System.out.println("center x");
-            } else {
-                setMarkToCornerButton();
-                System.out.println("corner x");
-            }
-        } else {
-            setMarkToOtherButtons();
-            System.out.println("other btn");
-        }
-    }
-
-    private Button[] cornerButtonsInit() {
-        cornersButtons[0] = button00;
-        cornersButtons[1] = button02;
-        cornersButtons[2] = button20;
-        cornersButtons[3] = button22;
-        return cornersButtons;
-    }
-
-    private void setMarkToCornerButton() {
-        int randomCorner;
-        for (;;) {
-            randomCorner = random.nextInt(4);
-            if (cornerButtonsInit()[randomCorner].getText().isEmpty()) {
-                cornerButtonsInit()[randomCorner].setTextFill(oForeground);
-                cornerButtonsInit()[randomCorner].setText("O");
-                break;
-            }
-        }
-    }
-
-    private void setMarkToOtherButtons() {
-
-        // check first row
-        if ((boardButtons[0].getText().equals(boardButtons[1].getText())
-                && !boardButtons[1].getText().isEmpty() && boardButtons[2].getText().isEmpty())
-                || (boardButtons[1].getText().equals(boardButtons[2].getText())
-                && !boardButtons[2].getText().isEmpty() && boardButtons[0].getText().isEmpty())
-                || (boardButtons[0].getText().equals(boardButtons[2].getText())
-                && !boardButtons[2].getText().isEmpty() && boardButtons[1].getText().isEmpty())) {
-            
-            checkFirstRow();
-            
-            //check secound row
-        } else if ((boardButtons[3].getText().equals(boardButtons[4].getText())
-                && !boardButtons[4].getText().isEmpty() && boardButtons[5].getText().isEmpty())
-                || (boardButtons[4].getText().equals(boardButtons[5].getText())
-                && !boardButtons[5].getText().isEmpty() && boardButtons[3].getText().isEmpty())
-                || (boardButtons[3].getText().equals(boardButtons[5].getText())
-                && !boardButtons[5].getText().isEmpty() && boardButtons[4].getText().isEmpty()) ) {
-            
-            checkSecoundRow();
-            
-            // check third row
-        } else if ((boardButtons[6].getText().equals(boardButtons[7].getText())
-                && !boardButtons[7].getText().isEmpty() && boardButtons[8].getText().isEmpty())
-                || (boardButtons[7].getText().equals(boardButtons[8].getText())
-                && !boardButtons[8].getText().isEmpty() && boardButtons[6].getText().isEmpty())
-                || (boardButtons[6].getText().equals(boardButtons[8].getText())
-                && !boardButtons[8].getText().isEmpty() && boardButtons[7].getText().isEmpty())) {
-            
-            checkThirdRow();
-            
-            //check first column
-        } else if ((boardButtons[0].getText().equals(boardButtons[3].getText())
-                && !boardButtons[3].getText().isEmpty() && boardButtons[6].getText().isEmpty())
-                || (boardButtons[3].getText().equals(boardButtons[6].getText())
-                && !boardButtons[6].getText().isEmpty() && boardButtons[0].getText().isEmpty())
-                || (boardButtons[0].getText().equals(boardButtons[6].getText())
-                && !boardButtons[6].getText().isEmpty()  && boardButtons[3].getText().isEmpty())) {
-            
-            checkFirstColumn();
-            
-            // check secound column
-        } else if ((boardButtons[1].getText().equals(boardButtons[4].getText())
-                && !boardButtons[4].getText().isEmpty() && boardButtons[7].getText().isEmpty())
-                || (boardButtons[4].getText().equals(boardButtons[7].getText())
-                && !boardButtons[7].getText().isEmpty() && boardButtons[1].getText().isEmpty())
-                || (boardButtons[1].getText().equals(boardButtons[7].getText())
-                && !boardButtons[7].getText().isEmpty()  && boardButtons[4].getText().isEmpty())) {
-            
-            checkSecoundCoulmn();
-            
-            // check third column
-        } else if ((boardButtons[2].getText().equals(boardButtons[5].getText())
-                && !boardButtons[5].getText().isEmpty() && boardButtons[8].getText().isEmpty())
-                || (boardButtons[5].getText().equals(boardButtons[8].getText())
-                && !boardButtons[8].getText().isEmpty()  && boardButtons[2].getText().isEmpty())
-                || (boardButtons[2].getText().equals(boardButtons[8].getText())
-                && !boardButtons[8].getText().isEmpty()  && boardButtons[5].getText().isEmpty())) {
-            
-            checkThirdColumn();
-            
-            // check first diagonal
-        } else if ((boardButtons[0].getText().equals(boardButtons[4].getText())
-                && !boardButtons[4].getText().isEmpty() && boardButtons[8].getText().isEmpty())
-                || (boardButtons[4].getText().equals(boardButtons[8].getText())
-                && !boardButtons[8].getText().isEmpty()  && boardButtons[0].getText().isEmpty())
-                || (boardButtons[8].getText().equals(boardButtons[0].getText()))
-                && !boardButtons[0].getText().isEmpty()  && boardButtons[4].getText().isEmpty()) {
-            
-            checkFirstDigonal();
-            
-            // check secound diagonal
-        } else if ((boardButtons[2].getText().equals(boardButtons[4].getText())
-                && !boardButtons[4].getText().isEmpty() && boardButtons[6].getText().isEmpty())
-                || (boardButtons[4].getText().equals(boardButtons[6].getText())
-                && !boardButtons[6].getText().isEmpty() && boardButtons[2].getText().isEmpty())
-                || (boardButtons[2].getText().equals(boardButtons[6].getText())
-                && !boardButtons[6].getText().isEmpty()  && boardButtons[4].getText().isEmpty())) {
-            
-            checkSecoundDiagonal();
-            
-        } else {
-            randomChoseBtn();
-        }
-    }
-
-    private void randomChoseBtn() {
-        for (;;) {
-
-            randomNumber = random.nextInt(9);
-            if (boardButtons[randomNumber].getText().equals("")) {
-                boardButtons[randomNumber].setTextFill(oForeground);
-                boardButtons[randomNumber].setText("O");
-                System.out.println("randomm");
-                break;
-            }
-        }
-    }
-
-    private void checkFirstRow() {
-        System.out.println("first row");
-            if (boardButtons[0].getText().isEmpty()) {
-                boardButtons[0].setText("O");
-            } else if (boardButtons[1].getText().isEmpty()) {
-                boardButtons[1].setText("O");
-            } else if (boardButtons[2].getText().isEmpty()) {
-                boardButtons[2].setText("O");
-        }
-    }
-
-    private void checkSecoundRow() {
-        System.out.println("secound row");
-            if (boardButtons[3].getText().isEmpty()) {
-                boardButtons[3].setText("O");
-            } else if (boardButtons[4].getText().isEmpty()) {
-                boardButtons[4].setText("O");
-            } else if (boardButtons[5].getText().isEmpty()) {
-                boardButtons[5].setText("O");
-        }
-    }
-
-    private void checkThirdRow() {
-        System.out.println("third row");
-            if (boardButtons[6].getText().isEmpty()) {
-                boardButtons[6].setText("O");
-            } else if (boardButtons[7].getText().isEmpty()) {
-                boardButtons[7].setText("O");
-            } else if (boardButtons[8].getText().isEmpty()) {
-                boardButtons[8].setText("O");
-        }
-    }
-
-    private void checkFirstColumn() {
-        System.out.println("first coulmn");
-            if (boardButtons[0].getText().isEmpty()) {
-                boardButtons[0].setText("O");
-            } else if (boardButtons[3].getText().isEmpty()) {
-                boardButtons[3].setText("O");
-            } else if (boardButtons[6].getText().isEmpty()) {
-                boardButtons[6].setText("O");
-        }
-    }
-
-    private void checkSecoundCoulmn() {
-        System.out.println("secound coulmn");
-            if (boardButtons[1].getText().isEmpty()) {
-                boardButtons[1].setText("O");
-            } else if (boardButtons[4].getText().isEmpty()) {
-                boardButtons[4].setText("O");
-            } else if (boardButtons[7].getText().isEmpty()) {
-                boardButtons[7].setText("O");
-        }
-    }
-
-    private void checkThirdColumn() {
-        System.out.println("third coulmn");
-            if (boardButtons[2].getText().isEmpty()) {
-                boardButtons[2].setText("O");
-            } else if (boardButtons[5].getText().isEmpty()) {
-                boardButtons[5].setText("O");
-            } else if (boardButtons[8].getText().isEmpty()) {
-                boardButtons[8].setText("O");
-        }
-    }
-
-    private void checkFirstDigonal() {
-        System.out.println("first diagonal");
-            if (boardButtons[0].getText().isEmpty()) {
-                boardButtons[0].setText("O");
-            } else if (boardButtons[4].getText().isEmpty()) {
-                boardButtons[4].setText("O");
-            } else if (boardButtons[8].getText().isEmpty()) {
-                boardButtons[8].setText("O");
-        }
-    }
-
-    private void checkSecoundDiagonal() {
-        System.out.println("secound diagonal");
-            if (boardButtons[2].getText().isEmpty()) {
-                boardButtons[2].setText("O");
-            } else if (boardButtons[4].getText().isEmpty()) {
-                boardButtons[4].setText("O");
-            } else if (boardButtons[6].getText().isEmpty()) {
-                boardButtons[6].setText("O");
-        }
-    }
 }

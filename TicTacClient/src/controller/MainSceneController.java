@@ -32,7 +32,7 @@ public class MainSceneController implements Initializable {
     private void handleVsAiBtn(ActionEvent event){
         controller=new SceneController();
         try {
-            controller.switchToSceneComputerScene(event);
+            controller.switchToChooseLevelModeScene(event);
         } catch (IOException ex) {
             Logger.getLogger(MainSceneController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -61,7 +61,8 @@ public class MainSceneController implements Initializable {
     private void handleVsPlayerOnlineBtn(ActionEvent event){
         controller = new SceneController();
         try {
-            controller.switchToChoosePlayerScene(event);
+            controller.switchToLoginScene(event);
+
         } catch (IOException ex) {
             Logger.getLogger(MainSceneController.class.getName()).log(Level.SEVERE, null, ex);
         }
