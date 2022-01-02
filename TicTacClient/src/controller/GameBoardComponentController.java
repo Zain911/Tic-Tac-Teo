@@ -1,13 +1,26 @@
 package controller;
 
-import helper.DrawLine;
+import helper.AccessFile;
+import helper.CustomDialog;
+import static helper.DrawLine.colorBackgroundWinnerButtons;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.prefs.BackingStoreException;
+import java.util.prefs.Preferences;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Bounds;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
@@ -17,6 +30,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.scene.shape.Line;
+import javafx.stage.Stage;
 import model.GameSession;
 import model.PlayerMove;
 
@@ -30,6 +44,9 @@ public class GameBoardComponentController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
+        setupImageXO();
+        // initPrefPlayer(scorePlayerOne,scorePlayerTwo);
+
     }
 
     GameSession gameSession = new GameSession();
@@ -41,14 +58,24 @@ public class GameBoardComponentController implements Initializable {
     private boolean display = false;
     private boolean firstPlayerWinner = false;
     private boolean secondPlayerWinner = false;
-    private int firstPlayerScore = 0;
-    private int secondPlayerScore = 0;
+    protected static int firstPlayerScore = 0;
+    protected static int secondPlayerScore = 0;
     Line line = new Line();
     BackgroundImage backgroundImage = new BackgroundImage(new Image(getClass().getResource("/resource/x_symbol.png").toExternalForm()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
     Background background = new Background(backgroundImage);
-    @FXML
-    private Pane paneWalid;
+    private Pane pane;
+    Parent buttonParent;
+    Stage stage;
+    private Preferences pref;
 
+    @FXML
+    private Label scorePlayerOne;
+
+    @FXML
+    private Label scorePlayerTwo;
+
+    Image imgo, imgx;
+    ImageView image;
     @FXML
     private Button btn00;
 
@@ -81,11 +108,21 @@ public class GameBoardComponentController implements Initializable {
 
     @FXML
     private void buttonOnePressed(ActionEvent event) {
-        ((Button) event.getSource()).setDisable(true);
-        gameSession.addMove(returnMove  ((Button) event.getSource()));
-        
-       
-        checkState();
+        Button buttonPressed = (Button) event.getSource();
+
+        if (buttonPressed.getText().equalsIgnoreCase("")) {
+            gameSession.addMove(returnMove((Button) event.getSource()));
+            ((Button) event.getSource()).setText(returnSymbol(buttonPressed));
+            ((Button) event.getSource()).setStyle("-fx-text-fill:transparent;");
+
+            try {
+                checkState();
+            } catch (BackingStoreException ex) {
+                Logger.getLogger(GameBoardComponentController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+
     }
 
     private PlayerMove returnMove(Button btn) {
@@ -112,105 +149,107 @@ public class GameBoardComponentController implements Initializable {
         return move;
     }
 
-    private String returnSymbol() {
+    private String returnSymbol(Button buttonPressed) {
         String symbol;
         if (isXSymbol == true) {
             symbol = "X";
+            buttonPressed.setGraphic(new ImageView(imgx));
         } else {
             symbol = "O";
+            buttonPressed.setGraphic(new ImageView(imgo));
+
         }
         isXSymbol = !isXSymbol;
         return symbol;
+    }
+
+    public void drawLine(Button b1, Button b2) {
+        Bounds bound1 = b1.localToScene(b1.getBoundsInLocal());
+        Bounds bound2 = b2.localToScene(b2.getBoundsInLocal());
+        double x1, y1, x2, y2;
+        x1 = (bound1.getMinX() + bound1.getMaxX()) / 2;
+        y1 = (bound1.getMinY() + bound1.getMaxY()) / 2;
+        x2 = (bound2.getMinX() + bound2.getMaxX()) / 2;
+        y2 = (bound2.getMinY() + bound2.getMaxY()) / 2;
+        pane.getChildren().add(new Line(x1, y1, x2, y2));
+
     }
 
     private void checkRows() {
         if (btn00.getText().equals(btn01.getText())
                 && btn01.getText().equals(btn02.getText())
                 && !btn00.getText().equals("")) {
-            //drawLine(btn00, btn02);
-            line = DrawLine.drawLine(btn00, btn02);
-            paneWalid.getChildren().add(line);
-            
-                if (btn00.getText().equals("X")) {
-                    firstPlayerWinner = true;
-                    firstPlayerScore += 10;
-                } else {
-                    secondPlayerWinner = true;
-                    secondPlayerScore += 10;
-                }
+            colorBackgroundWinnerButtons(btn00, btn01, btn02);
+            drawLine(btn00, btn02);
+
+            if (btn00.getText().equals("X")) {
+                firstPlayerWinner = true;
+            } else {
+                secondPlayerWinner = true;
+            }
             winner = true;
         } else if (btn10.getText().equals(btn11.getText())
                 && btn11.getText().equals(btn12.getText())
                 && !btn10.getText().equals("")) {
-            line = DrawLine.drawLine(btn10, btn12);
-            paneWalid.getChildren().add(line);
+            colorBackgroundWinnerButtons(btn10, btn11, btn12);
+            drawLine(btn10, btn12);
             if (btn10.getText().equals("X")) {
                 firstPlayerWinner = true;
-                firstPlayerScore += 10;
             } else {
                 secondPlayerWinner = true;
-                secondPlayerScore += 10;
             }
             winner = true;
         } else if (btn20.getText().equals(btn21.getText())
                 && btn21.getText().equals(btn22.getText())
                 && !btn22.getText().equals("")) {
-            line = DrawLine.drawLine(btn20, btn22);
-            paneWalid.getChildren().add(line);
+            colorBackgroundWinnerButtons(btn20, btn21, btn22);
+            drawLine(btn20, btn22);
             if (btn22.getText().equals("X")) {
                 System.out.println("x is winning");
 
                 firstPlayerWinner = true;
-                firstPlayerScore += 10;
             } else {
                 System.out.println("o is winning");
                 secondPlayerWinner = true;
-                secondPlayerScore += 10;
             }
             winner = true;
         }
     }
-
     private void checkColumns() {
         if (btn00.getText().equals(btn10.getText())
                 && btn10.getText().equals(btn20.getText())
                 && !btn00.getText().equals("")) {
-            line = DrawLine.drawLine(btn00, btn20);
-            paneWalid.getChildren().add(line);
+            colorBackgroundWinnerButtons(btn00, btn10, btn20);
+            drawLine(btn00, btn20);
             if (btn00.getText().equals("X")) {
                 System.out.println("x is winning");
                 firstPlayerWinner = true;
-                firstPlayerScore += 10;
             } else {
                 System.out.println("o is winning");
                 secondPlayerWinner = true;
-                secondPlayerScore += 10;
             }
             winner = true;
         } else if (btn01.getText().equals(btn11.getText())
                 && btn11.getText().equals(btn21.getText())
                 && !btn01.getText().equals("")) {
-            line = DrawLine.drawLine(btn01, btn21);
-            paneWalid.getChildren().add(line);
+            colorBackgroundWinnerButtons(btn01, btn11, btn21);
+            drawLine(btn01, btn21);
             if (btn01.getText().equals("X")) {
                 firstPlayerWinner = true;
-                firstPlayerScore += 10;
             } else {
                 secondPlayerWinner = true;
-                secondPlayerScore += 10;
             }
             winner = true;
         } else if (btn02.getText().equals(btn12.getText())
                 && btn12.getText().equals(btn22.getText())
                 && !btn02.getText().equals("")) {
-            line = DrawLine.drawLine(btn02, btn22);
-            paneWalid.getChildren().add(line);
+            colorBackgroundWinnerButtons(btn02, btn12, btn22);
+            drawLine(btn02, btn22);
+
             if (btn02.getText().equals("X")) {
                 firstPlayerWinner = true;
-                firstPlayerScore += 10;
             } else {
                 secondPlayerWinner = true;
-                secondPlayerScore += 10;
             }
             winner = true;
         }
@@ -220,30 +259,26 @@ public class GameBoardComponentController implements Initializable {
         if (btn00.getText().equals(btn11.getText())
                 && btn11.getText().equals(btn22.getText())
                 && !btn00.getText().equals("")) {
-            line = DrawLine.drawLine(btn00, btn22);
-            paneWalid.getChildren().add(line);
+            colorBackgroundWinnerButtons(btn00, btn11, btn22);
+            drawLine(btn00, btn22);
             if (btn00.getText().equals("X")) {
                 firstPlayerWinner = true;
-                firstPlayerScore += 10;
             } else {
                 System.out.println("o is winning");
                 secondPlayerWinner = true;
-                secondPlayerScore += 10;
             }
             winner = true;
         } else if (btn02.getText().equals(btn11.getText())
                 && btn11.getText().equals(btn20.getText())
                 && !btn02.getText().equals("")) {
-            line = DrawLine.drawLine(btn02, btn20);
-            paneWalid.getChildren().add(line);
+            colorBackgroundWinnerButtons(btn02, btn11, btn20);
+            drawLine(btn02, btn20);
             if (btn02.getText().equals("X")) {
                 System.out.println("x is winning");
                 firstPlayerWinner = true;
-                firstPlayerScore += 10;
             } else {
                 System.out.println("o is winning");
                 secondPlayerWinner = true;
-                secondPlayerScore += 10;
             }
             winner = true;
         }
@@ -265,21 +300,114 @@ public class GameBoardComponentController implements Initializable {
         }
     }
 
-    private void checkState() {
-        
-        //todo nested Check
+    private void checkState() throws BackingStoreException {
         checkRows();
         checkColumns();
         checkDiagonal();
         if (firstPlayerWinner) {
             System.out.println("X is win");
+            firstPlayerScore += 5;
+            scorePlayerOne.setText(String.valueOf(firstPlayerScore));
+            replayAgain("first player");
+
+            if (MainSceneController.isRecord) {
+                AccessFile.writeFile(gameSession.getPlayersMoves());
+            }
+
         } else if (secondPlayerWinner) {
             System.out.println("O is win");
+            secondPlayerScore += 5;
+            scorePlayerTwo.setText(String.valueOf(secondPlayerScore));
+            // pref.putInt("secondPlayerScore", secondPlayerScore);
+
+            replayAgain("second player");
+
         } else {
             if ((isFullGrid())) {
                 System.out.println("It's a Draw");
+                replayAgain("Draw");
+            }
+
+        }
+
+    }
+
+    public void replayAgain(String winner) throws BackingStoreException {
+
+        boolean result = CustomDialog.askPlayAgain(winner, "play again");
+
+        if (result) {
+            boolean check = CustomDialog.askPlayAgain("Do you want record game",
+                    "Record");
+            if (check) {
+                MainSceneController.isRecord = false;
+
+                AccessFile.createFile("local-mode");
+                // AccessFile.writeFile();
+
+                AccessFile.writeFile(pref.get("fristPlayer", "") + ".");
+                AccessFile.writeFile(pref.get("secondPlayer", "") + ".");
+            }
+
+            //get scene
+            try {
+                buttonParent = FXMLLoader.load(getClass().getResource("/view/PlayerVsPlayerView.fxml"));
+                //generate new scene
+                Scene buttonScene = new Scene(buttonParent);
+
+                //get stage information
+                Stage window = (Stage) btn00.getScene().getWindow();
+                window.setTitle("Home");
+
+                window.setScene(buttonScene);
+                window.show();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        } else {
+          
+
+            try {
+                buttonParent = FXMLLoader.load(getClass().getResource("/view/MainScene.fxml"));
+                //generate new scene
+                Scene buttonScene = new Scene(buttonParent);
+
+                //get stage information
+                Stage window = (Stage) btn00.getScene().getWindow();
+                window.setTitle("Home");
+
+                window.setScene(buttonScene);
+                window.show();
+            } catch (IOException ex) {
+                ex.printStackTrace();
             }
         }
+
+    }
+
+    public void setPane(Pane pane) {
+        this.pane = pane;
+    }
+
+    private void setupImageXO() {
+        imgo = new Image(getClass().getResourceAsStream("/resource/oimage.jpeg"));
+
+        imgx = new Image(getClass().getResourceAsStream("/resource/ximage.jpeg"));
+
+    }
+
+    public void initPrefPlayer(Label scorePlayerOne, Label scorePlayerTwo) throws BackingStoreException {
+
+        if (firstPlayerScore != 0 || secondPlayerScore != 0) {
+            scorePlayerOne.setText(String.valueOf(firstPlayerScore));
+            scorePlayerTwo.setText(String.valueOf(secondPlayerScore));
+
+        }
+    }
+
+    void setLabelScore(Label scorePlayerOne, Label scorePlayerTwo) {
+        this.scorePlayerOne = scorePlayerOne;
+        this.scorePlayerTwo = scorePlayerTwo;
     }
 
 }

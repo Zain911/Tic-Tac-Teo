@@ -5,7 +5,10 @@
  */
 package controller;
 
+
+import com.sun.javafx.scene.control.skin.CustomColorDialog;
 import controller.SceneController;
+import helper.CustomDialog;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -13,11 +16,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
+
 
 
 public class MainSceneController implements Initializable {
@@ -36,6 +36,7 @@ public class MainSceneController implements Initializable {
     
     @FXML
     private void handleVsPlayerBtn(ActionEvent event){
+        //CustomDialog.creatPlayersNamesDialog();
         controller = new SceneController();
         try {
             controller.switchToPlayerVsPlayerScene(event);
@@ -48,10 +49,12 @@ public class MainSceneController implements Initializable {
     private void handleVsPlayerOnlineBtn(ActionEvent event){
         controller = new SceneController();
         try {
-            controller.switchToOnlineScene(event);
+            controller.switchToChoosePlayerScene(event);
         } catch (IOException ex) {
             Logger.getLogger(MainSceneController.class.getName()).log(Level.SEVERE, null, ex);
         }
+         CustomDialog.showIpDialog(event);
+        
     }
     
     @Override
