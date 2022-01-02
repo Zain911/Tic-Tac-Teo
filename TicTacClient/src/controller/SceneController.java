@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -30,6 +31,25 @@ public class SceneController {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+    
+    public void switchToPlayersNamesScene(ActionEvent event) throws IOException{    
+        root = FXMLLoader.load(getClass().getResource("/view/PlayerNameDialog.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+    
+    public void showDialogPlayersNames(ActionEvent event) throws IOException{    
+        root = FXMLLoader.load(getClass().getResource("/view/PlayerNameDialog.fxml"));
+        scene = new Scene(root, 350, 300);
+        Stage stageDialog  = new Stage();
+        
+        stageDialog.initModality(Modality.APPLICATION_MODAL);
+        stageDialog.initStyle(StageStyle.TRANSPARENT);
+        stageDialog.setScene(scene);
+        stageDialog.show();
     }
     
     public void switchToMainScene(ActionEvent event) throws IOException{

@@ -2,27 +2,11 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-<<<<<<< HEAD
-        <group/>
-=======
         <group>
-<<<<<<< HEAD
-            <file>file:/F:/iti%20data/project/Tic-Tac-Teo/TicTacClient/src/view/newXMLDocument.xml</file>
-            <file>file:/F:/iti%20data/project/Tic-Tac-Teo/TicTacClient/src/helper/HelperMethod.java</file>
-            <file>file:/F:/iti%20data/project/Tic-Tac-Teo/TicTacClient/src/helper/CustomDialog.java</file>
-            <file>file:/F:/iti%20data/project/Tic-Tac-Teo/TicTacClient/src/helper/ClientConnection.java</file>
-            <file>file:/F:/iti%20data/project/Tic-Tac-Teo/TicTacClient/src/view/FXML1.fxml</file>
-            <file>file:/F:/iti%20data/project/Tic-Tac-Teo/TicTacClient/src/model/TicTacClient.java</file>
-            <file>file:/F:/iti%20data/project/Tic-Tac-Teo/TicTacClient/src/controller/LoginController.java</file>
-            <file>file:/F:/iti%20data/project/Tic-Tac-Teo/TicTacClient/src/helper/DataTransferObject.java</file>
-            <file>file:/F:/iti%20data/project/Tic-Tac-Teo/TicTacClient/src/controller/PlayerVsPlayerController.java</file>
-            <file>file:/F:/iti%20data/project/Tic-Tac-Teo/TicTacClient/src/controller/HardMode.java</file>
-=======
-            <file>file:/C:/Users/Ghaly/Desktop/Final%20Project/final%20Development/TicTacClient/src/controller/PlayervsComputerEasyModeController.java</file>
-            <file>file:/C:/Users/Ghaly/Desktop/Final%20Project/final%20Development/TicTacClient/src/controller/SceneController.java</file>
-            <file>file:/C:/Users/Ghaly/Desktop/Final%20Project/final%20Development/TicTacClient/src/view/FXML.fxml</file>
->>>>>>> adf8eed36e4b08bbdba488dd1b1ff4219fb51d23
+            <file>file:/D:/project/Tic-Tac-Teo/TicTacClient/src/controller/MainSceneController.java</file>
+            <file>file:/D:/project/Tic-Tac-Teo/TicTacClient/src/controller/PlayerNameDialogController.java</file>
+            <file>file:/D:/project/Tic-Tac-Teo/TicTacClient/src/controller/PlayerVsPlayerController.java</file>
+            <file>file:/D:/project/Tic-Tac-Teo/TicTacClient/src/controller/SceneController.java</file>
         </group>
->>>>>>> 57ef37652703c3e65e0a81b5f987807160021f9b
     </open-files>
 </project-private>

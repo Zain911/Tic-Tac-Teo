@@ -16,13 +16,17 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.control.Dialog;
+import javafx.stage.StageStyle;
 
 
 
 public class MainSceneController implements Initializable {
     SceneController controller;
-    
+    ActionEvent eventBtn;
     
     @FXML
     private void handleVsAiBtn(ActionEvent event){
@@ -36,14 +40,22 @@ public class MainSceneController implements Initializable {
     
     @FXML
     private void handleVsPlayerBtn(ActionEvent event){
-        //CustomDialog.creatPlayersNamesDialog();
-        controller = new SceneController();
         try {
-            controller.switchToPlayerVsPlayerScene(event);
+            controller.switchToPlayersNamesScene(event);
         } catch (IOException ex) {
             Logger.getLogger(MainSceneController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    /*public void switchToPlayerVsPlayer() {
+        try {
+            controller.switchToPlayerVsPlayerScene(eventBtn);
+        } catch (IOException ex) {
+            Logger.getLogger(MainSceneController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }*/
+    
+    
     
     @FXML
     private void handleVsPlayerOnlineBtn(ActionEvent event){
@@ -61,5 +73,20 @@ public class MainSceneController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         controller = new SceneController();
     }    
+
+    private void showDialog(ActionEvent event) {
+          try {
+
+            Dialog dialog = new Dialog();
+            Parent root = FXMLLoader.load(CustomDialog.class.getResource("/view/PlayerNameDialog.fxml"));
+            dialog.getDialogPane().setContent(root);
+            dialog.initStyle(StageStyle.TRANSPARENT);
+            
+            dialog.show();
+            
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
     
 }
