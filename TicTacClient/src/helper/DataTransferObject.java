@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.PlayerDataModel;
-import org.apache.derby.jdbc.ClientDriver;
+//import org.apache.derby.jdbc.ClientDriver;
 
 /**
  *
@@ -29,7 +29,7 @@ public class DataTransferObject {
     public static void getConnection() {
 
         try {
-            DriverManager.registerDriver(new ClientDriver());
+          //  DriverManager.registerDriver(new ClientDriver());
 
             con = DriverManager.getConnection("jdbc:derby://localhost:1527/RegisterForm", "root", "root");
         } catch (SQLException ex) {

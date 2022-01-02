@@ -124,7 +124,7 @@
                   <Insets left="50.0" top="70.0" />
                </GridPane.margin>
             </Label>
-            <CheckBox fx:id="rememberMe" mnemonicParsing="false" onAction="#rememberMy" prefHeight="19.0" prefWidth="136.0" text="  Remember me" GridPane.columnIndex="1" GridPane.rowIndex="5">
+            <CheckBox fx:id="rememberMe" mnemonicParsing="false" prefHeight="19.0" prefWidth="136.0" text="  Remember me" GridPane.columnIndex="1" GridPane.rowIndex="5">
                <GridPane.margin>
                   <Insets left="30.0" />
                </GridPane.margin>

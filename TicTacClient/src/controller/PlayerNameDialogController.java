@@ -13,13 +13,19 @@ import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import model.PlayersNamesOfflineMode;
 
 /**
@@ -30,27 +36,36 @@ import model.PlayersNamesOfflineMode;
 public class PlayerNameDialogController implements Initializable {
 
     @FXML
-    private TextField dialogEdt;
-    @FXML
     private Button btnPlay;
     @FXML
     private Text txtError;
-    @FXML
-    private TextField dialogEdt2;
 
+    @FXML
+    private Button btnBack;
+    @FXML
+    private ImageView playersImg;
+    @FXML
+    private TextField edtNameTwo;
+    @FXML
+    private TextField edtNameOne;
+    public static String firstName;
+    public static String secondName;
+
+   
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        Image img = new Image("/resource/pvsp.png");
+        playersImg.setImage(img);
         setFormateToEdt();
     }
 
-    
     private boolean isEdtEmpty() {
-        return dialogEdt.getText().equals("")
-                || dialogEdt2.getText().equals("");
+        return edtNameOne.getText().equals("")
+                || edtNameTwo.getText().equals("");
     }
 
     @FXML
@@ -60,66 +75,68 @@ public class PlayerNameDialogController implements Initializable {
 
     @FXML
     private void onPlay(ActionEvent event) {
-        if(isEdtEmpty()) {
+        if (isEdtEmpty()) {
             txtError.setVisible(true);
         } else {
-            /*PlayersNamesOfflineMode names =
-                    new PlayersNamesOfflineMode(dialogEdt.getText().toString(), dialogEdt2.getText().toString());
-            System.out.println(names.getPlayerOneName());
-            System.out.println(names.getPlayerTwoName());*/
-            
             SceneController controller = new SceneController();
+
+            // setFirstName(edtNameOne.getText().toString());
+            //setSecoundName( edtNameTwo.getText());
+            firstName = (edtNameOne.getText());
+            secondName=( edtNameTwo.getText());
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/PlayerVsPlayerView.fxml"));
+
             try {
+                loader.load();
+//                PlayerVsPlayerController con = loader.getController();
+                // con.setPlayerNames(firstName,secoundName);
                 controller.switchToPlayerVsPlayerScene(event);
             } catch (IOException ex) {
-                ex.printStackTrace();
+                Logger.getLogger(PlayerVsPlayerController.class.getName()).log(Level.SEVERE, null, ex);
             }
-          
-            dismisDialog(event);
-            
         }
-        
-        
+
     }
 
     private void setFormateToEdt() {
         // to prevent spaces from in edit text
-        TextFormatter<?> formatter2  = new TextFormatter<>((TextFormatter.Change change) -> {
-        String text = change.getText();
+        TextFormatter<?> formatter2 = new TextFormatter<>((TextFormatter.Change change) -> {
+            String text = change.getText();
 
-        if (!text.isEmpty()) {
-            String newText = text.replace(" ", "").toLowerCase();
+            if (!text.isEmpty()) {
+                String newText = text.replace(" ", "").toLowerCase();
 
-            int carretPos = change.getCaretPosition() - text.length() + newText.length();
-            change.setText(newText);
+                int carretPos = change.getCaretPosition() - text.length() + newText.length();
+                change.setText(newText);
 
-            change.selectRange(carretPos, carretPos);
-        }
+                change.selectRange(carretPos, carretPos);
+            }
             return change;
         });
-        
+
         TextFormatter<?> formatter = new TextFormatter<>((TextFormatter.Change change) -> {
-        String text = change.getText();
+            String text = change.getText();
 
-        if (!text.isEmpty()) {
-            String newText = text.replace(" ", "").toLowerCase();
+            if (!text.isEmpty()) {
+                String newText = text.replace(" ", "").toLowerCase();
 
-            int carretPos = change.getCaretPosition() - text.length() + newText.length();
-            change.setText(newText);
+                int carretPos = change.getCaretPosition() - text.length() + newText.length();
+                change.setText(newText);
 
-            change.selectRange(carretPos, carretPos);
-        }
+                change.selectRange(carretPos, carretPos);
+            }
             return change;
         });
-        
-        dialogEdt.setTextFormatter(formatter);
-        dialogEdt2.setTextFormatter(formatter2);
+
+        edtNameOne.setTextFormatter(formatter);
+        edtNameTwo.setTextFormatter(formatter2);
         // to set focus on first edtit text
-        Platform.runLater(() -> {dialogEdt.requestFocus();});
+        Platform.runLater(() -> {
+            edtNameOne.requestFocus();
+        });
 
     }
 
-    @FXML
     private void closeDialog(ActionEvent event) {
         dismisDialog(event);
     }
@@ -128,9 +145,17 @@ public class PlayerNameDialogController implements Initializable {
         Button btn = (Button) event.getSource();
         Stage statge = (Stage) btn.getScene().getWindow();
         statge.close();
+
     }
 
-   
+    @FXML
+    private void onBack(ActionEvent event) {
+        SceneController controller = new SceneController();
+        try {
+            controller.switchToMainScene(event);
+        } catch (IOException ex) {
+            Logger.getLogger(PlayerVsPlayerController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
-    
 }

@@ -72,6 +72,7 @@ public class CustomDialog {
             Dialog dialog = new Dialog();
             Parent root = FXMLLoader.load(CustomDialog.class.getResource("/view/PlayerNameDialog.fxml"));
             dialog.getDialogPane().setContent(root);
+            
             dialog.initStyle(StageStyle.TRANSPARENT);
             
             dialog.show();

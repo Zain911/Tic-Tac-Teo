@@ -26,7 +26,7 @@
             <Button fx:id="btn02" alignment="CENTER" mnemonicParsing="false" onAction="#buttonOnePressed" prefHeight="134.0" prefWidth="279.0" styleClass="tic" stylesheets="@../css/Style.css" textAlignment="JUSTIFY" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" />
             <Button fx:id="btn10" mnemonicParsing="false" onAction="#buttonOnePressed" prefHeight="101.0" prefWidth="221.0" styleClass="tic" stylesheets="@../css/Style.css" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
             <Button fx:id="btn11" mnemonicParsing="false" onAction="#buttonOnePressed" prefHeight="101.0" prefWidth="221.0" styleClass="tic" stylesheets="@../css/Style.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Button fx:id="btn12" mnemonicParsing="false" onAction="#buttonOnePressed" prefHeight="106.0" prefWidth="279.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="SOMETIMES">
+            <Button fx:id="btn12" mnemonicParsing="false" onAction="#buttonOnePressed" prefHeight="106.0" prefWidth="279.0" styleClass="tic" stylesheets="@../css/Style.css" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="SOMETIMES">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>

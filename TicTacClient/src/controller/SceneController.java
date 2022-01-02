@@ -6,67 +6,102 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class SceneController {
-    
+
     private Stage stage;
     private Scene scene;
     private Parent root;
-    
-    public void switchToOnlineScene(ActionEvent event) throws IOException{
+
+    public void switchToOnlineScene(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("/view/OnlineScene.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-        
+
+    }
+
+    public void switchToPlayerVsPlayerScene(ActionEvent event) throws IOException {
+
+        root = FXMLLoader.load(getClass().getResource("/view/PlayerVsPlayerView.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
     
-    public void switchToPlayerVsPlayerScene(ActionEvent event) throws IOException{    
-        root = FXMLLoader.load(getClass().getResource("/view/PlayerVsPlayerView.fxml"));
+    public void switchToPlayersNamesScene(ActionEvent event) throws IOException{    
+        root = FXMLLoader.load(getClass().getResource("/view/PlayerNameDialog.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+    
+    public void showDialogPlayersNames(ActionEvent event) throws IOException{    
+        root = FXMLLoader.load(getClass().getResource("/view/PlayerNameDialog.fxml"));
+        scene = new Scene(root, 350, 300);
+        Stage stageDialog  = new Stage();
+        
+        stageDialog.initModality(Modality.APPLICATION_MODAL);
+        stageDialog.initStyle(StageStyle.TRANSPARENT);
+        stageDialog.setScene(scene);
+        stageDialog.show();
     }
     
     public void switchToMainScene(ActionEvent event) throws IOException{
         root = FXMLLoader.load(getClass().getResource("/view/MainScene.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
-    
-    public void switchToSceneComputerScene(ActionEvent event) throws IOException{
-  
+
+    public void switchToSceneComputerScene(ActionEvent event) throws IOException {
+
+        
         root = FXMLLoader.load(getClass().getResource("/view/PlayervsComputerEasyMode.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-    
     }
-           
-    public void switchToLoginScene(ActionEvent event) throws IOException{
-  
+
+    public void switchToLoginScene(ActionEvent event) throws IOException {
+
         root = FXMLLoader.load(getClass().getResource("/view/loginFxml.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-         //((Node)(event.getSource())).getScene().getWindow().hide();
+        //((Node)(event.getSource())).getScene().getWindow().hide();
     }
-    
-    public void switchToChoosePlayerScene(ActionEvent event) throws IOException{
+
+    public void switchToRegisterScene(ActionEvent event) throws IOException {
+
+        root = FXMLLoader.load(getClass().getResource("/view/registerFxml.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void switchToChoosePlayerScene(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("/view/PlayerVsPlayerOnlineMode.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
- 
-    
+     public void switchToChooseLevelModeScene(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("/view/HardModeFXML.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 }

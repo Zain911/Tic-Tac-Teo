@@ -1,5 +1,7 @@
 package controller;
 
+import static controller.PlayerNameDialogController.firstName;
+import static controller.PlayerNameDialogController.secondName;
 import helper.AccessFile;
 import helper.CustomDialog;
 import helper.DrawLine;
@@ -24,10 +26,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Line;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import javax.lang.model.element.Element;
@@ -53,14 +57,14 @@ public class PlayerVsPlayerController implements Initializable {
 
     @FXML
     public Label scorePlayerOne;
-
     @FXML
     public Label scorePlayerTwo;
+    @FXML
+    public Label playerNameOne;
+    @FXML
+    public Label palyerNameTwo;
 
-    @FXML
-    private Button restartButton;
-    @FXML
-    private ImageView image1;
+    String txtFirstNamePlayer, txtSecondNamePlayer;
 
     @FXML
     private void buttonBackPressed(ActionEvent event) {
@@ -68,7 +72,7 @@ public class PlayerVsPlayerController implements Initializable {
         try {
             controller.switchToMainScene(event);
             GameBoardComponentController.firstPlayerScore = 0;
-            GameBoardComponentController.secondPlayerScore=0;
+            GameBoardComponentController.secondPlayerScore = 0;
         } catch (IOException ex) {
             Logger.getLogger(PlayerVsPlayerController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -123,9 +127,12 @@ public class PlayerVsPlayerController implements Initializable {
             borderPane.setCenter(fXMLLoader.load());
             GameBoardComponentController boardComponentController = fXMLLoader.getController();
             boardComponentController.setLabelScore(scorePlayerOne, scorePlayerTwo);
+            // boardComponentController.setNamePlayer(txtFirstNamePlayer, txtSecondNamePlayer);
             boardComponentController.setPane(borderPane);
 
             boardComponentController.initPrefPlayer(scorePlayerOne, scorePlayerTwo);
+            playerNameOne.setText(firstName);
+            palyerNameTwo.setText(secondName);
         } catch (IOException ex) {
             Logger.getLogger(PlayerVsPlayerController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (BackingStoreException ex) {
@@ -133,5 +140,7 @@ public class PlayerVsPlayerController implements Initializable {
         }
 
     }
+
+   
 
 }

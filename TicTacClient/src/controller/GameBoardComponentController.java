@@ -367,6 +367,7 @@ public class GameBoardComponentController implements Initializable {
         } else {
           
 
+            firstPlayerScore=secondPlayerScore=0;
             try {
                 buttonParent = FXMLLoader.load(getClass().getResource("/view/MainScene.fxml"));
                 //generate new scene
@@ -410,4 +411,8 @@ public class GameBoardComponentController implements Initializable {
         this.scorePlayerTwo = scorePlayerTwo;
     }
 
+ /*   void setNamePlayer(String txtFirstNamePlayer, String txtSecondNamePlayer) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+*/
 }
