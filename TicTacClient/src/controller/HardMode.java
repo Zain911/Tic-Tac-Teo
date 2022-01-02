@@ -5,19 +5,9 @@
  */
 package controller;
 
-/**
- *
- * @author mka
- */
 public class HardMode  {
      public static  void hard(){
-     
-      
-       
-       
-       
-     
-     
+         
      }
 
     private static void checkFirstRow() {

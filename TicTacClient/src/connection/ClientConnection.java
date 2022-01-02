@@ -34,6 +34,7 @@ public class ClientConnection {
         if (socket == null) {
             socket = new Socket(address, port);
 
+
         }
         return socket;
 
@@ -69,15 +70,6 @@ public class ClientConnection {
 
             }
         }).start();
-
-    }
-
-    public void clientConnection(String address, int port, ActionEvent event) throws IOException {
-        SceneController controller = new SceneController();
-
-        socket = new Socket(address, port);
-        System.out.println("connected");
-        controller.switchToLoginScene(event);
 
     }
 

@@ -20,9 +20,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Line;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import javax.lang.model.element.Element;
@@ -82,11 +84,18 @@ public class PlayerVsPlayerController implements Initializable {
 
     @FXML
     private Label scorePlayerTwo;
+    @FXML
+    private Text playerNameOne;
+    @FXML
+    private Text playerNameTwo;
         
-    @FXML
-    private Button restartButton;
-    @FXML
-    private ImageView image1;
+    
+    public void getPlayerNames(String playerOneName, String PlayerTwoName) {
+        playerNameOne.setText(playerOneName);
+        playerNameTwo.setText(PlayerTwoName);
+        System.out.println(playerOneName);
+        System.out.println(PlayerTwoName);
+    }
 
     @FXML
     private void buttonBackPressed(ActionEvent event) {
@@ -97,7 +106,6 @@ public class PlayerVsPlayerController implements Initializable {
             Logger.getLogger(PlayerVsPlayerController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
    
 
     @FXML
@@ -113,7 +121,7 @@ public class PlayerVsPlayerController implements Initializable {
         clickedButton.setDisable(true);
         gameSession.addMove(returnMove(clickedButton));
         clickedButton.setText(returnSymbol());
-         clickedButton.setDisable(true);
+        clickedButton.setDisable(true);
         System.out.println(clickedButton.getText());
         if (clickedButton.getText() .equalsIgnoreCase("o") ) {
             clickedButton.setGraphic(new ImageView(imgo));
@@ -158,9 +166,12 @@ public class PlayerVsPlayerController implements Initializable {
         String symbol;
         if (isXSymbol == true) {
             symbol = "X";
-            
+            //playerNameOne.setStyle(null);
+            //playerNameOne.setStyle("-fx-background-color: yellow;");
         } else {
             symbol = "O";
+            //playerNameTwo.setStyle(null);
+            //playerNameOne.setStyle("-fx-background-color: yellow;");
         }
         isXSymbol = !isXSymbol;
 
@@ -374,6 +385,8 @@ public class PlayerVsPlayerController implements Initializable {
 
         try {
             initPrefPlayer();
+            //playerNameOne.setStyle("-fx-background-color: yellow;");
+
         } catch (BackingStoreException ex) {
             Logger.getLogger(PlayerVsPlayerController.class.getName()).log(Level.SEVERE, null, ex);
         }

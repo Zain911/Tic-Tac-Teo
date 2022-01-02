@@ -11,26 +11,17 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.Random;
 import java.util.ResourceBundle;
-import java.util.Set;
-import java.util.Timer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -38,8 +29,7 @@ import javafx.stage.StageStyle;
  * @author mka
  */
 public class PlayervsComputerEasyModeController implements Initializable {
-    
-    
+
     @FXML
     private Button button00;
     @FXML
@@ -73,33 +63,42 @@ public class PlayervsComputerEasyModeController implements Initializable {
     @FXML
     private Button exitButton;
     Button[] boardButtons = new Button[3 * 3];
+    Button[] cornersButtons = new Button[4];
     // Label currentPlayerSymbol = new Label();
+
    
     boolean winer;
+
+  //  boolean winer = false;
     boolean isGameEnded;
     boolean isPlayerTurn = true;
     boolean isPcTurn = false;
     int XOCounter = 0;
-    
+
     Color xForeground = Color.BLUE;
     Color oForeground = Color.RED;
     Random random = new Random();
     int randomNumber;
+    String mode;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         setButtondInArray();
+        
+        //to make computer start play
+        //button11.setText("O");
+        //XOCounter++;
     }
 
     @FXML
     private void startPlay(ActionEvent event) {
         Button clickedButton = (Button) event.getSource();
         if (isGameEnded == false && clickedButton.getText().equals("")) {
-            
-            
-            System.out.println(XOCounter);
+
             XOCounter++;
+            System.out.println("count for test : " + XOCounter);
+
             isPlayerTurn = true;
             clickedButton.setTextFill(xForeground);
             clickedButton.setText("X");
@@ -108,119 +107,353 @@ public class PlayervsComputerEasyModeController implements Initializable {
 
                 XOCounter++;
                 isPlayerTurn = false;
-                
-                for (;;) {
-                    randomNumber = random.nextInt(9);
-                    
-                    if (boardButtons[randomNumber].getText().equals("")) {
-                        boardButtons[randomNumber].setTextFill(oForeground);
-                        boardButtons[randomNumber].setText("O");
-                        
-                        break;
-                    }
-                    }
-                 
-                  
-                checkIfGameEnds();
+                if (mode.equals("easy")) {
+                    randomChoseBtn();
+                } else {
+                    hardMode();
+                }
+                System.out.println("mm/" + mode);
 
             }
 
         }
-
     }
+
     
-   
+
+                    
+                   
+                 
+                  
+
+    private void hardMode() {
+        if (XOCounter == 2) {
+            if (boardButtons[4].getText().isEmpty()) {
+                boardButtons[4].setText("O");
+                System.out.println("center x");
+            } else {
+                setMarkToCornerButton();
+                System.out.println("corner x");
+            }
+        } else {
+            setMarkToOtherButtons();
+            System.out.println("other btn");
+        }
+    }
+
+    private Button[] cornerButtonsInit() {
+        cornersButtons[0] = button00;
+        cornersButtons[1] = button02;
+        cornersButtons[2] = button20;
+        cornersButtons[3] = button22;
+        return cornersButtons;
+    }
+
+    private void setMarkToCornerButton() {
+        int randomCorner;
+        for (;;) {
+            randomCorner = random.nextInt(4);
+            if (cornerButtonsInit()[randomCorner].getText().isEmpty()) {
+                cornerButtonsInit()[randomCorner].setTextFill(oForeground);
+                cornerButtonsInit()[randomCorner].setText("O");
+                break;
+            }
+        }
+    }
+
+    private void setMarkToOtherButtons() {
+
+        // check first row
+        if ((boardButtons[0].getText().equals(boardButtons[1].getText())
+                && !boardButtons[1].getText().isEmpty() && boardButtons[2].getText().isEmpty())
+                || (boardButtons[1].getText().equals(boardButtons[2].getText())
+                && !boardButtons[2].getText().isEmpty() && boardButtons[0].getText().isEmpty())
+                || (boardButtons[0].getText().equals(boardButtons[2].getText())
+                && !boardButtons[2].getText().isEmpty() && boardButtons[1].getText().isEmpty())) {
+
+            checkFirstRow();
+
+            //check secound row
+        } else if ((boardButtons[3].getText().equals(boardButtons[4].getText())
+                && !boardButtons[4].getText().isEmpty() && boardButtons[5].getText().isEmpty())
+                || (boardButtons[4].getText().equals(boardButtons[5].getText())
+                && !boardButtons[5].getText().isEmpty() && boardButtons[3].getText().isEmpty())
+                || (boardButtons[3].getText().equals(boardButtons[5].getText())
+                && !boardButtons[5].getText().isEmpty() && boardButtons[4].getText().isEmpty())) {
+
+            checkSecoundRow();
+
+            // check third row
+        } else if ((boardButtons[6].getText().equals(boardButtons[7].getText())
+                && !boardButtons[7].getText().isEmpty() && boardButtons[8].getText().isEmpty())
+                || (boardButtons[7].getText().equals(boardButtons[8].getText())
+                && !boardButtons[8].getText().isEmpty() && boardButtons[6].getText().isEmpty())
+                || (boardButtons[6].getText().equals(boardButtons[8].getText())
+                && !boardButtons[8].getText().isEmpty() && boardButtons[7].getText().isEmpty())) {
+
+            checkThirdRow();
+
+            //check first column
+        } else if ((boardButtons[0].getText().equals(boardButtons[3].getText())
+                && !boardButtons[3].getText().isEmpty() && boardButtons[6].getText().isEmpty())
+                || (boardButtons[3].getText().equals(boardButtons[6].getText())
+                && !boardButtons[6].getText().isEmpty() && boardButtons[0].getText().isEmpty())
+                || (boardButtons[0].getText().equals(boardButtons[6].getText())
+                && !boardButtons[6].getText().isEmpty() && boardButtons[3].getText().isEmpty())) {
+
+            checkFirstColumn();
+
+            // check secound column
+        } else if ((boardButtons[1].getText().equals(boardButtons[4].getText())
+                && !boardButtons[4].getText().isEmpty() && boardButtons[7].getText().isEmpty())
+                || (boardButtons[4].getText().equals(boardButtons[7].getText())
+                && !boardButtons[7].getText().isEmpty() && boardButtons[1].getText().isEmpty())
+                || (boardButtons[1].getText().equals(boardButtons[7].getText())
+                && !boardButtons[7].getText().isEmpty() && boardButtons[4].getText().isEmpty())) {
+
+            checkSecoundCoulmn();
+
+            // check third column
+        } else if ((boardButtons[2].getText().equals(boardButtons[5].getText())
+                && !boardButtons[5].getText().isEmpty() && boardButtons[8].getText().isEmpty())
+                || (boardButtons[5].getText().equals(boardButtons[8].getText())
+                && !boardButtons[8].getText().isEmpty() && boardButtons[2].getText().isEmpty())
+                || (boardButtons[2].getText().equals(boardButtons[8].getText())
+                && !boardButtons[8].getText().isEmpty() && boardButtons[5].getText().isEmpty())) {
+
+            checkThirdColumn();
+
+            // check first diagonal
+        } else if ((boardButtons[0].getText().equals(boardButtons[4].getText())
+                && !boardButtons[4].getText().isEmpty() && boardButtons[8].getText().isEmpty())
+                || (boardButtons[4].getText().equals(boardButtons[8].getText())
+                && !boardButtons[8].getText().isEmpty() && boardButtons[0].getText().isEmpty())
+                || (boardButtons[8].getText().equals(boardButtons[0].getText()))
+                && !boardButtons[0].getText().isEmpty() && boardButtons[4].getText().isEmpty()) {
+
+            checkFirstDigonal();
+
+            // check secound diagonal
+        } else if ((boardButtons[2].getText().equals(boardButtons[4].getText())
+                && !boardButtons[4].getText().isEmpty() && boardButtons[6].getText().isEmpty())
+                || (boardButtons[4].getText().equals(boardButtons[6].getText())
+                && !boardButtons[6].getText().isEmpty() && boardButtons[2].getText().isEmpty())
+                || (boardButtons[2].getText().equals(boardButtons[6].getText())
+                && !boardButtons[6].getText().isEmpty() && boardButtons[4].getText().isEmpty())) {
+
+            checkSecoundDiagonal();
+
+        } else {
+            randomChoseBtn();
+        }
+    }
+
+    private void randomChoseBtn() {
+        for (;;) {
+
+            randomNumber = random.nextInt(9);
+            if (boardButtons[randomNumber].getText().equals("")) {
+                boardButtons[randomNumber].setTextFill(oForeground);
+                boardButtons[randomNumber].setText("O");
+                System.out.println("randomm");
+                break;
+            }
+        }
+    }
+
+    private void checkFirstRow() {
+        System.out.println("first row");
+        if (boardButtons[0].getText().isEmpty()) {
+            boardButtons[0].setText("O");
+        } else if (boardButtons[1].getText().isEmpty()) {
+            boardButtons[1].setText("O");
+        } else if (boardButtons[2].getText().isEmpty()) {
+            boardButtons[2].setText("O");
+        }
+    }
+
+    private void checkSecoundRow() {
+        System.out.println("secound row");
+        if (boardButtons[3].getText().isEmpty()) {
+            boardButtons[3].setText("O");
+        } else if (boardButtons[4].getText().isEmpty()) {
+            boardButtons[4].setText("O");
+        } else if (boardButtons[5].getText().isEmpty()) {
+            boardButtons[5].setText("O");
+        }
+    }
+
+    private void checkThirdRow() {
+        System.out.println("third row");
+        if (boardButtons[6].getText().isEmpty()) {
+            boardButtons[6].setText("O");
+        } else if (boardButtons[7].getText().isEmpty()) {
+            boardButtons[7].setText("O");
+        } else if (boardButtons[8].getText().isEmpty()) {
+            boardButtons[8].setText("O");
+        }
+    }
+
+    private void checkFirstColumn() {
+        System.out.println("first coulmn");
+        if (boardButtons[0].getText().isEmpty()) {
+            boardButtons[0].setText("O");
+        } else if (boardButtons[3].getText().isEmpty()) {
+            boardButtons[3].setText("O");
+        } else if (boardButtons[6].getText().isEmpty()) {
+            boardButtons[6].setText("O");
+        }
+    }
+
+    private void checkSecoundCoulmn() {
+        System.out.println("secound coulmn");
+        if (boardButtons[1].getText().isEmpty()) {
+            boardButtons[1].setText("O");
+        } else if (boardButtons[4].getText().isEmpty()) {
+            boardButtons[4].setText("O");
+        } else if (boardButtons[7].getText().isEmpty()) {
+            boardButtons[7].setText("O");
+        }
+    }
+
+    private void checkThirdColumn() {
+        System.out.println("third coulmn");
+        if (boardButtons[2].getText().isEmpty()) {
+            boardButtons[2].setText("O");
+        } else if (boardButtons[5].getText().isEmpty()) {
+            boardButtons[5].setText("O");
+        } else if (boardButtons[8].getText().isEmpty()) {
+            boardButtons[8].setText("O");
+        }
+    }
+
+    private void checkFirstDigonal() {
+        System.out.println("first diagonal");
+        if (boardButtons[0].getText().isEmpty()) {
+            boardButtons[0].setText("O");
+        } else if (boardButtons[4].getText().isEmpty()) {
+            boardButtons[4].setText("O");
+        } else if (boardButtons[8].getText().isEmpty()) {
+            boardButtons[8].setText("O");
+        }
+    }
+
+    private void checkSecoundDiagonal() {
+        System.out.println("secound diagonal");
+        if (boardButtons[2].getText().isEmpty()) {
+            boardButtons[2].setText("O");
+        } else if (boardButtons[4].getText().isEmpty()) {
+            boardButtons[4].setText("O");
+        } else if (boardButtons[6].getText().isEmpty()) {
+            boardButtons[6].setText("O");
+        }
+    }
+
+    ////////////////////////////////
+    public void checkHardOrEasy(String modeFromUser) {
+      mode= modeFromUser;
+    }
 
     private void checkIfGameEnds() {
         if (button00.getText().equals(button01.getText()) && button00.getText().equals(button02.getText()) && !button00.getText().equals("")) {
             isGameEnded = true;
             winer=true;
             colorBackgroundWinnerButtons(button00, button01, button02);
-            if(button00.getText().equals("X"))
+            if (button00.getText().equals("X")) {
                 showWinnerGif();
-            else
+            } else {
                 showLoserGif();
             //winer=true;
            // colorBackgroundWinnerButtons(button00, button01, button01);
-            System.out.println("0");
+            }
+            winer = true;
+            colorBackgroundWinnerButtons(button00, button01, button01);
+
         }
 
-         if (button10.getText().equals(button11.getText()) && button10.getText().equals(button12.getText()) && !button10.getText().equals("")) {
+        if (button10.getText().equals(button11.getText()) && button10.getText().equals(button12.getText()) && !button10.getText().equals("")) {
             isGameEnded = true;
-            winer=true;
+            winer = true;
             colorBackgroundWinnerButtons(button10, button11, button12);
-            if(button10.getText().equals("X"))
+            if (button10.getText().equals("X")) {
                 showWinnerGif();
-            else
+            } else {
                 showLoserGif();
+            }
             System.out.println("1");
 
         }
 
         if (button20.getText().equals(button21.getText()) && button20.getText().equals(button22.getText()) && !button20.getText().equals("")) {
             isGameEnded = true;
-            winer=true;
+            winer = true;
             colorBackgroundWinnerButtons(button20, button21, button22);
-            if(button20.getText().equals("X"))
+            if (button20.getText().equals("X")) {
                 showWinnerGif();
-            else
+            } else {
                 showLoserGif();
+            }
             System.out.println("2");
 
         }
 
         if (button00.getText().equals(button10.getText()) && button00.getText().equals(button20.getText()) && !button00.getText().equals("")) {
             isGameEnded = true;
-            winer=true;
+            winer = true;
             colorBackgroundWinnerButtons(button00, button10, button20);
-            if(button00.getText().equals("X"))
+            if (button00.getText().equals("X")) {
                 showWinnerGif();
-            else
+            } else {
                 showLoserGif();
+            }
             System.out.println("3");
         }
 
         if (button01.getText().equals(button11.getText()) && button01.getText().equals(button21.getText()) && !button01.getText().equals("")) {
             isGameEnded = true;
-            winer=true;
+            winer = true;
             colorBackgroundWinnerButtons(button01, button11, button21);
-            if(button01.getText().equals("X"))
+            if (button01.getText().equals("X")) {
                 showWinnerGif();
-            else
+            } else {
                 showLoserGif();
+            }
             System.out.println("4");
         }
 
         if (button02.getText().equals(button12.getText()) && button02.getText().equals(button22.getText()) && !button02.getText().equals("")) {
             isGameEnded = true;
-            winer=true;
+            winer = true;
             colorBackgroundWinnerButtons(button02, button12, button22);
-            if(button02.getText().equals("X"))
+            if (button02.getText().equals("X")) {
                 showWinnerGif();
-            else
+            } else {
                 showLoserGif();
+            }
             System.out.println("5");
         }
 
         if (button00.getText().equals(button11.getText()) && button00.getText().equals(button22.getText()) && !button00.getText().equals("")) {
             isGameEnded = true;
-            winer=true;
+            winer = true;
             colorBackgroundWinnerButtons(button00, button11, button22);
-            if(button00.getText().equals("X"))
+            if (button00.getText().equals("X")) {
                 showWinnerGif();
-            else
+            } else {
                 showLoserGif();
+            }
             System.out.println("6");
         }
 
         if (button02.getText().equals(button11.getText()) && button02.getText().equals(button20.getText()) && !button02.getText().equals("")) {
             isGameEnded = true;
-            winer=true;
+            winer = true;
             colorBackgroundWinnerButtons(button02, button11, button20);
-            if(button02.getText().equals("X"))
+            if (button02.getText().equals("X")) {
                 showWinnerGif();
-            else
+            } else {
                 showLoserGif();
+            }
             System.out.println("7");
         }
 
@@ -232,21 +465,18 @@ public class PlayervsComputerEasyModeController implements Initializable {
         }
 ////////// found bug
         if (isGameEnded == true) {
-            if(winer){
+            if (winer) {
                 if (isPlayerTurn) {
-                playerScore.setText(Integer.valueOf(playerScore.getText()) + 1 + "");
-                } 
-                else  {
-                pcScore.setText(Integer.valueOf(pcScore.getText()) + 1 + "");
-               }
-               
-               
-            } 
-            else{
-            
+                    playerScore.setText(Integer.valueOf(playerScore.getText()) + 1 + "");
+                } else {
+                    pcScore.setText(Integer.valueOf(pcScore.getText()) + 1 + "");
+                }
+
+            } else {
+
             }
             XOCounter = 0;
-            
+
         }
 
     }
@@ -273,11 +503,19 @@ public class PlayervsComputerEasyModeController implements Initializable {
     @FXML
     private void playAgin() {
 
+        XOCounter = 0;
         isGameEnded = false;
+        XOCounter = 0;
+       
+        
         for (Button boardButton : boardButtons) {
             boardButton.setText("");
             boardButton.setStyle("-fx-background-color:");
         }
+        
+        //to make computer start play
+        //button11.setText("O");
+        //XOCounter++;
 
     }
 
@@ -288,9 +526,9 @@ public class PlayervsComputerEasyModeController implements Initializable {
         ButtonType no = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
         Alert dialog = new Alert(Alert.AlertType.CONFIRMATION);
         dialog.getButtonTypes().setAll(yes,
-               no);
-         dialog.setTitle("");
-         
+                no);
+        dialog.setTitle("");
+
         dialog.setHeaderText("Do you want to Exit?");
         Optional<ButtonType> result = dialog.showAndWait();
         if (result.get() == yes) {
@@ -298,9 +536,9 @@ public class PlayervsComputerEasyModeController implements Initializable {
             System.exit(0);
 
         } else if (result.get() == no) {
-              dialog.close();
+            dialog.close();
 
-        } 
+        }
 
     }
 
@@ -311,6 +549,7 @@ public class PlayervsComputerEasyModeController implements Initializable {
     private void showLoserGif() {
         CustomDialog.creatLoseDialog();
     }
+
     
      
      
@@ -327,4 +566,6 @@ public class PlayervsComputerEasyModeController implements Initializable {
        
     }
 }
+
+
 
