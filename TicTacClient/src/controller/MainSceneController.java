@@ -9,6 +9,7 @@ package controller;
 import com.sun.javafx.scene.control.skin.CustomColorDialog;
 import controller.SceneController;
 import helper.CustomDialog;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -33,7 +34,9 @@ public class MainSceneController implements Initializable {
     private void handleVsAiBtn(ActionEvent event){
         controller=new SceneController();
         try {
-            controller.switchToChooseLevelModeScene(event);
+          controller.switchToRecordScene(event);
+
+            //controller.switchToChooseLevelModeScene(event);
         } catch (IOException ex) {
             Logger.getLogger(MainSceneController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -52,6 +55,8 @@ public class MainSceneController implements Initializable {
      @FXML
     private void handleVsPlayerOnlineBtn(ActionEvent event){
         
+         System.out.println("online ");
+        
         try {
             SceneController conttroller=new SceneController();
             
@@ -59,6 +64,7 @@ public class MainSceneController implements Initializable {
             
   
         } catch (IOException ex) {
+            System.out.println("bbb");
             Logger.getLogger(MainSceneController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -94,6 +100,7 @@ public class MainSceneController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         controller = new SceneController();
+       
     }    
 
     private void showDialog(ActionEvent event) {
@@ -110,5 +117,6 @@ public class MainSceneController implements Initializable {
             ex.printStackTrace();
         }
     }
-    
+     
 }
+

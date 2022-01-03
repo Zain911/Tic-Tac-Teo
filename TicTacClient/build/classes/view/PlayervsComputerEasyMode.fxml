@@ -194,7 +194,7 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <Button fx:id="startButton" mnemonicParsing="false" onAction="#playAgin" prefHeight="36.0" prefWidth="76.0" style="-fx-background-color: #0D5F5F;" stylesheets="@../css/Style.css" text="playAgin" textFill="#f2eaea" GridPane.columnIndex="1">
+                  <Button fx:id="playAginButton" disable="true" mnemonicParsing="false" onAction="#playAgin" prefHeight="36.0" prefWidth="76.0" style="-fx-background-color: #0D5F5F;" stylesheets="@../css/Style.css" text="playAgin" textFill="#f2eaea" GridPane.columnIndex="1">
                      <GridPane.margin>
                         <Insets bottom="50.0" left="80.0" />
                      </GridPane.margin>

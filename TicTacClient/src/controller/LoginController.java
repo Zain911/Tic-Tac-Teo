@@ -6,7 +6,7 @@
 package controller;
 
 import connection.ClientConnection1;
-import connection.ClientConnection;
+import helper.ClientConnection;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;

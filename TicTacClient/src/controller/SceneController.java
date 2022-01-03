@@ -121,7 +121,8 @@ public class SceneController {
         stage.setFullScreen(false);
         stage.setMaxHeight(600);
         stage.setMaxWidth(600);
-
+        stage.setScene(scene);
+        stage.show();
     /*public void switchToChoosePlayerScene(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("/view/PlayerVsPlayerOnlineMode.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -137,6 +138,15 @@ public class SceneController {
         stage.setScene(scene);
 
         stage.show();
+    }
+     
+      public void switchToRecordScene(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("/view/RecordList.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
     }
 
 }

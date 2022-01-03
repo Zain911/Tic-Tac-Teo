@@ -59,7 +59,7 @@ public class PlayervsComputerEasyModeController implements Initializable {
     @FXML
     private Text score;
     @FXML
-    private Button startButton;
+    private Button playAginButton;
     @FXML
     private Button exitButton;
     Button[] boardButtons = new Button[3 * 3];
@@ -113,7 +113,7 @@ public class PlayervsComputerEasyModeController implements Initializable {
                     hardMode();
                 }
                 System.out.println("mm/" + mode);
-
+               checkIfGameEnds();
             }
 
         }
@@ -361,13 +361,14 @@ public class PlayervsComputerEasyModeController implements Initializable {
             colorBackgroundWinnerButtons(button00, button01, button02);
             if (button00.getText().equals("X")) {
                 showWinnerGif();
+               
             } else {
                 showLoserGif();
             //winer=true;
            // colorBackgroundWinnerButtons(button00, button01, button01);
             }
             winer = true;
-            colorBackgroundWinnerButtons(button00, button01, button01);
+            //colorBackgroundWinnerButtons(button00, button01, button01);
 
         }
 
@@ -460,10 +461,11 @@ public class PlayervsComputerEasyModeController implements Initializable {
         if (XOCounter >= 9) {
             System.out.println("vvvv");
             isGameEnded = true;
+             playAginButton.setVisible(true);
            // isPlayerTurn = true;
             XOCounter = 0;
         }
-////////// found bug
+
         if (isGameEnded == true) {
             if (winer) {
                 if (isPlayerTurn) {
@@ -476,7 +478,7 @@ public class PlayervsComputerEasyModeController implements Initializable {
 
             }
             XOCounter = 0;
-
+    playAginButton.setDisable(false);
         }
 
     }
@@ -502,11 +504,11 @@ public class PlayervsComputerEasyModeController implements Initializable {
 
     @FXML
     private void playAgin() {
-
+         playAginButton.setDisable(true);
         XOCounter = 0;
         isGameEnded = false;
         XOCounter = 0;
-       
+         winer=false;
         
         for (Button boardButton : boardButtons) {
             boardButton.setText("");
@@ -559,7 +561,8 @@ public class PlayervsComputerEasyModeController implements Initializable {
     private void back(ActionEvent event) {
         SceneController controller=new  SceneController();
         try {
-            controller.switchToMainScene(event);
+         controller.switchToChooseLevelModeScene(event);
+            //controller.switchToMainScene(event);
         } catch (IOException ex) {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }

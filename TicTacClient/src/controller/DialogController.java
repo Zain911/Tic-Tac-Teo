@@ -6,7 +6,7 @@
 package controller;
 
 import com.sun.javafx.scene.control.skin.CustomColorDialog;
-import connection.ClientConnection;
+import helper.ClientConnection;
 import helper.CustomDialog;
 import java.io.IOException;
 import java.net.Socket;

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package connection;
+package helper;
 
 import controller.SceneController;
 import java.io.DataInputStream;
@@ -33,7 +33,6 @@ public class ClientConnection {
 
         if (socket == null) {
             socket = new Socket(address, port);
-
 
         }
         return socket;
@@ -70,6 +69,15 @@ public class ClientConnection {
 
             }
         }).start();
+
+    }
+
+    public void clientConnection(String address, int port, ActionEvent event) throws IOException {
+        SceneController controller = new SceneController();
+
+        socket = new Socket(address, port);
+        System.out.println("connected");
+        controller.switchToLoginScene(event);
 
     }
 
