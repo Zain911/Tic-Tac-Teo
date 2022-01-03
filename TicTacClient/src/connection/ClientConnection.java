@@ -30,6 +30,7 @@ public class ClientConnection {
     public ClientConnection() {
 
         try {
+            //Establish connection
             mySocket = new Socket("10.178.241.71", 5000);
             System.out.println("Connected!");
             outputStream = mySocket.getOutputStream();
