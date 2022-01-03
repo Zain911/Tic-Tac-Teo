@@ -5,24 +5,25 @@
  */
 package model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author mka
  */
-public class LoginModel {
+public class LoginModel implements Serializable{
     
     
-    private String user_name;
+   private String user_name;
    private String user_password;
-   private String user_email;
 
     public LoginModel() {
     }
 
-    public LoginModel(String user_name, String user_password, String user_email) {
+    public LoginModel(String user_name, String user_password) {
         this.user_name = user_name;
         this.user_password = user_password;
-        this.user_email = user_email;
+        
     }
 
     public String getUser_name() {
@@ -41,13 +42,7 @@ public class LoginModel {
         this.user_password = user_password;
     }
 
-    public String getUser_email() {
-        return user_email;
-    }
-
-    public void setUser_email(String user_email) {
-        this.user_email = user_email;
-    }
+   
     
     
     

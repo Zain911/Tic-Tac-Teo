@@ -5,68 +5,72 @@
  */
 package connection;
 
+import controller.SceneController;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
+import java.net.ConnectException;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.Player;
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import model.LoginModel;
 
-/**
- *
- * @author Mohamed Galal
- */
 public class ClientConnection {
 
-    ObjectOutputStream objectOutputStream;
-    OutputStream outputStream;
-    ObjectInputStream objInputStream;
-    InputStream inputStream;
-    Socket mySocket;
+    private static ClientConnection clientConnection = null;
+    private static Socket socket = null;
+    private ObjectOutputStream objectOutputStream;
+    private OutputStream outputStream;
 
     public ClientConnection() {
+    }
 
-        try {
-            //Establish connection
-            mySocket = new Socket("10.178.241.71", 5000);
-            System.out.println("Connected!");
-            outputStream = mySocket.getOutputStream();
-            objectOutputStream = new ObjectOutputStream(outputStream);
-            inputStream = mySocket.getInputStream();
-            objInputStream = new ObjectInputStream(inputStream);
-        } catch (IOException ex) {
-            Logger.getLogger(ClientConnection.class.getName()).log(Level.SEVERE, null, ex);
+    public static Socket createSocket(String address, int port) throws IOException {
+
+        if (socket == null) {
+            socket = new Socket(address, port);
+
+
         }
+        return socket;
 
     }
 
-    public void handleConnection() {
-        Player p = new Player("15", "ooo", 15, "ss", true, true);
-        //System.out.println(p.getId() + "    //" + p.getName());
-        System.out.println("Sending messages to the ServerSocket");
-        readAndWrite(p);
+    public void sendLoginDataToServer(LoginModel model) throws IOException{
+        outputStream = socket.getOutputStream();
+        objectOutputStream = new ObjectOutputStream(outputStream);
 
+        objectOutputStream.writeObject(model);
+        objectOutputStream.flush();
+        System.out.println("done");
     }
 
-    private void readAndWrite(Player p) {
+    public void clientConnection1(String address, int port, ActionEvent event) throws IOException {
+        SceneController controller = new SceneController();
         new Thread(new Runnable() {
             @Override
             public void run() {
+
+                int timeBeforeRetry = 5000;
+                int count = 0;
+                int maxTries = 3;
+
                 try {
-                    try {
-                        objectOutputStream.writeObject(p);
-                        objectOutputStream.flush();
-                        System.out.println(objInputStream.readObject());
-                    } catch (ClassNotFoundException ex) {
-                        Logger.getLogger(ClientConnection.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                    socket = new Socket(address, port);
+                    System.out.println("connected");
+                    controller.switchToLoginScene(event);
+
                 } catch (IOException ex) {
                     Logger.getLogger(ClientConnection.class.getName()).log(Level.SEVERE, null, ex);
                 }
+
             }
         }).start();
+
     }
+
 }

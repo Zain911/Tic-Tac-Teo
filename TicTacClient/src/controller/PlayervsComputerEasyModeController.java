@@ -6,11 +6,15 @@
 package controller;
 
 import helper.CustomDialog;
+
 import static helper.DrawLine.colorBackgroundWinnerButtons;
+import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.Random;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -63,7 +67,11 @@ public class PlayervsComputerEasyModeController implements Initializable {
     Button[] boardButtons = new Button[3 * 3];
     Button[] cornersButtons = new Button[4];
     // Label currentPlayerSymbol = new Label();
-    boolean winer = false;
+
+   
+    boolean winer;
+
+  //  boolean winer = false;
     boolean isGameEnded;
     boolean isPlayerTurn = true;
     boolean isPcTurn = false;
@@ -113,21 +121,13 @@ public class PlayervsComputerEasyModeController implements Initializable {
         }
     }
 
-    /*private void randomChoseBtn(){
-               for (;;) {
-                    randomNumber = random.nextInt(9);
+    
 
-                    if (boardButtons[randomNumber].getText().equals("")) {
-                        boardButtons[randomNumber].setTextFill(oForeground);
-                        boardButtons[randomNumber].setText("O");
-                        
-                        break;
-                }
-                checkIfGameEnds();
+                    
+                   
+                 
+                  
 
-            }
-    }*/
-    ////////////////////////////////
     private void hardMode() {
         if (XOCounter == 2) {
             if (boardButtons[4].getText().isEmpty()) {
@@ -359,15 +359,18 @@ public class PlayervsComputerEasyModeController implements Initializable {
     private void checkIfGameEnds() {
         if (button00.getText().equals(button01.getText()) && button00.getText().equals(button02.getText()) && !button00.getText().equals("")) {
             isGameEnded = true;
+            winer=true;
             colorBackgroundWinnerButtons(button00, button01, button02);
             if (button00.getText().equals("X")) {
                 showWinnerGif();
             } else {
                 showLoserGif();
+            //winer=true;
+           // colorBackgroundWinnerButtons(button00, button01, button01);
             }
             winer = true;
             colorBackgroundWinnerButtons(button00, button01, button01);
-            System.out.println("0");
+
         }
 
         if (button10.getText().equals(button11.getText()) && button10.getText().equals(button12.getText()) && !button10.getText().equals("")) {
@@ -459,7 +462,7 @@ public class PlayervsComputerEasyModeController implements Initializable {
         if (XOCounter >= 9) {
             System.out.println("vvvv");
             isGameEnded = true;
-            isPlayerTurn = true;
+           // isPlayerTurn = true;
             XOCounter = 0;
         }
 ////////// found bug
@@ -544,4 +547,22 @@ public class PlayervsComputerEasyModeController implements Initializable {
         CustomDialog.creatLoseDialog();
     }
 
+    
+     
+     
+     
+     
+      @FXML
+    private void back(ActionEvent event) {
+        SceneController controller=new  SceneController();
+        try {
+            controller.switchToMainScene(event);
+        } catch (IOException ex) {
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+    }
 }
+
+
+
