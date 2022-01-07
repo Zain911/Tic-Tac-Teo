@@ -59,7 +59,10 @@
       </Label>
       <PasswordField fx:id="userPsaaword" layoutX="440.0" layoutY="353.0" minHeight="45.0" onKeyTyped="#hiddenPasswordErrorMeesage" prefHeight="52.0" prefWidth="313.0" styleClass="userName" stylesheets="@../css/Style.css" />
       <Label fx:id="emptypassword" layoutX="475.0" layoutY="406.0" prefHeight="35.0" prefWidth="276.0" textFill="#f81e1e" />
-      <Label fx:id="emptyUseName" layoutX="462.0" layoutY="273.0" prefHeight="74.0" prefWidth="313.0" textFill="#f81e1e" />
+      <Label fx:id="emptyUseName" layoutX="462.0" layoutY="273.0" prefHeight="74.0" prefWidth="313.0" textFill="#f81e1e">
+         <font>
+            <Font size="10.0" />
+         </font></Label>
       <CheckBox fx:id="rememberMe" layoutX="488.0" layoutY="450.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="136.0" text="  Remember me">
          <font>
             <Font size="13.0" />

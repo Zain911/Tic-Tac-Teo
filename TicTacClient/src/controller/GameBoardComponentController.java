@@ -128,7 +128,7 @@ public class GameBoardComponentController implements Initializable {
         }
 
     }
-
+  int count=0;
     private PlayerMove returnMove(Button btn) {
         PlayerMove move = new PlayerMove();
         if (btn == btn00) {
@@ -152,9 +152,10 @@ public class GameBoardComponentController implements Initializable {
             move = new PlayerMove(2, 2, isXSymbol);
         }
         listOfMove.add(move);
-        System.out.println("move" + move.getX());
-        System.out.println(listOfMove.size() );
-        System.out.println(listOfMove.get(0)+"doaa");
+     System.out.println("size="+""+listOfMove.size());
+        System.out.println(listOfMove.get(count) );
+       // System.out.println(listOfMove.get(count).getX()+""+listOfMove.get(count).getY());
+        count++;
         return move;
     }
 
@@ -311,7 +312,6 @@ public class GameBoardComponentController implements Initializable {
     }
 
     private void checkState() throws BackingStoreException {
-                      System.out.println(PlayerVsPlayerController.isRecord);
 
         checkRows();
         checkColumns();
@@ -321,7 +321,11 @@ public class GameBoardComponentController implements Initializable {
             firstPlayerScore += 5;
             scorePlayerOne.setText(String.valueOf(firstPlayerScore));
              gameEnded=true;
-            if (PlayerVsPlayerController.isRecord) {
+             System.out.println(isRecord);
+            if (isRecord) {
+                System.out.println(" doaa write");
+                System.out.println( PlayerVsPlayerController.isRecord +"  record");
+                System.out.println("arrsize"+listOfMove.size());
                 AccessFile.writeFile(listOfMove);
                 
             }
@@ -332,8 +336,10 @@ public class GameBoardComponentController implements Initializable {
             scorePlayerTwo.setText(String.valueOf(secondPlayerScore));
                        gameEnded=true;
 
-            // pref.putInt("secondPlayerScore", secondPlayerScore);
-             if (PlayerVsPlayerController.isRecord) {
+             if (isRecord) {
+                 System.out.println(" doaa write");
+                  System.out.println("arrsize"+listOfMove.size());
+                System.out.println( isRecord +"  record");
                 AccessFile.writeFile(listOfMove);
             }
            
@@ -343,15 +349,19 @@ public class GameBoardComponentController implements Initializable {
             if ((isFullGrid())) {
                 System.out.println("It's a Draw");
                               gameEnded=true;
+                               if (PlayerVsPlayerController.isRecord) {
+                 System.out.println("arrsize"+listOfMove.size());
+                AccessFile.writeFile(listOfMove);
+                System.out.println(" doaa write");
+                System.out.println( PlayerVsPlayerController.isRecord +"  record");
+            }
 
                
             }
-            if (PlayerVsPlayerController.isRecord) {
-                AccessFile.writeFile(listOfMove);
-            }
+           
 
         }
-         isRecord = false;
+         //isRecord = false;
        // PlayerVsPlayerController.recordImage.setDisable(false);
         Image image = new Image(getClass().getResourceAsStream("/resource/oimage.png"));
 

@@ -132,12 +132,7 @@ public class PlayerVsPlayerController implements Initializable {
         }
     }
 
-   /* @FXML
-    private void onRecordGameClick(MouseEvent event) {
-        isRecord = true;
-        recordText.setText("Recording...");
-        //recordImage.setDisable(true);
-    }*/
+  
 
     @FXML
     private void onRecordGameClick(MouseEvent event) {
@@ -145,7 +140,7 @@ public class PlayerVsPlayerController implements Initializable {
         recordText.setText("Recording...");
        recordImage.setDisable(true);
        Image image = new Image(getClass().getResourceAsStream("/resource/recording.png"));
-         System.out.println(image.isError());
+         
         recordImage.setImage(image);
     }
 

@@ -1,32 +1,143 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="531.0" prefWidth="697.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PlayerVsPlayerOnlineModeController">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="290.0" minWidth="10.0" prefWidth="190.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="451.0" minWidth="10.0" prefWidth="410.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="188.0" minHeight="10.0" prefHeight="66.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="465.0" minHeight="10.0" prefHeight="465.0" vgrow="SOMETIMES" />
+  </rowConstraints>
    <children>
-      <Label layoutX="231.0" layoutY="6.0" prefHeight="24.0" prefWidth="189.0" text="Tic Tac Toe" textFill="#163d51">
-         <font>
-            <Font name="Berlin Sans FB Demi Bold" size="28.0" />
-         </font>
-      </Label>
-      <ListView layoutY="74.0" prefHeight="326.0" prefWidth="241.0" />
-      <ImageView fitHeight="32.0" fitWidth="36.0" layoutX="541.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true">
+      <SplitPane dividerPositions="0.12173913043478261" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" GridPane.rowIndex="1">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <Text layoutX="64.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Online Players">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="16.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <ListView fx:id="listView" layoutY="-2.0" onMouseClicked="#getItemFromListView" prefHeight="404.0" prefWidth="244.0" />
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+      <GridPane GridPane.columnIndex="1" GridPane.rowIndex="1">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="220.0" minWidth="10.0" prefWidth="41.0" />
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="396.0" minWidth="10.0" prefWidth="375.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="425.0" minWidth="10.0" prefWidth="39.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="310.0" minHeight="10.0" prefHeight="277.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="253.0" minHeight="10.0" prefHeight="188.0" valignment="CENTER" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Group fx:id="groupAvailable" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#83e072c9" height="138.0" stroke="BLACK" strokeType="INSIDE" width="273.0" />
+                  <Text layoutX="21.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="this player is available to game">
+                     <font>
+                        <Font name="Bodoni MT" size="18.0" />
+                     </font>
+                  </Text>
+                  <Button fx:id="btnSendInvitaion" layoutX="72.0" layoutY="79.0" mnemonicParsing="false" onAction="#sendInvitation" text="Send Invitation" textFill="#258d17">
+                     <font>
+                        <Font name="Bell MT Bold" size="16.0" />
+                     </font>
+                  </Button>
+               </children>
+            </Group>
+            <GridPane GridPane.columnIndex="1">
+              <columnConstraints>
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="196.0" minWidth="10.0" prefWidth="83.0" />
+                  <ColumnConstraints fillWidth="false" halignment="CENTER" hgrow="SOMETIMES" maxWidth="272.0" minWidth="10.0" prefWidth="216.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="260.0" minWidth="10.0" prefWidth="75.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="90.0" minHeight="10.0" prefHeight="71.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="190.0" minHeight="10.0" prefHeight="133.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="93.0" minHeight="10.0" prefHeight="73.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <ImageView fx:id="imgVs" fitHeight="103.0" fitWidth="193.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <ImageView fx:id="imgIconOne" fitHeight="71.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" />
+                  <Circle fill="#f7fa32ad" radius="25.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+                  <Circle fill="#f7fa32ad" radius="25.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" GridPane.rowIndex="2" />
+                  <Text fx:id="txtPlayerTwoScore" fill="#345ce0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="20.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="txtPlayerTwoName" fill="#345ce0" strokeType="OUTSIDE" strokeWidth="0.0" text="player 2" textAlignment="CENTER" wrappingWidth="192.13671875" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="Bookman Old Style Bold" size="20.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="txtPlayerOneScore" fill="#bf1717" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="20.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="txtPlayeroneName" fill="#bf1717" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="192.13671875" GridPane.columnIndex="1">
+                     <font>
+                        <Font name="Bookman Old Style Bold" size="20.0" />
+                     </font>
+                  </Text>
+                  <ImageView fx:id="imgIconTwo" fitHeight="71.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+               </children>
+            </GridPane>
+            <Group fx:id="groupNotAvailable" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e3784687" height="128.0" stroke="BLACK" strokeType="INSIDE" width="276.0" />
+                  <Text layoutX="34.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="this player is already in game">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="65.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="please try again later">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Text>
+                  <Button fx:id="btnOk" layoutX="102.0" layoutY="88.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="76.0" text="OK" textAlignment="CENTER" textFill="#ee0606">
+                     <font>
+                        <Font name="Bell MT Bold" size="15.0" />
+                     </font>
+                  </Button>
+               </children>
+            </Group>
+         </children>
+      </GridPane>
+      <ImageView fx:id="backButton" fitHeight="62.0" fitWidth="65.0" onMouseClicked="#onBackButtonClick" pickOnBounds="true" preserveRatio="true" style="b: #ffffff;">
          <image>
-            <Image url="@../resource/user.png" />
+            <Image url="@../resource/left.png" />
          </image>
+         <GridPane.margin>
+            <Insets left="30.0" />
+         </GridPane.margin>
       </ImageView>
-      <Label layoutX="446.0" layoutY="66.0" prefHeight="17.0" prefWidth="82.0" text="player name" />
-      <ScrollPane layoutX="-7.0" layoutY="-26.0" prefHeight="394.0" prefWidth="200.0">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
-        </content>
-      </ScrollPane>
    </children>
-</AnchorPane>
+</GridPane>

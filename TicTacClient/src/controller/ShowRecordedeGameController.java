@@ -18,6 +18,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -60,12 +61,17 @@ public class ShowRecordedeGameController implements Initializable {
     @FXML
     private ImageView backButton;
     List<PlayerMove> playerMoves;
-
+ Image imgo, imgx;
+    ImageView image;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        imgo = new Image(getClass().getResourceAsStream("/resource/oimage.png"));
+
+        imgx = new Image(getClass().getResourceAsStream("/resource/ximage.png"));
+
 
         showGameInTread();
     }
@@ -92,36 +98,36 @@ public class ShowRecordedeGameController implements Initializable {
                         case 0:
                             if (y == 0) {
                                 System.out.println("bb");
-                                aetXoOnButton(button00, isX);
+                                addXoOnButton(button00, isX);
                                 break;
                             } else if (y == 1) {
-                                aetXoOnButton(button01, isX);
+                                addXoOnButton(button01, isX);
                                 break;
                             } else {
-                                aetXoOnButton(button02, isX);
+                                addXoOnButton(button02, isX);
                                 break;
                             }
 
                         case 1:
                             if (y == 0) {
-                                aetXoOnButton(button10, isX);
+                                addXoOnButton(button10, isX);
                                 break;
                             } else if (y == 1) {
-                                aetXoOnButton(button11, isX);
+                                addXoOnButton(button11, isX);
                                 break;
                             } else {
-                                aetXoOnButton(button12, isX);
+                                addXoOnButton(button12, isX);
                                 break;
                             }
                         case 2:
                             if (y == 0) {
-                                aetXoOnButton(button20, isX);
+                                addXoOnButton(button20, isX);
                                 break;
                             } else if (y == 1) {
-                                aetXoOnButton(button21, isX);
+                                addXoOnButton(button21, isX);
                                 break;
                             } else {
-                                aetXoOnButton(button22, isX);
+                                addXoOnButton(button22, isX);
                                 break;
                             }
 
@@ -138,14 +144,21 @@ public class ShowRecordedeGameController implements Initializable {
     }
         
 
-    private void aetXoOnButton(Button button, boolean isX) {
+    private void addXoOnButton(Button button, boolean isX) {
 
         if (isX) {
             System.out.println("x");
 
             button.setText("x");
+           button.setGraphic(new ImageView(imgx));
+                       button.setStyle("-fx-text-fill:transparent;");
+
+
         } else {
             button.setText("o");
+            button.setGraphic(new ImageView(imgo));
+            button.setStyle("-fx-text-fill:transparent;");
+
 
         }
 

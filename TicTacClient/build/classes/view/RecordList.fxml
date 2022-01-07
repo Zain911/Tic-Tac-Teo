@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.ScrollBar?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -16,7 +15,6 @@
          </image>
       </ImageView>
       <ListView fx:id="listView" fixedCellSize="0.0" layoutY="71.0" onMouseClicked="#openRecord" prefHeight="475.0" prefWidth="1044.0" style="-fx-background-color: #ffffff;" styleClass="bodybg" stylesheets="@../css/Style.css" />
-      <ScrollBar fx:id="scrollBar" layoutX="1035.0" layoutY="71.0" orientation="VERTICAL" prefHeight="475.0" prefWidth="16.0" />
       <Text fill="#105761" layoutX="356.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="        tic tac toe" textAlignment="JUSTIFY" wrappingWidth="298.13671875">
          <font>
             <Font name="Bodoni MT Black" size="36.0" />

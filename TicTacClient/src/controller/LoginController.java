@@ -6,6 +6,8 @@
 package controller;
 
 import connection.ClientConnection;
+import helper.ConstantAttributes;
+import helper.CustomDialog;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -13,6 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.prefs.Preferences;
 import java.util.regex.Pattern;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -27,7 +30,8 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
-import model.LoginModel;
+import model.LoginPlayer;
+import model.Player;
 
 /**
  *
@@ -35,7 +39,7 @@ import model.LoginModel;
  */
 public class LoginController implements Initializable {
 
-    LoginModel model = new LoginModel();
+    LoginPlayer model = new LoginPlayer();
     boolean flageToggle = false;
     private Label label;
     @FXML
@@ -122,27 +126,27 @@ public class LoginController implements Initializable {
     }
 
      public boolean passwordValidation() {
-        if (model.getUser_password().trim().length() == 0) {
+        if (model.getUserPassword().trim().length() == 0) {
             
             emptypassword.setText("reqired");
             return false;
-        } else if (model.getUser_password().trim().length() < 5) {
+        } else if (model.getUserPassword().trim().length() < 5) {
             emptypassword.setText("Weak Password!");
             return false;
-        } else if (model.getUser_password().trim().length() > 10) {
+        } else if (model.getUserPassword().trim().length() > 10) {
             emptypassword.setText("too long password!");
             return true;
         } else {
             emptypassword.setText("Strong Password!");
-            return false;
+            return true;
         }
     }
     public boolean isValidPassword() {
 
-        if (model.getUser_password().isEmpty()) {
-            emptypassword.setText("password can not be empty");
+        if (model.getUserPassword().isEmpty()) {
+            emptypassword.setText("password can't be empty");
             return false;
-        } else if (model.getUser_password().length() < 5) {
+        } else if (model.getUserPassword().length() < 5) {
             emptypassword.setText(" week password ");
 
             return false;
@@ -153,12 +157,12 @@ public class LoginController implements Initializable {
  public Boolean usernameValidation() {
          String regex = "^[A-Za-z]\\w{5,10}$";
          Pattern userNamePattern = Pattern.compile(regex);
-       if (model.getUser_name().isEmpty()) {
+       if (model.getUsername().isEmpty()) {
             emptyUseName.setText("user name required");
             return false;
 
-        } else if (!userNamePattern.matcher(model.getUser_name()).matches()) {
-            emptyUseName.setText("invalid user name \n  user name must start with character \n and contain 5-10");
+        } else if (!userNamePattern.matcher(model.getUsername()).matches()) {
+            emptyUseName.setText("invalid user name \nuser name must start with character \nand contain 5-10 charcter");
             return false;
         } else {
             emptyUseName.setText("");
@@ -175,10 +179,10 @@ public class LoginController implements Initializable {
 
         Pattern email_pattern = Pattern.compile(emailRegex);
 
-        if (model.getUser_name().isEmpty()) {
+        if (model.getUsername().isEmpty()) {
             emptyUseName.setText(" required ");
             return false;
-        } else if (!email_pattern.matcher(model.getUser_name()).matches()) {
+        } else if (!email_pattern.matcher(model.getUsername()).matches()) {
             errorMessage.setText("Please enter a valid email address");
 
             return false;
@@ -189,61 +193,56 @@ public class LoginController implements Initializable {
     }
 
     public void getDatafromUser() {
-        model.setUser_name(userName_Email.getText());
-        model.setUser_password(userPsaaword.getText());
+        model.setUsername(userName_Email.getText());
+        model.setUserPassword(userPsaaword.getText());
     }
 
-   
-
-    @FXML
+   @FXML
     private void login(ActionEvent event) throws IOException {
-        getDatafromUser();
-        if(isValidDta()){
-        // ToDo connection
         ClientConnection cliServer = new ClientConnection();
-        
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    cliServer.sendLoginDataToServer(model);
-                } catch (IOException ex) {
-                    // doaa please handle send data exception
+
+        new Thread(() -> {
+            try {                
+                LoginPlayer login = new LoginPlayer(userName_Email.getText(), userPsaaword.getText());
+                cliServer.sendLoginDataToServer(login);
+                Object serverResponse = cliServer.reciveLoginDataFromServer();
+
+                if (serverResponse instanceof Player) {
+                    
+                
+                    Platform.runLater(() -> {
+                        try {
+                            ConstantAttributes.currentPlayer = (Player) serverResponse;
+                            controller.switchToChoosePlayerScene(event);
+                        } catch (IOException ex) {
+                            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    });
+
+                } else if (serverResponse instanceof String) {
+
+                    if (serverResponse.equals("PasswordNotCorrect")) {
+                        System.out.println("refuse");
+                        Platform.runLater(() -> {
+                            CustomDialog.showLoginFailedDialog("please check your password!");
+                        });
+                    } else {
+                        Platform.runLater(() -> {
+                            CustomDialog.showLoginFailedDialog("please Sign in to Play Online!");
+                        });
+                        System.out.println("please sign in");
+                    }
+
                 }
+
+            } catch (IOException ex) {
+                //TODO doaa please handle send data exception
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }).start();
-         }
-    else{
-            
-}
-
-
-        //Remember Me
-        if (userName_Email.getText().equals("remeber") && userPsaaword.getText().equals("12345")) {
-            if (rememberCheckbox.isSelected()) {
-                preference.put("username", userName_Email.getText());
-                preference.put("password", userPsaaword.getText());
-                System.out.println(preference);
-            }else{
-                preference.put("username", null);
-                preference.put("password", null);
-            }
-
-        } else {
-            System.out.println("Invalid password");
-        }
-
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                try {
-//                    cliServer.sendLoginDataToServer(model);
-//                } catch (IOException ex) {
-//                    // doaa please handle send data exception
-//                }
-//            }
-//        }).start();
     }
+
    
 
     @FXML

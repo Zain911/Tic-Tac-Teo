@@ -6,6 +6,7 @@
 package controller;
 
 import connection.ClientConnection;
+import helper.ConstantAttributes;
 import helper.CustomDialog;
 import java.io.IOException;
 import java.net.Socket;
@@ -38,7 +39,7 @@ public class IpDialogController implements Initializable {
     Label invalidIp;
     @FXML
     TextField ipTextField;
-    Socket socket;
+
     @FXML
     private ProgressIndicator progressIndicator;
     @FXML
@@ -68,7 +69,6 @@ public class IpDialogController implements Initializable {
 
         } else if (isVaildIp(ipTextField.getText()) == true) {
 
-           
             startConnection(event);
 
         } else {
@@ -121,8 +121,20 @@ public class IpDialogController implements Initializable {
             @Override
             public void run() {
                 try {
-                   socket = ClientConnection.createSocket(ipTextField.getText(), 5000);
-                    controller.switchToLoginScene(event);
+                    
+                    ConstantAttributes.SERVER_IP = ipTextField.getText();
+                    ClientConnection.createSocket(ConstantAttributes.SERVER_IP, ConstantAttributes.SERVER_PORT);
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                controller.switchToLoginScene(event);
+                            } catch (IOException ex) {
+                                Logger.getLogger(IpDialogController.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        }
+                    });
+                    
                 } catch (IOException ex) {
                      unBlockUi(event);
                     Logger.getLogger(IpDialogController.class.getName()).log(Level.SEVERE, null, ex);
@@ -145,7 +157,8 @@ public class IpDialogController implements Initializable {
             }
         });
     }
-     private void unBlockUi(ActionEvent event) {
+
+    private void unBlockUi(ActionEvent event) {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
@@ -155,12 +168,8 @@ public class IpDialogController implements Initializable {
                 connectedButton.setDisable(false);
                 backButton.setDisable(false);
                 ipTextField.setDisable(false);
-               CustomDialog.showAlertCantonnection();
-                try {
-                    controller.switchToLoginScene(event);
-                } catch (IOException ex) {
-                    Logger.getLogger(IpDialogController.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                CustomDialog.showAlertCantonnection();
+                
             }
         });
     }

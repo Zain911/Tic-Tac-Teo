@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +12,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.stage.WindowEvent;
 
 public class SceneController {
 
@@ -121,6 +123,15 @@ public class SceneController {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+        
+        
+        stage.setOnCloseRequest((WindowEvent e) -> {
+            try {
+                Platform.exit();
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
+        });
     }
 
     public void switchToIpScene(ActionEvent event) throws IOException {

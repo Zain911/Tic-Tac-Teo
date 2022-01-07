@@ -5,6 +5,9 @@
  */
 package controller;
 
+import connection.ClientConnection;
+import helper.ConstantAttributes;
+import helper.CustomDialog;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -12,6 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -31,6 +35,7 @@ import javafx.scene.input.KeyEvent;
 
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import model.Player;
 import model.RegisterModel;
 
 /**
@@ -110,7 +115,7 @@ public class RegisterController implements Initializable {
             return false;
 
         } else if (!userNamePattern.matcher(model.getUsername()).matches()) {
-            labelUsername.setText("invalid user name \n  user name must start with character \n and contain 5-10");
+            labelUsername.setText("invalid user name \nuser name must start with character \nand contain 5-10 charcter");
 
         }
         if (usernameField.getLength() < 6) {
@@ -202,8 +207,10 @@ public class RegisterController implements Initializable {
             if (dataValidation()) {
 
                 labelConfirm.setText("");
-
-            } else {
+           sendPlayerToServer(event);
+                
+                 
+              } else {
 
                 labelConfirm.setText("invalid data");
 
@@ -211,6 +218,51 @@ public class RegisterController implements Initializable {
         }
     }
 
-  
+  private void sendPlayerToServer(ActionEvent event) {
+        ClientConnection cliServer = new ClientConnection();
+        SceneController controller=new  SceneController();
+
+        new Thread(() -> {
+            try {
+                cliServer.sendRegisterDataToServer(getUserData());
+
+                Object serverResponse = cliServer.reciveRegisterDataFromServer();
+                if (serverResponse instanceof Player) {
+                    Platform.runLater(() -> {
+                        System.out.println("register done");
+                        try {
+                            ConstantAttributes.currentPlayer = (Player) serverResponse;
+                            System.out.println(ConstantAttributes.currentPlayer.getUsername());
+                           controller. switchToChoosePlayerScene(event);
+                        } catch (IOException ex) {
+                            Logger.getLogger(RegisterController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    });
+                } else if (serverResponse instanceof String) {
+                    if(serverResponse.equals("Error")) {
+                        System.out.println("error");
+                        Platform.runLater(() -> {
+                            CustomDialog.showLoginFailedDialog("error to register. please try again");
+                        });
+                    } else if (serverResponse.equals("User is Already Exist")) {
+                        System.out.println("User is Already Exist");
+                        Platform.runLater(() -> {
+                            CustomDialog.showLoginFailedDialog("User is Already Exist. please try another again");
+                        });
+                    }
+                  
+                }
+
+            } catch (IOException ex) {
+                // doaa please handle send data exception
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }).start();
+    }
+
+    private Player getUserData() {
+        return new Player(usernameField.getText(), passwordField.getText(), 1, 0, 0, 0);
+    }
    
 }

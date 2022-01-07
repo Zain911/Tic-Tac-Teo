@@ -160,5 +160,16 @@ public class CustomDialog {
         return false;
 
     }
+    
+    
+    
+    public static void showLoginFailedDialog(String s) {
+        ButtonType okBtn = new ButtonType("OK", ButtonBar.ButtonData.CANCEL_CLOSE);
+        Alert a = new Alert(Alert.AlertType.NONE);
+        a.setTitle("login failed!");
+        a.getDialogPane().getButtonTypes().addAll(okBtn);
+        a.setHeaderText(s);
+        a.showAndWait();
+    }
 
 }

@@ -1,29 +1,61 @@
 package model;
 
-public class Player {
+import java.io.Serializable;
+
+public class Player implements Serializable{
+    
     private String username;
-    private String email;
+    private  String userPassword;
+    private int status;
     private int score;
-    private String id;
-    private boolean isactive;
+    private boolean isPasswordCorrect;
+    private int numberOfWin;
+    private int numberOfLose;
+    private  int numberOfDraw;
     private boolean isplaying;
 
-    public Player(String username, String email, int score, String id, boolean isactive, boolean isplaying) {
+    public Player(String username, String userPassword, int status, int numberOfWin, int numberOfLose, int numberOfDraw) {
         this.username = username;
-        this.email = email;
+        this.userPassword = userPassword;
+        this.status = status;
+        this.numberOfWin = numberOfWin;
+        this.numberOfLose = numberOfLose;
+        this.numberOfDraw = numberOfDraw;
+    }
+
+   
+
+    public Player(String username, String userPassword, int score, int numberOfWin, int numberOfLose, int numberOfDraw, int status, boolean isplaying) {
+        this.username = username;
+        this.userPassword = userPassword;
         this.score = score;
-        this.id = id;
-        this.isactive = isactive;
+        this.numberOfWin = numberOfWin;
+        this.numberOfLose = numberOfLose;
+        this.numberOfDraw = numberOfDraw;
+        this.status = status;
         this.isplaying = isplaying;
     }
 
-    public String getId() {
-        return id;
+    public Player(String username, String userPassword, int status, int score, int numberOfWin, int numberOfLose, int numberOfDraw) {
+        this.username = username;
+        this.userPassword = userPassword;
+        this.status = status;
+        this.score = score;
+        this.numberOfWin = numberOfWin;
+        this.numberOfLose = numberOfLose;
+        this.numberOfDraw = numberOfDraw;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public boolean isIsPasswordCorrect() {
+        return isPasswordCorrect;
     }
+
+    public void setIsPasswordCorrect(boolean isPasswordCorrect) {
+        this.isPasswordCorrect = isPasswordCorrect;
+    }
+    
+    
+
     public String getUsername() {
         return username;
     }
@@ -32,12 +64,12 @@ public class Player {
         this.username = username;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUserPassword() {
+        return userPassword;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUserPassword(String userPassword) {
+        this.userPassword = userPassword;
     }
 
     public int getScore() {
@@ -48,13 +80,39 @@ public class Player {
         this.score = score;
     }
 
-    public boolean isIsactive() {
-        return isactive;
+    public int getNumberOfWin() {
+        return numberOfWin;
     }
 
-    public void setIsactive(boolean isactive) {
-        this.isactive = isactive;
+    public void setNumberOfWin(int numberOfWin) {
+        this.numberOfWin = numberOfWin;
     }
+
+    public int getNumberOfLose() {
+        return numberOfLose;
+    }
+
+    public void setNumberOfLose(int numberOfLose) {
+        this.numberOfLose = numberOfLose;
+    }
+
+    public int getNumberOfDraw() {
+        return numberOfDraw;
+    }
+
+    public void setNumberOfDraw(int numberOfDraw) {
+        this.numberOfDraw = numberOfDraw;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    
 
     public boolean isIsplaying() {
         return isplaying;
@@ -64,4 +122,5 @@ public class Player {
         this.isplaying = isplaying;
     }
     
+ 
 }

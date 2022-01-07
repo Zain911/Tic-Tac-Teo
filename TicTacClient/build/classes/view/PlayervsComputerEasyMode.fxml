@@ -89,26 +89,53 @@
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
+               <font>
+                  <Font size="1.0" />
+               </font>
             </Button>
-            <Button fx:id="btn01" mnemonicParsing="false" onAction="#buttonOnePressed" prefHeight="108.0" prefWidth="243.0" styleClass="buttonbackground" stylesheets="@../css/Style.css" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-            <Button fx:id="btn02" alignment="CENTER" mnemonicParsing="false" onAction="#buttonOnePressed" prefHeight="134.0" prefWidth="279.0" styleClass="buttonbackground" stylesheets="@../css/Style.css" textAlignment="JUSTIFY" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" />
-            <Button fx:id="btn10" mnemonicParsing="false" onAction="#buttonOnePressed" prefHeight="101.0" prefWidth="221.0" styleClass="buttonbackground" stylesheets="@../css/Style.css" textFill="WHITE" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-            <Button fx:id="btn11" mnemonicParsing="false" onAction="#buttonOnePressed" prefHeight="101.0" prefWidth="221.0" styleClass="buttonbackground" stylesheets="@../css/Style.css" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Button fx:id="btn01" mnemonicParsing="false" onAction="#buttonOnePressed" prefHeight="108.0" prefWidth="243.0" styleClass="buttonbackground" stylesheets="@../css/Style.css" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+               <font>
+                  <Font size="1.0" />
+               </font></Button>
+            <Button fx:id="btn02" alignment="CENTER" mnemonicParsing="false" onAction="#buttonOnePressed" prefHeight="134.0" prefWidth="279.0" styleClass="buttonbackground" stylesheets="@../css/Style.css" textAlignment="JUSTIFY" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER">
+               <font>
+                  <Font size="1.0" />
+               </font></Button>
+            <Button fx:id="btn10" mnemonicParsing="false" onAction="#buttonOnePressed" prefHeight="101.0" prefWidth="221.0" styleClass="buttonbackground" stylesheets="@../css/Style.css" textFill="WHITE" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+               <font>
+                  <Font size="1.0" />
+               </font></Button>
+            <Button fx:id="btn11" mnemonicParsing="false" onAction="#buttonOnePressed" prefHeight="101.0" prefWidth="221.0" styleClass="buttonbackground" stylesheets="@../css/Style.css" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <font>
+                  <Font size="1.0" />
+               </font></Button>
             <Button fx:id="btn12" mnemonicParsing="false" onAction="#buttonOnePressed" prefHeight="106.0" prefWidth="279.0" styleClass="buttonbackground" stylesheets="@../css/Style.css" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="SOMETIMES">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
+               <font>
+                  <Font size="1.0" />
+               </font>
             </Button>
-            <Button fx:id="btn20" mnemonicParsing="false" onAction="#buttonOnePressed" prefHeight="92.0" prefWidth="200.0" styleClass="buttonbackground" stylesheets="@../css/Style.css" textFill="#fcfcfc" GridPane.rowIndex="2" />
+            <Button fx:id="btn20" mnemonicParsing="false" onAction="#buttonOnePressed" prefHeight="92.0" prefWidth="200.0" styleClass="buttonbackground" stylesheets="@../css/Style.css" textFill="#fcfcfc" GridPane.rowIndex="2">
+               <font>
+                  <Font size="1.0" />
+               </font></Button>
             <Button fx:id="btn21" mnemonicParsing="false" onAction="#buttonOnePressed" prefHeight="102.0" prefWidth="243.0" styleClass="buttonbackground" stylesheets="@../css/Style.css" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
+               <font>
+                  <Font size="1.0" />
+               </font>
             </Button>
             <Button fx:id="btn22" mnemonicParsing="false" onAction="#buttonOnePressed" prefHeight="105.0" prefWidth="275.0" styleClass="buttonbackground" stylesheets="@../css/Style.css" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
+               <font>
+                  <Font size="1.0" />
+               </font>
             </Button>
             <Line endX="99.29289245605469" endY="0.2928932309150696" layoutX="112.0" layoutY="108.0" startX="-100.0" GridPane.columnIndex="1" GridPane.valignment="BOTTOM" />
             <Line endX="79.29289245605469" endY="-0.853735089302063" layoutX="112.0" layoutY="108.0" startX="-100.0" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">

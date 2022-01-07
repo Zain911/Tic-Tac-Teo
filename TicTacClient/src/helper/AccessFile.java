@@ -81,26 +81,26 @@ public class AccessFile {
         }
 
      
-         System.out.println(filePath+"fff");
-        System.out.println(file +"salama");
+         System.out.println(filePath+"daoaa");
+       
         return file;
     }
 
     public static void writeFile(ArrayList<PlayerMove> moves) {
-
+        System.out.println("enterwrite");
         FileOutputStream writer = null;
         GsonBuilder gsonBuilder = new GsonBuilder();
         Gson gson = gsonBuilder.create();
         //    String JSONObject = gson.toJson(moves);
         try {
             
-
-            System.out.println("here WriteFile = "+createFile(filePath));
+            System.out.println("here WriteFile = "+file);
            // writer = new FileOutputStream(new File("F:\\tic tac\\Tic-Tac-Teo\\TicTacClient\\record\\doaa.json"));
-           writer = new FileOutputStream(new File(file+".json"));
+           writer = new FileOutputStream(new File(createFile(filePath)+".json"));
+            System.out.println(writer+"daa");
            com.google.gson.JsonArray Array = gson.toJsonTree(moves).getAsJsonArray();
             writer.write(Array.toString().getBytes());
-            System.out.println(Array.getAsJsonArray());
+            System.out.println(Array.getAsJsonArray().size()+"json");
 
         } catch (FileNotFoundException ex) {
             Logger.getLogger(AccessFile.class.getName()).log(Level.SEVERE, null, ex);
