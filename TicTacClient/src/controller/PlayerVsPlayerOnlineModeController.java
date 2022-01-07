@@ -33,6 +33,7 @@ public class PlayerVsPlayerOnlineModeController implements Initializable {
     @FXML
     private Button btnBack;
 
+    SceneController controller;
     /**
      * Initializes the controller class.
      */
@@ -49,12 +50,12 @@ public class PlayerVsPlayerOnlineModeController implements Initializable {
         imgXO.setImage(img);
         imgXO.setCache(true);
         
-        
+         controller = new SceneController();
     }    
 
     @FXML
     private void backToMain(ActionEvent event) {
-        SceneController controller = new SceneController();
+        
         try {
             controller.switchToMainScene(event);
         } catch (IOException ex) {

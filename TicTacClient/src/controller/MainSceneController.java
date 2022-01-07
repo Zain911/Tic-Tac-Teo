@@ -67,9 +67,9 @@ public class MainSceneController implements Initializable {
          System.out.println("online ");
         
         try {
-            SceneController conttroller=new SceneController();
+             controller=new SceneController();
             
-            conttroller.switchToIpScene(event);
+            controller.switchToIpScene(event);
             
   
         } catch (IOException ex) {

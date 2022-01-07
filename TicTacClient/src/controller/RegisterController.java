@@ -13,19 +13,22 @@ import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+
+import javafx.scene.input.KeyEvent;
+
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import model.RegisterModel;
@@ -42,8 +45,8 @@ public class RegisterController implements Initializable {
     @FXML
     private Button signupBtn;
 
-    @FXML
     private Label labelMessage;
+
 
 
     @FXML
@@ -62,6 +65,10 @@ public class RegisterController implements Initializable {
     private Label labelConfirm;
     @FXML
     private ImageView backButton;
+    @FXML
+    private ImageView xoImage;
+
+    
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -75,98 +82,88 @@ public class RegisterController implements Initializable {
     public void setUserDatat() {
         model.setUsername(usernameField.getText().trim());
         System.out.println(model.getUsername());
-        
+
         model.setPassword(passwordField.getText());
         System.out.println(model.getPassword());
+
         model.setConfirmPassword(confirmField.getText());
         System.out.println(model.getConfirmPassword());
     }
 
     private boolean dataValidation() {
-        if (!(passwordValidation()) | !(usernameValidation())
-                | !(confirmValidation()) ) {
+       
+        if (!(passwordValidation()) || !(usernameValidation())
+                || !(confirmValidation())) {
+            System.out.println(passwordValidation());
+            System.out.println(usernameValidation());
+            System.out.println(confirmValidation());
             return false;
         }
         return true;
     }
-
+    
     public Boolean usernameValidation() {
          String regex = "^[A-Za-z]\\w{5,10}$";
          Pattern userNamePattern = Pattern.compile(regex);
         if (model.getUsername().isEmpty()) {
-            labelMessage.setText("uerName is Reqired");
+        labelUsername.setText("uerName is Reqired");
             return false;
 
         } else if (!userNamePattern.matcher(model.getUsername()).matches()) {
-            labelMessage.setText("invalid user name \n  user name must start with character \n and contain 5-10");
+            labelUsername.setText("invalid user name \n  user name must start with character \n and contain 5-10");
+
+        }
+        if (usernameField.getLength() < 6) {
+            labelUsername.setText("too short username!");
+            return false;
+
+        } else if (usernameField.getLength() > 14) {
+            labelUsername.setText("too long username!");
             return false;
         } else {
-            labelMessage.setText("");
+            labelUsername.setText("");
             return true;
         }
 
+    
     }
-
-    public Boolean emailValidation() {
-        String regex = "^[A-Za-z0-9+_.-]+@(.+)$";
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(model.getEmail());
-        if (matcher.matches() == false) {
-            labelMessage.setText("this email is not valid");
-            return false;
-        }
-        return true;
-    }
-
     public boolean passwordValidation() {
-        if (model.getPassword().trim().length() == 0) {
-            labelPassword.setText(" reqired");
+        
+
+
+        if (passwordField.getLength() == 0) {
             return false;
-        } else if (model.getPassword().trim().length() < 5) {
-            labelPassword.setText("Weak Password!");
+        } else if (passwordField.getLength() < 5) {
             return false;
-        } else if (model.getPassword().trim().length() > 10) {
-            labelPassword.setText("too long password!");
-            return true;
+        } else if (passwordField.getLength() > 10) {
+            return false;
         } else {
-            labelPassword.setText("Strong Password!");
-            return false;
+            return true;
         }
     }
-
+    
     public Boolean confirmValidation() {
-        if (model.getConfirmPassword().trim().equals(model.getPassword().trim())) {
-            labelMessage.setText("password is identical");
+      
+           System.out.println("nnnn");
+           System.out.println(model.getConfirmPassword()+"pass"+model.getPassword());
+        if (model.getConfirmPassword().equals(model.getPassword())) {
             return true;
         } else {
-            labelMessage.setText("password is not identical");
             return false;
         }
     }
 
     private Boolean checkEmptyData() {
-        if (model.getUsername().isEmpty() 
-                || model.getPassword().isEmpty() || model.getConfirmPassword().isEmpty()) {
-            labelMessage.setText("there is an Empty field");
+
+        if (model.getUsername().isEmpty() || model.getPassword().isEmpty()
+                || model.getConfirmPassword().isEmpty()) {
+            labelConfirm.setText("there is an Empty field");
             return false;
         }
         return true;
     }
 
-    @FXML
-    public void setOnPressed(ActionEvent event) {
-        setUserDatat();
-        if (checkEmptyData()) {
-
-            if (dataValidation()) {
-
-                labelMessage.setText("");
-
-            } else {
-                labelMessage.setText("invalid data");
-            }
-        }
-    }
+    
 
     @FXML
     private void backToLogin(MouseEvent event) {
@@ -193,6 +190,25 @@ public class RegisterController implements Initializable {
                 confirmField.requestFocus();
               
             }
+    }
+
+    @FXML
+    private void OnSignUpPressed(ActionEvent event) {
+        
+        
+         setUserDatat();
+        if (checkEmptyData()) {
+
+            if (dataValidation()) {
+
+                labelConfirm.setText("");
+
+            } else {
+
+                labelConfirm.setText("invalid data");
+
+            } 
+        }
     }
 
   

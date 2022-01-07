@@ -3,14 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/F:/tic%20tac/Tic-Tac-Teo/TicTacClient/src/controller/ShowRecordedeGameController.java</file>
-            <file>file:/F:/tic%20tac/Tic-Tac-Teo/TicTacClient/src/view/ipDialg.fxml</file>
+            <file>file:/F:/tic%20tac/Tic-Tac-Teo/TicTacClient/src/view/registerFxml.fxml</file>
+            <file>file:/F:/tic%20tac/Tic-Tac-Teo/TicTacClient/src/controller/HardMode.java</file>
             <file>file:/F:/tic%20tac/Tic-Tac-Teo/TicTacClient/src/controller/SceneController.java</file>
-            <file>file:/F:/tic%20tac/Tic-Tac-Teo/TicTacClient/src/controller/PlayerVsPlayerController.java</file>
             <file>file:/F:/tic%20tac/Tic-Tac-Teo/TicTacClient/src/controller/PlayervsComputerEasyModeController.java</file>
-            <file>file:/F:/tic%20tac/Tic-Tac-Teo/TicTacClient/src/controller/IpDialogController.java</file>
             <file>file:/F:/tic%20tac/Tic-Tac-Teo/TicTacClient/src/controller/RegisterController.java</file>
-            <file>file:/F:/tic%20tac/Tic-Tac-Teo/TicTacClient/src/controller/RecordListController.java</file>
+            <file>file:/F:/tic%20tac/Tic-Tac-Teo/TicTacClient/src/controller/LoginController.java</file>
         </group>
     </open-files>
 </project-private>

@@ -25,6 +25,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import org.json.JSONException;
@@ -84,6 +85,8 @@ public class PlayervsComputerEasyModeController implements Initializable {
     String mode;
     @FXML
     private ImageView backButton;
+    @FXML
+    private GridPane buttonsGrid;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -124,6 +127,7 @@ public class PlayervsComputerEasyModeController implements Initializable {
                 }
                 checkIfGameEnds();
             }
+            checkIfGameEnds();
 
         }
     }
@@ -428,7 +432,8 @@ public class PlayervsComputerEasyModeController implements Initializable {
 
             } else {
                 showLoserGif();
-
+        //winer=true;
+                // colorBackgroundWinnerButtons(button00, button01, button01);
             }
             winer = true;
 
@@ -527,6 +532,7 @@ public class PlayervsComputerEasyModeController implements Initializable {
             isGameEnded = true;
             playAginButton.setVisible(true);
             isPlayerTurn = true;
+            // isPlayerTurn = true;
             XOCounter = 0;
         }
 
@@ -546,7 +552,7 @@ public class PlayervsComputerEasyModeController implements Initializable {
         }
 
     }
-
+    
     private void setButtondInArray() {
         boardButtons[0] = btn00;
         boardButtons[1] = btn01;
@@ -568,14 +574,20 @@ public class PlayervsComputerEasyModeController implements Initializable {
         XOCounter = 0;
         winer = false;
 
+
         for (Button boardButton : boardButtons) {
             boardButton.setText("");
-            boardButton.setGraphic(new ImageView());
-
             boardButton.setStyle("-fx-background-color:");
+                        boardButton.setGraphic(new ImageView());
+
         }
 
+        //to make computer start play
+        //button11.setText("O");
+        //XOCounter++;
     }
+
+   
 
     private void showWinnerGif() {
         CustomDialog.creatWinDialog();
@@ -585,16 +597,19 @@ public class PlayervsComputerEasyModeController implements Initializable {
         CustomDialog.creatLoseDialog();
     }
 
+  
+    
+
     @FXML
     private void onBackButtonClick(MouseEvent event) {
-        SceneController controller = new SceneController();
+        System.out.println("   back");
+         SceneController controller = new SceneController();
         try {
             controller.switchToChooseLevelModeScene(event);
-            //controller.switchToMainScene(event);
+            
         } catch (IOException ex) {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
     
     

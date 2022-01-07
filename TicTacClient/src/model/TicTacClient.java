@@ -15,6 +15,7 @@ public class TicTacClient extends Application {
 
       // Parent root = FXMLLoader.load(getClass().getResource("/view/registerFxml.fxml"));
 
+
        
        //TODO use sokash screen 
        Parent root = FXMLLoader.load(getClass().getResource("/view/SplashFXML.fxml"));
@@ -23,6 +24,7 @@ public class TicTacClient extends Application {
        Scene scene = new Scene(root);
         
         
+     
         stage.setScene(scene);
         stage.initStyle(StageStyle.TRANSPARENT);
         stage.show();
