@@ -24,6 +24,7 @@ import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.prefs.Preferences;
+import model.PlayerMove;
 
 public class AccessFile {
 
@@ -65,20 +66,48 @@ public class AccessFile {
         }
     }
 
+    public static void writeFile(PlayerMove s[]) {
+        try {
+            System.out.println("file Created an writ into it");
+
+            if (file.exists()) {
+                for (int i = 0; i < s.length; i++) {
+
+                    FileWriter writer = new FileWriter(file, true);
+                    writer.write(s[i].getX() + s[i].getY());
+                    if (s[i].isIsX()) {
+                        writer.write("X");
+                    } else {
+                        writer.write("O");
+                    }
+
+                    writer.flush();
+                    writer.close();
+                    System.out.println("write in file : " + i);
+                }
+            }
+        } catch (IOException ex) {
+            System.out.println("error during write file");
+            Logger.getLogger(AccessFile.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
     public static void writeFile(String s) {
         try {
             System.out.println("file Created an writ into it");
 
             if (file.exists()) {
+
                 FileWriter writer = new FileWriter(file, true);
                 writer.write(s);
+
                 writer.flush();
                 writer.close();
-                System.out.println("write in file");
-
+                System.out.println("write in file : in string  " );
             }
         } catch (IOException ex) {
-            System.out.println("error during write file");
+            System.out.println("error during write file string");
             Logger.getLogger(AccessFile.class.getName()).log(Level.SEVERE, null, ex);
         }
 

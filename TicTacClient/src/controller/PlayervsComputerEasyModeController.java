@@ -6,6 +6,8 @@
 package controller;
 
 import helper.CustomDialog;
+
+import static helper.DrawLine.colorBackgroundWinnerButtons;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
@@ -474,11 +476,6 @@ public class PlayervsComputerEasyModeController implements Initializable {
 
     }
 
-    private void colorBackgroundWinnerButtons(Button b1, Button b2, Button b3) {
-        b1.setStyle("-fx-background-color: yellow;");
-        b2.setStyle("-fx-background-color: yellow;");
-        b3.setStyle("-fx-background-color: yellow;");
-    }
 
     private void setButtondInArray() {
         boardButtons[0] = button00;

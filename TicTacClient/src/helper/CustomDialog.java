@@ -46,18 +46,21 @@ import javafx.scene.control.TextInputDialog;
  */
 public class CustomDialog {
 
-    public static boolean askPlayAgain(String s) {
-
-        ButtonType Yes = new ButtonType("Play Again");
+    
+     public static boolean askPlayAgain(String headerText ,String ButtonString )
+    {   
+        
+        ButtonType Yes = new ButtonType("Play Again"); 
         ButtonType No = new ButtonType("NO", ButtonBar.ButtonData.CANCEL_CLOSE);
-        Alert a = new Alert(Alert.AlertType.NONE);
-        a.setTitle("Paly Again");
-        a.getDialogPane().getButtonTypes().addAll(Yes, No);
-        a.setHeaderText(s);
-        a.showAndWait();
-        if (a.getResult() == Yes) {
-            return true;
-        } else {
+        Alert a = new Alert(Alert.AlertType.NONE); 
+        a.setTitle("Play Again");
+        a.getDialogPane().getButtonTypes().addAll(Yes,No);
+       // a.setHeaderText(headerText);
+        a.setContentText(headerText+" is winning");
+         a.showAndWait();
+        if(a.getResult()==Yes){  
+             return true; 
+        }else{
             return false;
         }
     }

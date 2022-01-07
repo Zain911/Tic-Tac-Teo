@@ -28,7 +28,7 @@ import javafx.stage.StageStyle;
 
 public class MainSceneController implements Initializable {
     SceneController controller;
-
+    public static boolean isRecord=false;
     @FXML
     private void handleVsAiBtn(ActionEvent event){
         controller=new SceneController();

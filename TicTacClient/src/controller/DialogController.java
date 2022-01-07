@@ -68,7 +68,7 @@ public class DialogController implements Initializable {
             } catch (IOException ex) {
                 
                 /// handel no connection
-                CustomDialog.askPlayAgain("cant connection");
+                //CustomDialog.askPlayAgain("cant connection");
             }
 
         } 

@@ -96,7 +96,7 @@ public class SplashFXMLController implements Initializable {
             @Override
             protected Void call() throws Exception {
             try {
-               Thread.sleep(4000);
+               Thread.sleep(1000);
             } catch (InterruptedException e) {
             }
                return null;

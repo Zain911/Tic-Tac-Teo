@@ -1,19 +1,19 @@
 .userName {
--fx-border: 10px solid  #0d5f5f;
-  
- -fx-width: 100px;
-  -fx-height: 10px;
-   -fx-text-color:white;
-   -fx-background-radius: 20px;
-     
+    -fx-border: 10px solid  #0d5f5f;
+
+    -fx-width: 100px;
+    -fx-height: 10px;
+    -fx-text-color:white;
+    -fx-background-radius: 20px;
+
 }
 .button {
- -fx-radius: 30px;
- -fx-border: 10px solid  #0d5f5f;
-  -fx-text: login;
-   -fx-text-color:white;
-   -fx-background-radius: 20px;
-     
+    -fx-radius: 30px;
+    -fx-border: 10px solid  #0d5f5f;
+    -fx-text: login;
+    -fx-text-color:white;
+    -fx-background-radius: 20px;
+
 }
 
 .backButton {
@@ -28,12 +28,12 @@
 }
 
 .userEmail {
- -fx-border: 10px solid  #0d5f5f;
- -fx-width: 150px;
-  -fx-height: 10px;
-   -fx-text-color:white;}
+    -fx-border: 10px solid  #0d5f5f;
+    -fx-width: 150px;
+    -fx-height: 10px;
+    -fx-text-color:white;}
 
- .withicon {    
+.withicon {    
     -fx-background-position: right 4px center;
     -fx-background-size: 14;
     -fx-background-repeat: no-repeat;
@@ -41,26 +41,125 @@
 
 
 .gradpane{
-  background-image: linear-gradient(to bottom right, red, yellow);
+    background-image: linear-gradient(to bottom right, red, yellow);
 }
 
 .cardpane{
-  
- 
-     background-image: linear-gradient(red, yellow, green);
+
+
+    background-image: linear-gradient(red, yellow, green);
 }
 .anchor{
-   -fx-background-color: blue;
-   
-    
+    -fx-background-color: blue;
+
+
 }
 .userName1{
-   
+
     -fx-text-color:white;
-     -fx-background-radius: 20px;
-    
+    -fx-background-radius: 20px;
+
+}
+.tic{
+    -fx-background-radius :  12 12 12 12;
+    -fx-padding: 4;
+    -fx-padding: 10;
+    -fx-text-fill:transparent;
+
+
+
+}
+.paneBordComponent{
+    -fx-border-color:transparent;
+    -fx-background-color : transparent;
+
+}
+.gridBordComponent{
+    -fx-border-color:transparent;
+    -fx-background-color : transparent;
+}
+.bodybg{
+    -fx-background-image:url('../resource/background_main.jpg');
+    -fx-background-size: 100% 100%;    
+}
+.btnbutton2
+{
+    -fx-background-image:url('../resource/iconvs_computer.png');
+    -fx-background-size: 100% ;    
+
+    -fx-background-color : transparent;
+    -fx-background-radius :  10;
 }
 
+.button2 {
+    background: #2ba1f0;
+    -fx-background-image:url('../resource/iconvs_computer.png');
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 50% ;    
+    -fx-background-color : transparent;
+    -fx-background-position: 50%;
 
+}
 
+.button2:hover {
+    -fx-background: #3cb0fd;
+    -fx-background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+}
 
+.buttonPalyerVsPlayer {
+    background: #2ba1f0;
+    -fx-background-image:url('../resource/player_versus_player.png');
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 60% ;    
+    -fx-background-color : transparent;
+    -fx-background-position: 50%;
+
+}
+
+.buttonPalyerVsPlayer:hover {
+    -fx-background: #3cb0fd;
+     -fx-text-decoration: none;
+}
+.buttonPalyerVsonline {
+    background: #2ba1f0;
+    -fx-background-image:url('../resource/play_online.png');
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 60% ;    
+    -fx-background-color : transparent;
+    -fx-background-position: 50%;
+
+}
+
+.buttonPalyerVsonline:hover {
+    -fx-background: #3cb0fd;
+     -fx-text-decoration: none;
+}
+
+.buttonRec {
+    background: #2ba1f0;
+    -fx-background-image:url('../resource/rec.png');
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 60% ;    
+    -fx-background-color : transparent;
+    -fx-background-position: 50%;
+
+}
+
+.buttonRec:hover {
+    -fx-background: #3cb0fd;
+    -fx-text-decoration: none;
+}
+.text{     -fx-font-size: 16px;
+           -fx-font-weight: 100;
+           -fx-color: rgba(0, 0, 0, 1);
+           -fx-text-transform: none;
+           -fx-font-style: italic;
+           -fx-text-decoration: none;
+           -fx-line-height: 2em;
+           -fx-letter-spacing: 0px;
+           -fx-text-shadow: -1px 0px 2px rgba(0, 0, 0, 1);
+}
+.GameBoardbutton {
+    -fx-pref-height: 50px;
+    -fx-pref-width: 200px;
+}

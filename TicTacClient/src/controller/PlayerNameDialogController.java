@@ -39,7 +39,7 @@ public class PlayerNameDialogController implements Initializable {
     private Button btnPlay;
     @FXML
     private Text txtError;
-   
+
     @FXML
     private Button btnBack;
     @FXML
@@ -48,7 +48,10 @@ public class PlayerNameDialogController implements Initializable {
     private TextField edtNameTwo;
     @FXML
     private TextField edtNameOne;
+    public static String firstName;
+    public static String secondName;
 
+   
     /**
      * Initializes the controller class.
      */
@@ -60,7 +63,6 @@ public class PlayerNameDialogController implements Initializable {
         setFormateToEdt();
     }
 
-    
     private boolean isEdtEmpty() {
         return edtNameOne.getText().equals("")
                 || edtNameTwo.getText().equals("");
@@ -73,63 +75,65 @@ public class PlayerNameDialogController implements Initializable {
 
     @FXML
     private void onPlay(ActionEvent event) {
-        if(isEdtEmpty()) {
+        if (isEdtEmpty()) {
             txtError.setVisible(true);
         } else {
             SceneController controller = new SceneController();
 
-            String firstName = edtNameOne.getText().toString();
-            String secoundName = edtNameTwo.getText().toString();
-            
+            // setFirstName(edtNameOne.getText().toString());
+            //setSecoundName( edtNameTwo.getText());
+            firstName = (edtNameOne.getText());
+            secondName=( edtNameTwo.getText());
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/PlayerVsPlayerView.fxml"));
-            
+
             try {
                 loader.load();
-                PlayerVsPlayerController con = loader.getController();
-                con.getPlayerNames(firstName,secoundName);
+//                PlayerVsPlayerController con = loader.getController();
+                // con.setPlayerNames(firstName,secoundName);
                 controller.switchToPlayerVsPlayerScene(event);
             } catch (IOException ex) {
                 Logger.getLogger(PlayerVsPlayerController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
-        
+
     }
 
     private void setFormateToEdt() {
         // to prevent spaces from in edit text
-        TextFormatter<?> formatter2  = new TextFormatter<>((TextFormatter.Change change) -> {
-        String text = change.getText();
+        TextFormatter<?> formatter2 = new TextFormatter<>((TextFormatter.Change change) -> {
+            String text = change.getText();
 
-        if (!text.isEmpty()) {
-            String newText = text.replace(" ", "").toLowerCase();
+            if (!text.isEmpty()) {
+                String newText = text.replace(" ", "").toLowerCase();
 
-            int carretPos = change.getCaretPosition() - text.length() + newText.length();
-            change.setText(newText);
+                int carretPos = change.getCaretPosition() - text.length() + newText.length();
+                change.setText(newText);
 
-            change.selectRange(carretPos, carretPos);
-        }
+                change.selectRange(carretPos, carretPos);
+            }
             return change;
         });
-        
+
         TextFormatter<?> formatter = new TextFormatter<>((TextFormatter.Change change) -> {
-        String text = change.getText();
+            String text = change.getText();
 
-        if (!text.isEmpty()) {
-            String newText = text.replace(" ", "").toLowerCase();
+            if (!text.isEmpty()) {
+                String newText = text.replace(" ", "").toLowerCase();
 
-            int carretPos = change.getCaretPosition() - text.length() + newText.length();
-            change.setText(newText);
+                int carretPos = change.getCaretPosition() - text.length() + newText.length();
+                change.setText(newText);
 
-            change.selectRange(carretPos, carretPos);
-        }
+                change.selectRange(carretPos, carretPos);
+            }
             return change;
         });
-        
+
         edtNameOne.setTextFormatter(formatter);
         edtNameTwo.setTextFormatter(formatter2);
         // to set focus on first edtit text
-        Platform.runLater(() -> {edtNameOne.requestFocus();});
+        Platform.runLater(() -> {
+            edtNameOne.requestFocus();
+        });
 
     }
 
@@ -141,26 +145,8 @@ public class PlayerNameDialogController implements Initializable {
         Button btn = (Button) event.getSource();
         Stage statge = (Stage) btn.getScene().getWindow();
         statge.close();
-        
-        /*FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/MainScene.fxml"));
-        Parent root;
-        try {
-            root = loader.load();
-                    
-        MainSceneController mainCon = loader.getController();
-        mainCon.switchToPlayerVsPlayer();
-        
-        Stage stage = new Stage();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-        } catch (IOException ex) {
-            Logger.getLogger(PlayerNameDialogController.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
 
-        
     }
-
 
     @FXML
     private void onBack(ActionEvent event) {
@@ -172,7 +158,4 @@ public class PlayerNameDialogController implements Initializable {
         }
     }
 
-   
-
-    
 }
