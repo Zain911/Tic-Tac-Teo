@@ -5,8 +5,6 @@
  */
 package controller;
 
-import connection.ClientConnection1;
-import connection.ClientConnection;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -15,12 +13,8 @@ import java.util.logging.Logger;
 import java.util.prefs.Preferences;
 import java.util.regex.Pattern;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
@@ -30,7 +24,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import model.LoginModel;
 
 /**
@@ -66,7 +59,7 @@ public class LoginController implements Initializable {
     Preferences preference;
     Boolean rememberMeFlag;
 
-   SceneController controller=new SceneController();
+    SceneController controller = new SceneController();
 
     private void rememberMy() {
         //for save the user's status
@@ -81,8 +74,8 @@ public class LoginController implements Initializable {
         }
     }
 
-    public void putDataCheckbox(){
-    //in connection DB part
+    public void putDataCheckbox() {
+        //in connection DB part
         if (rememberCheckbox.isSelected() && !rememberMeFlag) {
             preference.put("username", userName_Email.getText());
             preference.put("password", userPsaaword.getText());
@@ -94,12 +87,20 @@ public class LoginController implements Initializable {
             preference.putBoolean("rememberMe", false);
         }
     }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-     //Image img = new Image(getClass().getResourceAsStream("/ressource/bbbbb.jpg"));
-     //ImageView image=new ImageView(img);
-     //backButton.setGraphic(new ImageView(img));
-        
+        //Image img = new Image(getClass().getResourceAsStream("/ressource/bbbbb.jpg"));
+        //ImageView image=new ImageView(img);
+        //backButton.setGraphic(new ImageView(img));
+        //Remember Me
+        preference = Preferences.userNodeForPackage(LoginController.class);
+        if (preference != null) {
+            if (preference.get("username", null) != null && !preference.get("password", null).isEmpty()) {
+                userName_Email.setText(preference.get("username", null));
+                userPsaaword.setText(preference.get("password", null));
+            }
+        }
     }
 
     /*private boolean isValidPrefernce() {
@@ -111,7 +112,6 @@ public class LoginController implements Initializable {
 
         return false;
     }*/
-
     private boolean isValidDta() {
         if (!(isValidPassword()) | !(isValidateEmail())) {
             return false;
@@ -168,30 +168,45 @@ public class LoginController implements Initializable {
     @FXML
     private void login(ActionEvent event) throws IOException {
         getDatafromUser();
-        ClientConnection.createSocket("10.178.241.71", 5000);
-        ClientConnection cliServer = new ClientConnection();
-        
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    cliServer.sendLoginDataToServer(model);
-                } catch (IOException ex) {
-                    // doaa please handle send data exception
-                }
+        //ClientConnection.createSocket("10.178.241.71", 5000);
+        //ClientConnection cliServer = new ClientConnection();
+
+        //Remember Me
+        if (userName_Email.getText().equals("remeber") && userPsaaword.getText().equals("12345")) {
+            if (rememberCheckbox.isSelected()) {
+                preference.put("username", userName_Email.getText());
+                preference.put("password", userPsaaword.getText());
+                System.out.println(preference);
+            }else{
+                preference.put("username", null);
+                preference.put("password", null);
             }
-        }).start();
+
+        } else {
+            System.out.println("Invalid password");
+        }
+
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                try {
+//                    cliServer.sendLoginDataToServer(model);
+//                } catch (IOException ex) {
+//                    // doaa please handle send data exception
+//                }
+//            }
+//        }).start();
     }
 
     @FXML
     private void register(MouseEvent event) {
         try {
-            
+
             controller.switchToRegisterScene(event);
         } catch (IOException ex) {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
 
     @FXML
@@ -222,15 +237,15 @@ public class LoginController implements Initializable {
 
         emptypassword.setText(" ");
     }
-    
-     @FXML
+
+    @FXML
     private void back(ActionEvent event) {
         try {
             controller.switchToMainScene(event);
         } catch (IOException ex) {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
+
     }
 
 }

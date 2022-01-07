@@ -10,28 +10,24 @@
 
 <AnchorPane id="AnchorPane" prefHeight="581.0" prefWidth="615.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RegisterController">
    <children>
-      <AnchorPane id="AnchorPane" layoutX="-29.0" layoutY="20.0" prefHeight="542.0" prefWidth="610.0">
+      <AnchorPane id="AnchorPane" layoutX="3.0" layoutY="4.0" prefHeight="574.0" prefWidth="610.0">
          <children>
             <Label fx:id="labelUsername" layoutX="282.0" layoutY="266.0" minHeight="16" minWidth="69" />
-            <Label fx:id="labelEmail" layoutX="282.0" layoutY="328.0" minHeight="16" minWidth="69" />
-            <Label fx:id="labelPassword" layoutX="282.0" layoutY="388.0" minHeight="16" minWidth="69" />
-            <Label fx:id="labelConfirm" layoutX="282.0" layoutY="444.0" minHeight="16" minWidth="69" />
-            <Label fx:id="labelMessage" layoutX="463.0" layoutY="328.0" minHeight="16" minWidth="69" />
+            <Label fx:id="labelPassword" layoutX="282.0" layoutY="326.0" minHeight="16" minWidth="69" />
+            <Label fx:id="labelConfirm" layoutX="282.0" layoutY="382.0" minHeight="16" minWidth="69" />
             <Label fx:id="ticTacToe" layoutX="234.0" layoutY="25.0" minHeight="16" minWidth="69" prefHeight="43.0" prefWidth="164.0" text="Tic tac toe">
                <font>
                   <Font size="35.0" />
                </font>
             </Label>
             <ImageView fitHeight="150.0" fitWidth="164.0" layoutX="234.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true" fx:id="xoImage" />
-            <Button fx:id="signupBtn" layoutX="286.0" layoutY="476.0" mnemonicParsing="false" onAction="#setOnPressed" prefHeight="32.0" prefWidth="86.0" style="-fx-background-color: #0D5F5F;" text="Sign up" textFill="#ebe7e7" />
+            <Button fx:id="signupBtn" layoutX="286.0" layoutY="420.0" mnemonicParsing="false" onAction="#setOnPressed" prefHeight="32.0" prefWidth="86.0" style="-fx-background-color: #0D5F5F;" text="Sign up" textFill="#ebe7e7" />
             <Label layoutX="138.0" layoutY="240.0" style="-fx-text-fill: #0D5F5F;" text="username" />
             <TextField fx:id="usernameField" layoutX="235.0" layoutY="235.0" />
-            <TextField fx:id="emailField" layoutX="235.0" layoutY="297.0" />
-            <PasswordField fx:id="passwordField" layoutX="235.0" layoutY="357.0" />
-            <PasswordField fx:id="confirmField" layoutX="235.0" layoutY="413.0" />
-            <Label layoutX="165.0" layoutY="302.0" style="-fx-text-fill: #0D5F5F;" text="email" />
-            <Label layoutX="138.0" layoutY="362.0" style="-fx-text-fill: #0D5F5F;" text="password" />
-            <Label layoutX="83.0" layoutY="418.0" style="-fx-text-fill: #0D5F5F;" text="confirm password" />
+            <PasswordField fx:id="passwordField" layoutX="235.0" layoutY="295.0" />
+            <PasswordField fx:id="confirmField" layoutX="235.0" layoutY="351.0" />
+            <Label layoutX="138.0" layoutY="300.0" style="-fx-text-fill: #0D5F5F;" text="password" />
+            <Label layoutX="83.0" layoutY="356.0" style="-fx-text-fill: #0D5F5F;" text="confirm password" />
          </children>
       </AnchorPane>
    </children>

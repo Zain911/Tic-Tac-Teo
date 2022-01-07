@@ -66,10 +66,9 @@ public class PlayervsComputerEasyModeController implements Initializable {
     Button[] cornersButtons = new Button[4];
     // Label currentPlayerSymbol = new Label();
 
-   
     boolean winer;
 
-  //  boolean winer = false;
+    //  boolean winer = false;
     boolean isGameEnded;
     boolean isPlayerTurn = true;
     boolean isPcTurn = false;
@@ -85,7 +84,7 @@ public class PlayervsComputerEasyModeController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         setButtondInArray();
-        
+
         //to make computer start play
         //button11.setText("O");
         //XOCounter++;
@@ -115,16 +114,10 @@ public class PlayervsComputerEasyModeController implements Initializable {
                 System.out.println("mm/" + mode);
 
             }
+            checkIfGameEnds();
 
         }
     }
-
-    
-
-                    
-                   
-                 
-                  
 
     private void hardMode() {
         if (XOCounter == 2) {
@@ -351,20 +344,20 @@ public class PlayervsComputerEasyModeController implements Initializable {
 
     ////////////////////////////////
     public void checkHardOrEasy(String modeFromUser) {
-      mode= modeFromUser;
+        mode = modeFromUser;
     }
 
     private void checkIfGameEnds() {
         if (button00.getText().equals(button01.getText()) && button00.getText().equals(button02.getText()) && !button00.getText().equals("")) {
             isGameEnded = true;
-            winer=true;
+            winer = true;
             colorBackgroundWinnerButtons(button00, button01, button02);
             if (button00.getText().equals("X")) {
                 showWinnerGif();
             } else {
                 showLoserGif();
-            //winer=true;
-           // colorBackgroundWinnerButtons(button00, button01, button01);
+                //winer=true;
+                // colorBackgroundWinnerButtons(button00, button01, button01);
             }
             winer = true;
             colorBackgroundWinnerButtons(button00, button01, button01);
@@ -460,7 +453,7 @@ public class PlayervsComputerEasyModeController implements Initializable {
         if (XOCounter >= 9) {
             System.out.println("vvvv");
             isGameEnded = true;
-           // isPlayerTurn = true;
+            // isPlayerTurn = true;
             XOCounter = 0;
         }
 ////////// found bug
@@ -506,17 +499,15 @@ public class PlayervsComputerEasyModeController implements Initializable {
         XOCounter = 0;
         isGameEnded = false;
         XOCounter = 0;
-       
-        
+
         for (Button boardButton : boardButtons) {
             boardButton.setText("");
             boardButton.setStyle("-fx-background-color:");
         }
-        
+
         //to make computer start play
         //button11.setText("O");
         //XOCounter++;
-
     }
 
     @FXML
@@ -550,22 +541,14 @@ public class PlayervsComputerEasyModeController implements Initializable {
         CustomDialog.creatLoseDialog();
     }
 
-    
-     
-     
-     
-     
-      @FXML
+    @FXML
     private void back(ActionEvent event) {
-        SceneController controller=new  SceneController();
+        SceneController controller = new SceneController();
         try {
             controller.switchToMainScene(event);
         } catch (IOException ex) {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
+
     }
 }
-
-
-

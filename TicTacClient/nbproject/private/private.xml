@@ -1,22 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
+        <file>
+            <url>src/model/Player.java</url>
+            <bookmark id="1">
+                <name/>
+                <line>0</line>
+                <key/>
+            </bookmark>
+        </file>
+    </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/F:/tic%20tac/Tic-Tac-Teo/TicTacClient/src/model/LoginModel.java</file>
-            <file>file:/F:/tic%20tac/Tic-Tac-Teo/TicTacClient/src/helper/ClientConnection.java</file>
-            <file>file:/F:/tic%20tac/Tic-Tac-Teo/TicTacClient/src/connection/ClientConnection1.java</file>
-            <file>file:/F:/tic%20tac/Tic-Tac-Teo/TicTacClient/src/controller/DialogController.java</file>
-            <file>file:/F:/tic%20tac/Tic-Tac-Teo/TicTacClient/src/controller/LoginController.java</file>
-            <file>file:/F:/tic%20tac/Tic-Tac-Teo/TicTacClient/src/view/Dialg.fxml</file>
-=======
-            <file>file:/D:/project/Tic-Tac-Teo/TicTacClient/src/controller/SceneController.java</file>
-            <file>file:/D:/project/Tic-Tac-Teo/TicTacClient/src/controller/MainSceneController.java</file>
-            <file>file:/D:/project/Tic-Tac-Teo/TicTacClient/src/controller/PlayervsComputerEasyModeController.java</file>
-            <file>file:/D:/project/Tic-Tac-Teo/TicTacClient/src/controller/PlayerNameDialogController.java</file>
-            <file>file:/D:/project/Tic-Tac-Teo/TicTacClient/src/controller/PlayerVsPlayerController.java</file>
->>>>>>> 6c6d8b281c04a9f84d2774cd35ee4e511a351200
+            <file>file:/D:/NativeMobile(ITI)/Java/JavaFinalProject/Tic-Tac-Teo/TicTacClient/src/controller/RegisterController.java</file>
+            <file>file:/D:/NativeMobile(ITI)/Java/JavaFinalProject/Tic-Tac-Teo/TicTacClient/src/model/TicTacClient.java</file>
+            <file>file:/D:/NativeMobile(ITI)/Java/JavaFinalProject/Tic-Tac-Teo/TicTacClient/src/controller/LoginController.java</file>
+            <file>file:/D:/NativeMobile(ITI)/Java/JavaFinalProject/Tic-Tac-Teo/TicTacClient/src/connection/ClientConnection.java</file>
         </group>
     </open-files>
 </project-private>

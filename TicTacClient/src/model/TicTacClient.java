@@ -15,7 +15,7 @@ public class TicTacClient extends Application {
 
        // Parent root = FXMLLoader.load(getClass().getResource("/view/registerFxml.fxml"));
 
-        Parent root = FXMLLoader.load(getClass().getResource("/view/SplashFXML.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/view/loginFxml.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.initStyle(StageStyle.TRANSPARENT);

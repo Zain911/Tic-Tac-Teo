@@ -53,9 +53,9 @@ public class MainSceneController implements Initializable {
     private void handleVsPlayerOnlineBtn(ActionEvent event){
         
         try {
-            SceneController conttroller=new SceneController();
+             controller=new SceneController();
             
-            conttroller.switchToIpScene(event);
+            controller.switchToIpScene(event);
             
   
         } catch (IOException ex) {

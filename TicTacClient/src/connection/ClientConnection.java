@@ -6,16 +6,12 @@
 package connection;
 
 import controller.SceneController;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
-import java.net.ConnectException;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import model.LoginModel;
 
@@ -54,10 +50,6 @@ public class ClientConnection {
         new Thread(new Runnable() {
             @Override
             public void run() {
-
-                int timeBeforeRetry = 5000;
-                int count = 0;
-                int maxTries = 3;
 
                 try {
                     socket = new Socket(address, port);
