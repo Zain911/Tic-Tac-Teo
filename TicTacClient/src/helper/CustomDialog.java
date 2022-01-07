@@ -7,27 +7,10 @@ package helper;
 
 import controller.SceneController;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonBar;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextInputDialog;
-import javafx.scene.layout.TilePane;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
+
 import javafx.stage.StageStyle;
 import java.util.Optional;
 import java.util.logging.Level;
@@ -46,18 +29,21 @@ import javafx.scene.control.TextInputDialog;
  */
 public class CustomDialog {
 
-    public static boolean askPlayAgain(String s) {
-
-        ButtonType Yes = new ButtonType("Play Again");
+    
+     public static boolean askPlayAgain(String headerText ,String ButtonString )
+    {   
+        
+        ButtonType Yes = new ButtonType("Play Again"); 
         ButtonType No = new ButtonType("NO", ButtonBar.ButtonData.CANCEL_CLOSE);
-        Alert a = new Alert(Alert.AlertType.NONE);
-        a.setTitle("Paly Again");
-        a.getDialogPane().getButtonTypes().addAll(Yes, No);
-        a.setHeaderText(s);
-        a.showAndWait();
-        if (a.getResult() == Yes) {
-            return true;
-        } else {
+        Alert a = new Alert(Alert.AlertType.NONE); 
+        a.setTitle("Play Again");
+        a.getDialogPane().getButtonTypes().addAll(Yes,No);
+       // a.setHeaderText(headerText);
+        a.setContentText(headerText+" is winning");
+         a.showAndWait();
+        if(a.getResult()==Yes){  
+             return true; 
+        }else{
             return false;
         }
     }
@@ -93,6 +79,19 @@ public class CustomDialog {
             ex.printStackTrace();
         }
     }
+     public static void creatDrawDialog() {
+        try {
+            
+            Dialog dialog = new Dialog();
+            Parent root = FXMLLoader.load(CustomDialog.class.getResource("/view/WinnerGifXML.fxml"));
+            dialog.getDialogPane().setContent(root);
+            dialog.initStyle(StageStyle.TRANSPARENT);
+            dialog.show();
+            
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
 
     public static void creatLoseDialog() {
         try {
@@ -108,6 +107,12 @@ public class CustomDialog {
         }
     }
     
+    public  static void showAlertCantonnection() {
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Connection Result");
+                alert.setContentText("cant't Connect to network successfully!");
+                alert.showAndWait();
+	}
     
     public static void showIpDialog(ActionEvent event) {
 

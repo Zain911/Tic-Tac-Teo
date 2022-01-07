@@ -12,138 +12,79 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="523.0" prefWidth="680.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PlayerVsPlayerController">
-   <center>
-      <GridPane fx:id="buttonsGrid" gridLinesVisible="true" BorderPane.alignment="CENTER">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="247.0" minWidth="10.0" prefWidth="200.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="252.0" minWidth="10.0" prefWidth="202.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="279.0" minWidth="10.0" prefWidth="178.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints maxHeight="124.0" minHeight="10.0" prefHeight="98.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="118.0" minHeight="10.0" prefHeight="92.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="118.0" minHeight="10.0" prefHeight="93.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <BorderPane.margin>
-            <Insets bottom="30.0" left="50.0" right="50.0" top="30.0" />
-         </BorderPane.margin>
-         <children>
-            <Button fx:id="btn00" mnemonicParsing="false" onAction="#buttonOnePressed" prefHeight="108.0" prefWidth="206.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-            <Button fx:id="btn01" mnemonicParsing="false" onAction="#buttonOnePressed" prefHeight="108.0" prefWidth="243.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-            <Button fx:id="btn02" alignment="CENTER" mnemonicParsing="false" onAction="#buttonOnePressed" prefHeight="134.0" prefWidth="279.0" textAlignment="JUSTIFY" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" />
-            <Button fx:id="btn10" mnemonicParsing="false" onAction="#buttonOnePressed" prefHeight="101.0" prefWidth="221.0" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-            <Button fx:id="btn11" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#buttonOnePressed" prefHeight="101.0" prefWidth="273.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Button fx:id="btn12" mnemonicParsing="false" onAction="#buttonOnePressed" prefHeight="106.0" prefWidth="279.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="SOMETIMES">
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
-            </Button>
-            <Button fx:id="btn20" mnemonicParsing="false" onAction="#buttonOnePressed" prefHeight="102.0" prefWidth="205.0" GridPane.rowIndex="2" />
-            <Button fx:id="btn21" mnemonicParsing="false" onAction="#buttonOnePressed" prefHeight="102.0" prefWidth="243.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
-            </Button>
-            <Button fx:id="btn22" mnemonicParsing="false" onAction="#buttonOnePressed" prefHeight="107.0" prefWidth="279.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
-            </Button>
-         </children>
-      </GridPane>
-   </center>
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="649.0" prefWidth="1087.0" style="-fx-background-color: #ffffff;" styleClass="bodybg" stylesheets="@../css/Style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PlayerVsPlayerController">
    <top>
-      <GridPane prefHeight="147.0" prefWidth="661.0" BorderPane.alignment="CENTER">
-        <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="209.0" minWidth="10.0" prefWidth="194.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="305.0" minWidth="10.0" prefWidth="84.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="268.0" minWidth="10.0" prefWidth="123.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="161.0" minWidth="10.0" prefWidth="80.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="206.0" minWidth="10.0" prefWidth="199.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints maxHeight="84.0" minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="97.0" minHeight="10.0" prefHeight="53.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="63.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
-        </rowConstraints>
+      <GridPane prefHeight="184.0" prefWidth="1102.0" BorderPane.alignment="CENTER">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="337.0" minWidth="10.0" prefWidth="337.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="817.0" minWidth="10.0" prefWidth="474.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="476.0" minWidth="10.0" prefWidth="276.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="122.0" minHeight="10.0" prefHeight="77.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="135.0" minHeight="10.0" prefHeight="104.0" vgrow="SOMETIMES" />
+         </rowConstraints>
          <children>
-            <Label fx:id="scorePlayerOne" prefHeight="17.0" prefWidth="95.0" text="0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
-               <GridPane.margin>
-                  <Insets left="40.0" />
-               </GridPane.margin>
+            <Label fx:id="playerNameOne" prefHeight="32.0" prefWidth="125.0" text="Player One" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                <font>
-                  <Font name="Bodoni MT Bold" size="17.0" />
+                  <Font name="Bernard MT Condensed" size="30.0" />
                </font>
             </Label>
-            <Label fx:id="scorePlayerTwo" prefHeight="17.0" prefWidth="70.0" text="0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+            <ImageView fitHeight="50.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                <GridPane.margin>
-                  <Insets left="30.0" />
-               </GridPane.margin>
-               <font>
-                  <Font name="Bodoni MT Bold" size="17.0" />
-               </font>
-            </Label>
-            <ImageView fitHeight="50.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
-               <GridPane.margin>
-                  <Insets left="140.0" />
+                  <Insets right="20.0" />
                </GridPane.margin>
                <image>
-                  <Image url="@../resource/user.png" />
+                  <Image url="@../resource/player2.png" />
                </image>
             </ImageView>
-            <Label prefHeight="17.0" prefWidth="197.0" text="tic tac toe" GridPane.columnIndex="2">
-               <font>
-                  <Font name="Bodoni MT Black" size="24.0" />
-               </font>
-            </Label>
-            <Label prefHeight="17.0" prefWidth="120.0" text="             score" GridPane.columnIndex="2" GridPane.rowIndex="2">
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
-               <font>
-                  <Font name="Berlin Sans FB" size="15.0" />
-               </font>
-            </Label>
-            <ImageView fitHeight="64.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="1">
+            <ImageView fitHeight="64.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="1">
                <image>
-                  <Image url="@../resource/profile2.jpeg" />
+                  <Image url="@../resource/player1.png" />
                </image>
             </ImageView>
-            <Text fx:id="playerNameOne" strokeType="OUTSIDE" strokeWidth="0.0" text="Player name" wrappingWidth="82.13671875" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <ImageView fx:id="backButton" fitHeight="75.0" fitWidth="62.0" onMouseClicked="#onBackButtonClick" pickOnBounds="true" preserveRatio="true" style="b: #ffffff;" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM">
+               <image>
+                  <Image url="@../resource/left.png" />
+               </image>
+               <GridPane.margin>
+                  <Insets left="50.0" />
+               </GridPane.margin>
+            </ImageView>
+            <Label fx:id="palyerNameTwo" prefHeight="25.0" prefWidth="149.0" text="player two" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                <font>
-                  <Font name="Andalus" size="14.0" />
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
+            <Label fx:id="scorePlayerOne" prefHeight="17.0" prefWidth="95.0" text="0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
+            <Label fx:id="scorePlayerTwo" prefHeight="17.0" prefWidth="70.0" text="      0" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
+            <Text fill="#185c61" strokeType="OUTSIDE" strokeWidth="0.0" text="Tic Tac Toe" wrappingWidth="174.8076171875" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+               <font>
+                  <Font name="Bodoni MT Black" size="27.0" />
                </font>
             </Text>
-            <Text fx:id="playerNameTwo" strokeType="OUTSIDE" strokeWidth="0.0" text="Player name" wrappingWidth="82.13671875" GridPane.columnIndex="3" GridPane.rowIndex="1">
+            <Text fill="#011622" strokeType="OUTSIDE" strokeWidth="0.0" text="score" wrappingWidth="58.13671875" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                <font>
-                  <Font name="Andalus" size="14.0" />
+                  <Font name="Baskerville Old Face" size="18.0" />
                </font>
+            </Text>
+            <ImageView fx:id="recordImage" fitHeight="68.0" fitWidth="76.0" onMouseClicked="#onRecordGameClick" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER">
+               <image>
+                  <Image url="@../resource/record.png" />
+               </image>
+            </ImageView>
+            <Text fx:id="recordText" fill="#d30909" onMouseClicked="#onRecordGameClick" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="71.13671875" GridPane.columnIndex="2" GridPane.halignment="RIGHT">
+               <GridPane.margin>
+                  <Insets right="30.0" />
+               </GridPane.margin>
             </Text>
          </children>
       </GridPane>
    </top>
    <bottom>
-      <GridPane prefHeight="65.0" prefWidth="680.0" BorderPane.alignment="CENTER">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="77.0" style="-fx-background-color: #0D5F5F;" stylesheets="@../css/Style.css" text="PlayAgin" textFill="#f5f4f4">
-               <GridPane.margin>
-                  <Insets bottom="50.0" left="160.0" />
-               </GridPane.margin>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#buttonBackPressed" prefHeight="25.0" prefWidth="86.0" style="-fx-background-color: #0D5F5F;" stylesheets="@../css/Style.css" text="Back" textFill="#f5efef" GridPane.columnIndex="1">
-               <GridPane.margin>
-                  <Insets bottom="50.0" left="100.0" />
-               </GridPane.margin>
-            </Button>
-         </children>
-      </GridPane>
+      <Button mnemonicParsing="false" onAction="#replayAgain" prefHeight="33.0" prefWidth="104.0" style="-fx-background-color: #0D5F5F;" stylesheets="@../css/Style.css" text="PlayAgin" textFill="#fcfcfc" BorderPane.alignment="TOP_CENTER">
+         <BorderPane.margin>
+            <Insets bottom="50.0" left="30.0" />
+         </BorderPane.margin>
+      </Button>
    </bottom>
 </BorderPane>

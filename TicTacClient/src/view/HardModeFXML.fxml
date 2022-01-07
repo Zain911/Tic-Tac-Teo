@@ -5,30 +5,39 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="468.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HardModeFXMLController">
+<AnchorPane prefHeight="649.0" prefWidth="1087.0" style="-fx-background-color: #ffffff;" styleClass="bodybg" stylesheets="@../css/Style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HardModeFXMLController">
    <children>
-      <ImageView fx:id="easyModeImg" fitHeight="150.0" fitWidth="200.0" layoutX="80.0" layoutY="84.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="easyModeBtn" layoutX="80.0" layoutY="278.0" mnemonicParsing="false" onAction="#setClickEasy" prefHeight="31.0" prefWidth="174.0" style="-fx-background-color: #0D5F5F;" stylesheets="@../css/Style.css" text="Easy mode" textFill="WHITE">
+      <ImageView fx:id="hardModeImg" fitHeight="212.0" fitWidth="162.0" layoutX="276.0" layoutY="225.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resource/easymode.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="hardModeBtn" layoutX="656.0" layoutY="470.0" mnemonicParsing="false" onAction="#setClickHard" prefHeight="47.0" prefWidth="174.0" style="-fx-background-color: #0D5F5F;" stylesheets="@../css/Style.css" text="Hard mode" textFill="WHITE">
          <font>
             <Font size="16.0" />
-         </font></Button>
-      <ImageView fx:id="hardModeImg" fitHeight="150.0" fitWidth="200.0" layoutX="375.0" layoutY="84.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="hardModeBtn" layoutX="375.0" layoutY="278.0" mnemonicParsing="false" onAction="#setClickHard" prefHeight="31.0" prefWidth="174.0" style="-fx-background-color: #0D5F5F;" stylesheets="@../css/Style.css" text="Hard mode" textFill="#fcfcfc">
-         <font>
-            <Font size="16.0" />
-         </font></Button>
-      <Button fx:id="backButton" layoutX="23.0" layoutY="398.0" mnemonicParsing="false" onAction="#setClickBack" prefHeight="37.0" prefWidth="75.0" style="-fx-background-color: #0d5f5f;" textFill="BLUE">
-         <font>
-            <Font name="Avenir Next Regular" size="13.0" />
          </font>
-         <graphic>
-            <ImageView fitHeight="40.0" fitWidth="60.0">
-               <image>
-                  <Image url="@../resource/bbbbb.jpg" />
-               </image>
-            </ImageView>
-         </graphic>
       </Button>
+      <ImageView fx:id="backButton" fitHeight="62.0" fitWidth="65.0" layoutX="59.0" layoutY="50.0" onMouseClicked="#onBackButtonClick" pickOnBounds="true" preserveRatio="true" style="b: #ffffff;">
+         <image>
+            <Image url="@../resource/left.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="easyModeImg" fitHeight="189.0" fitWidth="174.0" layoutX="656.0" layoutY="230.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resource/hardmode.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="easyModeBtn" layoutX="270.0" layoutY="469.0" mnemonicParsing="false" onAction="#setClickEasy" prefHeight="48.0" prefWidth="174.0" style="-fx-background-color: #0D5F5F;" stylesheets="@../css/Style.css" text="Easy mode" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Text fill="#105761" layoutX="381.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="        tic tac toe" textAlignment="JUSTIFY" wrappingWidth="298.13671875">
+         <font>
+            <Font name="Bodoni MT Black" size="36.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

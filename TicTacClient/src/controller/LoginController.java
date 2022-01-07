@@ -6,7 +6,7 @@
 package controller;
 
 import connection.ClientConnection1;
-import helper.ClientConnection;
+import connection.ClientConnection;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -28,6 +28,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -51,22 +53,21 @@ public class LoginController implements Initializable {
     @FXML
     private PasswordField userPsaaword;
     @FXML
-    private ImageView show_hiddenPassword;
-    @FXML
     private Label errorMessage;
     @FXML
     private Label emptypassword;
     @FXML
-    private Button backButton;
+    private ImageView backButton;
     @FXML
     private Label emptyUseName;
-    @FXML
     private CheckBox rememberCheckbox;
     //for save the user's status
     Preferences preference;
     Boolean rememberMeFlag;
 
    SceneController controller=new SceneController();
+    @FXML
+    private CheckBox rememberMe;
 
     private void rememberMy() {
         //for save the user's status
@@ -96,9 +97,7 @@ public class LoginController implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-     //Image img = new Image(getClass().getResourceAsStream("/ressource/bbbbb.jpg"));
-     //ImageView image=new ImageView(img);
-     //backButton.setGraphic(new ImageView(img));
+     
         
     }
 
@@ -113,13 +112,29 @@ public class LoginController implements Initializable {
     }*/
 
     private boolean isValidDta() {
-        if (!(isValidPassword()) | !(isValidateEmail())) {
+        if (!(isValidPassword())|!(usernameValidation()) ) {
             return false;
         }
 
         return true;
     }
 
+     public boolean passwordValidation() {
+        if (model.getUser_password().trim().length() == 0) {
+            
+            emptypassword.setText("reqired");
+            return false;
+        } else if (model.getUser_password().trim().length() < 5) {
+            emptypassword.setText("Weak Password!");
+            return false;
+        } else if (model.getUser_password().trim().length() > 10) {
+            emptypassword.setText("too long password!");
+            return true;
+        } else {
+            emptypassword.setText("Strong Password!");
+            return false;
+        }
+    }
     public boolean isValidPassword() {
 
         if (model.getUser_password().isEmpty()) {
@@ -133,7 +148,22 @@ public class LoginController implements Initializable {
 
         return true;
     }
+ public Boolean usernameValidation() {
+         String regex = "^[A-Za-z]\\w{5,10}$";
+         Pattern userNamePattern = Pattern.compile(regex);
+       if (model.getUser_name().isEmpty()) {
+            emptyUseName.setText("user name required");
+            return false;
 
+        } else if (!userNamePattern.matcher(model.getUser_name()).matches()) {
+            emptyUseName.setText("invalid user name \n  user name must start with character \n and contain 5-10");
+            return false;
+        } else {
+            emptyUseName.setText("");
+            return true;
+        }
+
+    }
     private boolean isValidateEmail() {
 
         String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."
@@ -161,13 +191,13 @@ public class LoginController implements Initializable {
         model.setUser_password(userPsaaword.getText());
     }
 
-    @FXML
-    private void handleButtonAction(MouseEvent event) {
-    }
+   
 
     @FXML
     private void login(ActionEvent event) throws IOException {
         getDatafromUser();
+        if(isValidDta()){
+        
         ClientConnection.createSocket("10.178.241.71", 5000);
         ClientConnection cliServer = new ClientConnection();
         
@@ -181,7 +211,12 @@ public class LoginController implements Initializable {
                 }
             }
         }).start();
+         }
+    else{
+            
+}
     }
+   
 
     @FXML
     private void register(MouseEvent event) {
@@ -194,38 +229,17 @@ public class LoginController implements Initializable {
         
     }
 
-    @FXML
-    private void toggelPasswordIcon() {
-        if (!flageToggle) {
-            Image image = new Image(getClass().getResourceAsStream("showPassword.png"));
-            show_hiddenPassword.setImage(image);
+   
 
-            flageToggle = true;
-        } else {
+   
 
-            Image image = new Image(getClass().getResourceAsStream("hiddenPassword.png"));
-            show_hiddenPassword.setImage(image);
-            userPsaaword.setFocusTraversable(true);
-            flageToggle = false;
-        }
-    }
-
-    @FXML
-    private void hiddenNameErrorMeesage() {
-
-        emptyUseName.setText(" ");
-
-    }
-
-    @FXML
-    private void hiddenPasswordErrorMeesage() {
-
-        emptypassword.setText(" ");
-    }
+   
     
-     @FXML
-    private void back(ActionEvent event) {
-        try {
+    
+
+    @FXML
+    private void backToMain(MouseEvent event) {
+         try {
             controller.switchToMainScene(event);
         } catch (IOException ex) {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
@@ -233,4 +247,34 @@ public class LoginController implements Initializable {
        
     }
 
-}
+    @FXML
+    private void hiddenNameErrorMeesage(KeyEvent event) {
+        
+         emptyUseName.setText("");
+    }
+
+    @FXML
+    private void hiddenPasswordErrorMeesage(KeyEvent event) {
+        emptypassword.setText("");
+        
+    }
+
+    @FXML
+    private void onUserNmaeKeyPreasd(KeyEvent event) {
+        if(event.getCode().equals(KeyCode.ENTER)){
+                userPsaaword.requestFocus();
+              
+            }
+        
+        
+    }
+
+    
+    }
+    
+    
+    
+    
+
+   
+

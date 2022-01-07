@@ -8,42 +8,35 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="462.0" prefWidth="605.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PlayerNameDialogController">
+<AnchorPane id="AnchorPane" onKeyPressed="#onPlayerTwoKeyPressed" prefHeight="649.0" prefWidth="1087.0" style="-fx-background-color: #ffffff;" styleClass="bodybg" stylesheets="@../css/Style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PlayerNameDialogController">
    <children>
-      <TextField fx:id="edtNameTwo" layoutX="345.0" layoutY="298.0" onAction="#hideText" onKeyPressed="#hideText" prefHeight="41.0" prefWidth="191.0" promptText="player 2" styleClass="button" stylesheets="@../css/Style.css">
+      <TextField fx:id="edtNameTwo" layoutX="598.0" layoutY="427.0" prefHeight="41.0" prefWidth="191.0" promptText="player 2" styleClass="button" stylesheets="@../css/Style.css">
          <font>
             <Font name="Andalus" size="18.0" />
          </font></TextField>
-      <Button fx:id="btnPlay" layoutX="389.0" layoutY="368.0" mnemonicParsing="false" onAction="#onPlay" prefHeight="41.0" prefWidth="104.0" style="-fx-background-color: #0D5F5F;" stylesheets="@../css/Style.css" text="Play" textFill="WHITE">
-         <font>
-            <Font name="Andalus" size="18.0" />
-         </font></Button>
-      <Text fx:id="txtError" fill="#f50101" layoutX="218.0" layoutY="295.0" strokeType="OUTSIDE" strokeWidth="0.0" text="please enter players name!" visible="false" wrappingWidth="167.48046875">
+      <Text fx:id="txtError" fill="#f50101" layoutX="481.0" layoutY="452.0" strokeType="OUTSIDE" strokeWidth="0.0" text="please enter players name!" visible="false" wrappingWidth="197.48046875">
          <font>
             <Font size="13.0" />
          </font></Text>
-      <TextField fx:id="edtNameOne" layoutX="76.0" layoutY="298.0" onAction="#hideText" onKeyPressed="#hideText" prefHeight="41.0" prefWidth="178.0" promptText="player 1" styleClass="button" stylesheets="@../css/Style.css">
+      <TextField fx:id="edtNameOne" layoutX="311.0" layoutY="426.0" onKeyPressed="#onPlayerOneKeyPressed" prefHeight="41.0" prefWidth="178.0" promptText="player 1" styleClass="button" stylesheets="@../css/Style.css">
          <font>
             <Font name="Andalus" size="18.0" />
          </font></TextField>
-      <Text fill="#071a89" layoutX="244.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Players Names">
+      <ImageView fx:id="playersImg" fitHeight="228.0" fitWidth="466.0" layoutX="311.0" layoutY="154.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="backButton" fitHeight="62.0" fitWidth="65.0" layoutX="61.0" layoutY="38.0" onMouseClicked="#onBackButtonClick" pickOnBounds="true" preserveRatio="true" style="b: #ffffff;">
+         <image>
+            <Image url="@../resource/left.png" />
+         </image>
+      </ImageView>
+      <Text fill="#146f69" layoutX="501.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Players Names">
          <font>
             <Font name="Berlin Sans FB" size="21.0" />
          </font>
       </Text>
-      <ImageView fx:id="playersImg" fitHeight="225.0" fitWidth="415.0" layoutX="101.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="backButton" layoutX="116.0" layoutY="366.0" mnemonicParsing="false" onAction="#onBack" prefHeight="41.0" prefWidth="104.0" style="-fx-background-color: #0d5f5f;" stylesheets="@../css/Style.css" textFill="BLUE">
+      <Button fx:id="btnPlay" layoutX="513.0" layoutY="517.0" mnemonicParsing="false" onAction="#startPlay" prefHeight="41.0" prefWidth="104.0" style="-fx-background-color: #0D5F5F;" stylesheets="@../css/Style.css" text="start Game" textFill="WHITE">
          <font>
-            <Font name="Avenir Next Regular" size="13.0" />
-         </font>
-         <graphic>
-            <ImageView fitHeight="35.0" fitWidth="81.0">
-               <image>
-                  <Image url="@../resource/bbbbb.jpg" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
+            <Font name="Andalus" size="18.0" />
+         </font></Button>
       
    </children>
 </AnchorPane>

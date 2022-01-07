@@ -8,6 +8,7 @@ package controller;
 
 import com.sun.javafx.scene.control.skin.CustomColorDialog;
 import controller.SceneController;
+import helper.AccessFile;
 import helper.CustomDialog;
 import java.io.File;
 import java.io.IOException;
@@ -19,22 +20,37 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ProgressIndicator;
 
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.control.Dialog;
+import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.StageStyle;
 
 
 
 public class MainSceneController implements Initializable {
     SceneController controller;
-
+    public static boolean isRecord=false;
+    @FXML
+    private Button playerVsAiBtn;
+    @FXML
+    private Label labSinglePlayer;
+    @FXML
+    private Button playerVsPlayerBtn;
+    @FXML
+    private Button btnOnlineGame;
+    @FXML
+    private Button btnWatchGame;
+    @FXML
+    private AnchorPane playervsplayerOffLine;
     @FXML
     private void handleVsAiBtn(ActionEvent event){
         controller=new SceneController();
         try {
-          controller.switchToRecordScene(event);
+         controller.switchToChooseLevelModeScene(event);
 
             //controller.switchToChooseLevelModeScene(event);
         } catch (IOException ex) {
@@ -42,14 +58,7 @@ public class MainSceneController implements Initializable {
         }
     }
     
-    @FXML
-    private void handleVsPlayerBtn(ActionEvent event){
-        try {
-            controller.switchToPlayersNamesScene(event);
-        } catch (IOException ex) {
-            Logger.getLogger(MainSceneController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+    
     
 
      @FXML
@@ -69,54 +78,42 @@ public class MainSceneController implements Initializable {
         }
     }
      
-   /* @FXML
-=======
-    /*public void switchToPlayerVsPlayer() {
-        try {
-            controller.switchToPlayerVsPlayerScene(eventBtn);
-        } catch (IOException ex) {
-            Logger.getLogger(MainSceneController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }*/
-    
-    
-    
-   /* @FXML
-    private void handleVsPlayerOnlineBtn(ActionEvent event){
-        controller = new SceneController();
-        try {
-            controller.switchToLoginScene(event);
-
-           
-
-
-        } catch (IOException ex) {
-            Logger.getLogger(MainSceneController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-         CustomDialog.showIpDialog(event);
-        
-    }*/
+ 
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        controller = new SceneController();
-       
+        
+        
     }    
 
-    private void showDialog(ActionEvent event) {
-          try {
-
-            Dialog dialog = new Dialog();
-            Parent root = FXMLLoader.load(CustomDialog.class.getResource("/view/PlayerNameDialog.fxml"));
-            dialog.getDialogPane().setContent(root);
-            dialog.initStyle(StageStyle.TRANSPARENT);
-            
-            dialog.show();
-            
+    @FXML
+    private void openPlayerVsPlayerOffLine(ActionEvent event) {
+        try {
+            controller = new SceneController();
+            controller.switchToPlayersNamesScene(event);
         } catch (IOException ex) {
-            ex.printStackTrace();
+            Logger.getLogger(MainSceneController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    @FXML
+    private void openRecordGame(ActionEvent event) {
+        try {
+            controller = new SceneController();
+            controller.switchToRecordListScene(event);
+        } catch (IOException ex) {
+            Logger.getLogger(MainSceneController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+   
+   
+
+    
+
+    
+
+  
      
 }
 

@@ -20,6 +20,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseDragEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 /**
@@ -37,35 +39,28 @@ public class HardModeFXMLController implements Initializable {
     Button easyModeBtn;
     @FXML
     Button hardModeBtn;
-    @FXML
-    private Button backBtn;
 
     private Stage stage;
     private Scene scene;
     private Parent root;
     SceneController controller;
     PlayervsComputerEasyModeController easyModeScene;
+    @FXML
+    private ImageView backButton;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        Image hardImg = new Image("/resource/hardmode.png");
-        hardModeImg.setImage(hardImg);
+        //Image hardImg = new Image("/resource/hardmode.png");
+        //hardModeImg.setImage(hardImg);
 
-        Image easyImg = new Image("/resource/easymode.png");
-        easyModeImg.setImage(easyImg);
+        //Image easyImg = new Image("/resource/easymode.png");
+        //easyModeImg.setImage(easyImg);
 
         controller = new SceneController();
 
     }
 
-    @FXML
-    private void setClickBack(ActionEvent event) {
-        try {
-            controller.switchToMainScene(event);
-        } catch (IOException ex) {
-            Logger.getLogger(HardModeFXMLController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+   
 
     @FXML
     private void setClickEasy(ActionEvent event) {
@@ -99,4 +94,14 @@ public class HardModeFXMLController implements Initializable {
 
     }
 
+    @FXML
+    private void onBackButtonClick(MouseEvent event) {
+         try {
+            controller.switchToMainScene(event);
+        } catch (IOException ex) {
+            Logger.getLogger(HardModeFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    
 }

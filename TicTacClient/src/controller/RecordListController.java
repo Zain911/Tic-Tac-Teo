@@ -5,15 +5,24 @@
  */
 package controller;
 
+import com.sun.javafx.fxml.BeanAdapter;
+import helper.AccessFile;
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
+import javafx.scene.control.ScrollBar;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import model.PlayerMove;
 
 /**
  * FXML Controller class
@@ -23,34 +32,66 @@ import javafx.scene.control.ListView;
 public class RecordListController implements Initializable {
 
     List<String> results = new ArrayList<String>();
-
+     List<PlayerMove>movesList;
     @FXML
     private ListView <String>listView;
+    static String filePath = new File("").getAbsolutePath();
+  //  static String pathLocalFile = filePath.concat("\\src\\savedGame\\");
+    static String pathLocalFile =filePath.concat("\\record\\savedGame");
+    static String pathOnlineFile = filePath.concat("\\src\\savedOnlineGame\\");
+public static String selectedItemOfRecordList;
+    @FXML
+    private ImageView backButton;
+    @FXML
+    private ScrollBar scrollBar;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        //listView=new  ListView<>();
+        
         getList();
-        //list.setItems((ObservableList) results);
         System.out.println(results.get(0));
         listView.getItems().addAll(results);
-    }    
+       // scrollBar=getListViewScrollBar(listView);
+        
+        
+    }   
     private  void getList(){
-     //Creating a File object for directory
-      File directoryPath = new File("F:\\iti data");
-      //List of all files and directories
+    
+        System.out.println("getList " + pathLocalFile);
+      File directoryPath = new File(pathLocalFile);
       File filesList[] = directoryPath.listFiles();
-      System.out.println("List of files and directories in the specified directory:");
+     // System.out.println("List of files and directories in the specified directory:");
       for(File file : filesList) {
            results.add(file.getName());
-          
-          
-          
          System.out.println("File name: "+file.getName());
          System.out.println("File path: "+file.getAbsolutePath());
          System.out.println("Size :"+file.getTotalSpace());
          System.out.println(" ");
       }
    }
+
+    @FXML
+    private void openRecord(MouseEvent event) {
+        try {
+          selectedItemOfRecordList=  listView.getSelectionModel().getSelectedItem();
+            SceneController controller=new SceneController();
+            controller.switchToShowRecordScene(event);
+        } catch (IOException ex) {
+            Logger.getLogger(RecordListController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+       
+    }
+
+    @FXML
+    private void onBackButtonClick(MouseEvent event) {
+        SceneController controller=new SceneController();
+         try {
+            controller.switchToMainScene(event);
+        } catch (IOException ex) {
+            Logger.getLogger(HardModeFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

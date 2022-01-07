@@ -31,7 +31,7 @@ public class LoserGifXmlController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        Image imageLose = new Image("/resource/lose.gif") {};
+        Image imageLose = new Image("/resource/loser.gif");
                 
         imgLoser.setImage(imageLose);
         imgLoser.setCache(true);
@@ -44,7 +44,7 @@ public class LoserGifXmlController implements Initializable {
             @Override
             protected Void call() throws Exception {
             try {
-               Thread.sleep(4000);
+               Thread.sleep(5000);
             } catch (InterruptedException e) {
             }
                return null;

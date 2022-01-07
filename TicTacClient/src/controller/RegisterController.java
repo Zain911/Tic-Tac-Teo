@@ -5,8 +5,11 @@
  */
 package controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javafx.event.ActionEvent;
@@ -19,6 +22,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import model.RegisterModel;
@@ -38,8 +45,6 @@ public class RegisterController implements Initializable {
     @FXML
     private Label labelMessage;
 
-    @FXML
-    private TextField emailField;
 
     @FXML
     private TextField usernameField;
@@ -49,6 +54,14 @@ public class RegisterController implements Initializable {
 
     @FXML
     private PasswordField confirmField;
+    @FXML
+    private Label labelUsername;
+    @FXML
+    private Label labelPassword;
+    @FXML
+    private Label labelConfirm;
+    @FXML
+    private ImageView backButton;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -62,8 +75,7 @@ public class RegisterController implements Initializable {
     public void setUserDatat() {
         model.setUsername(usernameField.getText().trim());
         System.out.println(model.getUsername());
-        model.setEmail(emailField.getText());
-        System.out.println(model.getEmail());
+        
         model.setPassword(passwordField.getText());
         System.out.println(model.getPassword());
         model.setConfirmPassword(confirmField.getText());
@@ -72,19 +84,21 @@ public class RegisterController implements Initializable {
 
     private boolean dataValidation() {
         if (!(passwordValidation()) | !(usernameValidation())
-                | !(confirmValidation()) | !(emailValidation())) {
+                | !(confirmValidation()) ) {
             return false;
         }
         return true;
     }
 
     public Boolean usernameValidation() {
-        if (model.getUsername().length() < 6) {
-            labelMessage.setText("too short username!");
+         String regex = "^[A-Za-z]\\w{5,10}$";
+         Pattern userNamePattern = Pattern.compile(regex);
+        if (model.getUsername().isEmpty()) {
+            labelMessage.setText("uerName is Reqired");
             return false;
 
-        } else if (model.getUsername().trim().length() > 14) {
-            labelMessage.setText("too long username!");
+        } else if (!userNamePattern.matcher(model.getUsername()).matches()) {
+            labelMessage.setText("invalid user name \n  user name must start with character \n and contain 5-10");
             return false;
         } else {
             labelMessage.setText("");
@@ -106,16 +120,16 @@ public class RegisterController implements Initializable {
 
     public boolean passwordValidation() {
         if (model.getPassword().trim().length() == 0) {
-            labelMessage.setText("");
+            labelPassword.setText(" reqired");
             return false;
-        } else if (model.getPassword().trim().length() < 8) {
-            labelMessage.setText("Weak Password!");
+        } else if (model.getPassword().trim().length() < 5) {
+            labelPassword.setText("Weak Password!");
             return false;
-        } else if (model.getPassword().trim().length() > 14) {
-            labelMessage.setText("too long password!");
+        } else if (model.getPassword().trim().length() > 10) {
+            labelPassword.setText("too long password!");
             return true;
         } else {
-            labelMessage.setText("Strong Password!");
+            labelPassword.setText("Strong Password!");
             return false;
         }
     }
@@ -131,7 +145,7 @@ public class RegisterController implements Initializable {
     }
 
     private Boolean checkEmptyData() {
-        if (model.getUsername().isEmpty() || model.getEmail().isEmpty()
+        if (model.getUsername().isEmpty() 
                 || model.getPassword().isEmpty() || model.getConfirmPassword().isEmpty()) {
             labelMessage.setText("there is an Empty field");
             return false;
@@ -146,11 +160,41 @@ public class RegisterController implements Initializable {
 
             if (dataValidation()) {
 
-                labelMessage.setText("yesssssss");
+                labelMessage.setText("");
 
             } else {
-                labelMessage.setText("noooooooo");
+                labelMessage.setText("invalid data");
             }
         }
     }
+
+    @FXML
+    private void backToLogin(MouseEvent event) {
+         try {
+            SceneController controller=new SceneController();
+            controller.switchToLoginScene(event);
+        } catch (IOException ex) {
+            Logger.getLogger(RegisterController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void onUserNmaeKeyPreasd(KeyEvent event) {
+        
+        if(event.getCode().equals(KeyCode.ENTER)){
+                passwordField.requestFocus();
+              
+            }
+    }
+
+    @FXML
+    private void onUserPasswordKeyPreasd(KeyEvent event) {
+        if(event.getCode().equals(KeyCode.ENTER)){
+                confirmField.requestFocus();
+              
+            }
+    }
+
+  
+   
 }

@@ -29,7 +29,7 @@ public class DataTransferObject {
     public static void getConnection() {
 
         try {
-            //DriverManager.registerDriver(new ClientDriver());
+          //  DriverManager.registerDriver(new ClientDriver());
 
             con = DriverManager.getConnection("jdbc:derby://localhost:1527/RegisterForm", "root", "root");
         } catch (SQLException ex) {

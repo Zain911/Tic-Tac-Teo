@@ -48,18 +48,18 @@ public class SplashFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
             // TODO
             try {
-                Image imageTop = new Image("/resource/tictactoe2.png") {};
-                Image imageBack = new Image("/resource/back2.jpg") {};
-                Image imageTic = new Image("/resource/ticBack.png") {};
+                //Image imageTop = new Image("/resource/tictactoe2.png") {};
+               // Image imageBack = new Image("/resource/back2.jpg") {};
+               Image imageTic = new Image("/resource/ticBack.png") {};
                 
-                headerImg.setImage(imageTop);
-                headerImg.setCache(true);
+               // headerImg.setImage(imageTop);
+               // headerImg.setCache(true);
                 
-                imgBack.setImage(imageBack);
-                imgBack.setCache(true);
+               //imgBack.setImage(imageBack);
+                //imgBack.setCache(true);
                 
-                ticImg.setImage(imageTic);
-                ticImg.setCache(true);
+              // ticImg.setImage(imageTic);
+               // ticImg.setCache(true);
                 
                 
             } catch (Exception e) {
@@ -77,7 +77,13 @@ public class SplashFXMLController implements Initializable {
 
             Scene scene = new Scene(root);
             Stage stage = new Stage();
+            stage.setMaxWidth(1087);
+            stage.setHeight(649);
+            stage.setMinWidth(1087);
+            stage.setMinHeight(649);
             stage.setScene(scene);
+            stage.setResizable(false);
+            //stage.setFullScreen(false);
             stage.show();
 
             } catch (IOException ex) {
@@ -96,7 +102,7 @@ public class SplashFXMLController implements Initializable {
             @Override
             protected Void call() throws Exception {
             try {
-               Thread.sleep(4000);
+               Thread.sleep(3000);
             } catch (InterruptedException e) {
             }
                return null;

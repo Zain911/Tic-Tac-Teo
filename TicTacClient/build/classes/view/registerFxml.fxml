@@ -4,34 +4,62 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Bloom?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="581.0" prefWidth="615.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RegisterController">
+<AnchorPane id="AnchorPane" prefHeight="678.0" prefWidth="1090.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RegisterController">
    <children>
-      <AnchorPane id="AnchorPane" layoutX="-29.0" layoutY="20.0" prefHeight="542.0" prefWidth="610.0">
+      <AnchorPane id="AnchorPane" prefHeight="678.0" prefWidth="1110.0" style="-fx-background-color: #ffffff;" styleClass="bodybg" stylesheets="@../css/Style.css">
          <children>
-            <Label fx:id="labelUsername" layoutX="282.0" layoutY="266.0" minHeight="16" minWidth="69" />
-            <Label fx:id="labelEmail" layoutX="282.0" layoutY="328.0" minHeight="16" minWidth="69" />
-            <Label fx:id="labelPassword" layoutX="282.0" layoutY="388.0" minHeight="16" minWidth="69" />
-            <Label fx:id="labelConfirm" layoutX="282.0" layoutY="444.0" minHeight="16" minWidth="69" />
-            <Label fx:id="labelMessage" layoutX="463.0" layoutY="328.0" minHeight="16" minWidth="69" />
-            <Label fx:id="ticTacToe" layoutX="234.0" layoutY="25.0" minHeight="16" minWidth="69" prefHeight="43.0" prefWidth="164.0" text="Tic tac toe">
+            <Label fx:id="labelUsername" layoutX="522.0" layoutY="250.0" minHeight="16" minWidth="69" prefHeight="29.0" prefWidth="177.0" />
+            <Label fx:id="labelPassword" layoutX="522.0" layoutY="346.0" minHeight="16" minWidth="69" prefHeight="29.0" prefWidth="177.0" />
+            <Label fx:id="labelConfirm" layoutX="532.0" layoutY="445.0" minHeight="16" minWidth="69" prefHeight="17.0" prefWidth="177.0" />
+            <Label fx:id="labelMessage" layoutX="515.0" layoutY="143.0" minHeight="16" minWidth="69" prefHeight="25.0" prefWidth="133.0" />
+            <Button fx:id="signupBtn" layoutX="680.0" layoutY="474.0" mnemonicParsing="false" onAction="#setOnPressed" prefHeight="37.0" prefWidth="95.0" style="-fx-background-color: #0D5F5F;" stylesheets="@../css/Style.css" text="Sign up" textFill="WHITE">
                <font>
-                  <Font size="35.0" />
+                  <Font size="16.0" />
+               </font></Button>
+            <TextField fx:id="usernameField" layoutX="466.0" layoutY="200.0" onKeyPressed="#onUserNmaeKeyPreasd" prefHeight="51.0" prefWidth="273.0" styleClass="userName" stylesheets="@../css/Style.css" />
+            <PasswordField fx:id="passwordField" layoutX="463.0" layoutY="303.0" onKeyPressed="#onUserPasswordKeyPreasd" prefHeight="51.0" prefWidth="280.0" styleClass="userName" stylesheets="@../css/Style.css" />
+            <PasswordField fx:id="confirmField" layoutX="463.0" layoutY="395.0" prefHeight="51.0" prefWidth="280.0" styleClass="userName" stylesheets="@../css/Style.css" />
+            <Label layoutX="276.0" layoutY="188.0" prefHeight="74.0" prefWidth="164.0" text="     user name" textFill="#0d5f5f">
+               <font>
+                  <Font name="Lucida Fax Regular" size="18.0" />
                </font>
+               <effect>
+                  <Bloom />
+               </effect>
             </Label>
-            <ImageView fitHeight="150.0" fitWidth="164.0" layoutX="234.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true" fx:id="xoImage" />
-            <Button fx:id="signupBtn" layoutX="286.0" layoutY="476.0" mnemonicParsing="false" onAction="#setOnPressed" prefHeight="32.0" prefWidth="86.0" style="-fx-background-color: #0D5F5F;" text="Sign up" textFill="#ebe7e7" />
-            <Label layoutX="138.0" layoutY="240.0" style="-fx-text-fill: #0D5F5F;" text="username" />
-            <TextField fx:id="usernameField" layoutX="235.0" layoutY="235.0" />
-            <TextField fx:id="emailField" layoutX="235.0" layoutY="297.0" />
-            <PasswordField fx:id="passwordField" layoutX="235.0" layoutY="357.0" />
-            <PasswordField fx:id="confirmField" layoutX="235.0" layoutY="413.0" />
-            <Label layoutX="165.0" layoutY="302.0" style="-fx-text-fill: #0D5F5F;" text="email" />
-            <Label layoutX="138.0" layoutY="362.0" style="-fx-text-fill: #0D5F5F;" text="password" />
-            <Label layoutX="83.0" layoutY="418.0" style="-fx-text-fill: #0D5F5F;" text="confirm password" />
+            <Label layoutX="261.0" layoutY="303.0" prefHeight="51.0" prefWidth="164.0" text="        password" textFill="#0d5f5f">
+               <font>
+                  <Font name="Lucida Fax Regular" size="18.0" />
+               </font>
+               <effect>
+                  <Bloom />
+               </effect>
+            </Label>
+            <Label layoutX="254.0" layoutY="383.0" prefHeight="74.0" prefWidth="208.0" text="     confirm password" textFill="#0d5f5f">
+               <font>
+                  <Font name="Lucida Fax Regular" size="18.0" />
+               </font>
+               <effect>
+                  <Bloom />
+               </effect>
+            </Label>
+            <Text layoutX="490.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="    Tic Tac Toe" wrappingWidth="257.999996766448">
+               <font>
+                  <Font name="Berlin Sans FB Demi Bold" size="28.0" />
+               </font>
+            </Text>
+            <ImageView fx:id="backButton" fitHeight="62.0" fitWidth="65.0" layoutX="51.0" layoutY="27.0" onMouseClicked="#backToLogin" pickOnBounds="true" preserveRatio="true" style="b: #ffffff;">
+               <image>
+                  <Image url="@../resource/left.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </children>

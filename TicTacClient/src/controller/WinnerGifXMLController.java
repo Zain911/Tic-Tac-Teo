@@ -31,7 +31,7 @@ public class WinnerGifXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        Image imageWin = new Image("/resource/winbig.gif") {};
+        Image imageWin = new Image("/resource/winer.gif") {};
                 
         imageWinner.setImage(imageWin);
         imageWinner.setCache(true);
@@ -45,7 +45,7 @@ public class WinnerGifXMLController implements Initializable {
             @Override
             protected Void call() throws Exception {
             try {
-               Thread.sleep(4000);
+               Thread.sleep(3000);
             } catch (InterruptedException e) {
             }
                return null;

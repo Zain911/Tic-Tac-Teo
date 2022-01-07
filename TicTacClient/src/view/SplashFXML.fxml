@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="427.0" prefWidth="607.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SplashFXMLController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" styleClass="bodybg" stylesheets="@../css/Style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SplashFXMLController">
    <children>
-      <ImageView fx:id="imgBack" fitHeight="464.0" fitWidth="607.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="headerImg" fitHeight="75.0" fitWidth="200.0" layoutX="196.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="ticImg" fitHeight="178.0" fitWidth="217.0" layoutX="200.0" layoutY="118.0" pickOnBounds="true" preserveRatio="true" />
-      <ProgressBar fx:id="prog" layoutX="127.0" layoutY="362.0" prefHeight="29.0" prefWidth="366.0" />
+      <ImageView fx:id="headerImg" fitHeight="96.0" fitWidth="308.0" layoutX="259.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resource/tictactoe2.png" />
+         </image></ImageView>
+      <ImageView fx:id="ticImg" fitHeight="223.0" fitWidth="223.0" layoutX="293.0" layoutY="161.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resource/ticBack.png" />
+         </image></ImageView>
+      <ProgressBar fx:id="prog" layoutX="226.0" layoutY="423.0" prefHeight="29.0" prefWidth="366.0" />
    </children>
 </AnchorPane>
