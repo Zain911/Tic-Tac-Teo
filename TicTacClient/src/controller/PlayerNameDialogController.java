@@ -15,8 +15,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
@@ -27,8 +25,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-import model.PlayersNamesOfflineMode;
 
 /**
  * FXML Controller class
@@ -53,13 +49,11 @@ public class PlayerNameDialogController implements Initializable {
     @FXML
     private ImageView backButton;
 
-   
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
         Image img = new Image("/resource/pvsp.png");
         playersImg.setImage(img);
         setFormateToEdt();
@@ -80,16 +74,12 @@ public class PlayerNameDialogController implements Initializable {
         } else {
             SceneController controller = new SceneController();
 
-            // setFirstName(edtNameOne.getText().toString());
-            //setSecoundName( edtNameTwo.getText());
             firstName = (edtNameOne.getText());
-            secondName=( edtNameTwo.getText());
+            secondName = (edtNameTwo.getText());
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/PlayerVsPlayerView.fxml"));
 
             try {
                 loader.load();
-//                PlayerVsPlayerController con = loader.getController();
-                // con.setPlayerNames(firstName,secoundName);
                 controller.switchToPlayerVsPlayerScene(event);
             } catch (IOException ex) {
                 Logger.getLogger(PlayerVsPlayerController.class.getName()).log(Level.SEVERE, null, ex);
@@ -148,12 +138,9 @@ public class PlayerNameDialogController implements Initializable {
 
     }
 
-  
-
-
     @FXML
     private void onBackButtonClick(MouseEvent event) {
-         SceneController controller = new SceneController();
+        SceneController controller = new SceneController();
         try {
             controller.switchToMainScene(event);
         } catch (IOException ex) {
@@ -163,80 +150,50 @@ public class PlayerNameDialogController implements Initializable {
 
     @FXML
     private void startPlay(ActionEvent event) {
-        
-           if (isEdtEmpty()) {
+
+        if (isEdtEmpty()) {
             txtError.setVisible(true);
         } else {
             SceneController controller = new SceneController();
 
-            // setFirstName(edtNameOne.getText().toString());
-            //setSecoundName( edtNameTwo.getText());
             firstName = (edtNameOne.getText());
-            secondName=( edtNameTwo.getText());
+            secondName = (edtNameTwo.getText());
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/PlayerVsPlayerView.fxml"));
 
             try {
                 loader.load();
-//                PlayerVsPlayerController con = loader.getController();
-                // con.setPlayerNames(firstName,secoundName);
                 controller.switchToPlayerVsPlayerScene(event);
             } catch (IOException ex) {
                 Logger.getLogger(PlayerVsPlayerController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-    }
-
-  @FXML
-    private void onPlayerOneKeyPressed(KeyEvent event) {
-        if(event.getCode().equals(KeyCode.ENTER)){
-                edtNameTwo.requestFocus();
-               // edtNameTwo.re
-            }
-        
-    }
-
-   /* @FXML
-    private void onPlayerTwoKeyPressed(KeyEvent event) {
-        
-        if(event.getCode().equals(KeyCode.ENTER)){
-               btnPlay.requestFocus();
-            }
-        
-        
-        
-    }*/
-    
-    private void startGame(ActionEvent event){
-    
-      if (isEdtEmpty()) {
-            txtError.setVisible(true);
-        } else {
-            SceneController controller = new SceneController();
-
-            // setFirstName(edtNameOne.getText().toString());
-            //setSecoundName( edtNameTwo.getText());
-            firstName = (edtNameOne.getText());
-            secondName=( edtNameTwo.getText());
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/PlayerVsPlayerView.fxml"));
-
-            try {
-                loader.load();
-//                PlayerVsPlayerController con = loader.getController();
-                // con.setPlayerNames(firstName,secoundName);
-                controller.switchToPlayerVsPlayerScene(event);
-            } catch (IOException ex) {
-                Logger.getLogger(PlayerVsPlayerController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-    
-    
     }
 
     @FXML
-    private void onPlayerTwoKeyPressed(KeyEvent event) {
-          if(event.getCode().equals(KeyCode.ENTER)){
-             
+    private void onPlayerOneKeyPressed(KeyEvent event) {
+        if (event.getCode().equals(KeyCode.ENTER)) {
+            edtNameTwo.requestFocus();
+        }
+
+    }
+    
+    private void startGame(ActionEvent event) {
+        if (isEdtEmpty()) {
+            txtError.setVisible(true);
+        } else {
+            SceneController controller = new SceneController();
+
+            firstName = (edtNameOne.getText());
+            secondName = (edtNameTwo.getText());
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/PlayerVsPlayerView.fxml"));
+
+            try {
+                loader.load();
+                controller.switchToPlayerVsPlayerScene(event);
+            } catch (IOException ex) {
+                Logger.getLogger(PlayerVsPlayerController.class.getName()).log(Level.SEVERE, null, ex);
             }
+        }
     }
 
 }

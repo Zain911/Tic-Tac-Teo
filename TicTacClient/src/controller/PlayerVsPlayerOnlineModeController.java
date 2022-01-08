@@ -14,6 +14,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -63,50 +64,49 @@ public class PlayerVsPlayerOnlineModeController implements Initializable {
 
     @FXML
     private ImageView imgIconOne;
+
+    private ObservableList<Player> playerObserverlist = FXCollections.observableArrayList();
+    ;
     
-    private ObservableList<Player> playerObserverlist;
     @FXML
     private ImageView backButton;
-    
+
+    private ClientConnection cliServer;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        Image imgB = new Image("/resource/backOn.jpg");
         Image imgV = new Image("/resource/vsicon.png");
         Image imgP1 = new Image("/resource/ponlineone.png");
         Image imgP2 = new Image("/resource/ptwoonline.png");
-
 
         imgVs.setImage(imgV);
         imgIconOne.setImage(imgP1);
         imgIconTwo.setImage(imgP2);
 
         new Thread(() -> {
-            
             ArrayList<Player> players = getAllOnlinePlayers();
-            playerObserverlist = FXCollections.observableArrayList(players);
+            playerObserverlist.addAll(players);
             listView.setItems(playerObserverlist);
             listView.setCellFactory((ListView<Player> param) -> new CustomListCell());
-        
         }).start();
 
         txtPlayeroneName.setText(ConstantAttributes.currentPlayer.getUsername());
         txtPlayerOneScore.setText(String.valueOf(ConstantAttributes.currentPlayer.getScore()));
+
     }
 
     private ArrayList<Player> getAllOnlinePlayers() {
-
         ArrayList<Player> players = new ArrayList<>();
-        ClientConnection cliServer = new ClientConnection();
-        
+        cliServer = new ClientConnection();
+
         try {
-            cliServer.sendRequestOnlineUsers();
+            cliServer.sendRequestOnlineUsers(ConstantAttributes.currentPlayer.getUsername());
             players = (ArrayList<Player>) cliServer.reciveOnlineUsers();
-            System.out.println("test size = " + players.size());
         } catch (IOException | ClassNotFoundException ex) {
             Logger.getLogger(controller.PlayerVsPlayerOnlineModeController.class.getName()).log(Level.SEVERE, null, ex);
         }
+
         return players;
     }
 
@@ -118,15 +118,13 @@ public class PlayerVsPlayerOnlineModeController implements Initializable {
         //System.out.println("id for reciver player" + txtPlayerTwoName.getText());
     }
 
-    
-
     @FXML
     private void getItemFromListView(MouseEvent event) {
         listView.setOnMouseClicked((MouseEvent event1) -> {
             Player player = (Player) listView.getSelectionModel().getSelectedItem();
             txtPlayerTwoName.setText(player.getUsername());
             txtPlayerTwoScore.setText(String.valueOf(player.getScore()));
-            
+
             if (player.getStatus() == 1) {
                 groupAvailable.setVisible(true);
                 groupNotAvailable.setVisible(false);
@@ -145,20 +143,24 @@ public class PlayerVsPlayerOnlineModeController implements Initializable {
 
     @FXML
     private void onBackButtonClick(MouseEvent event) {
-        
-        SceneController controller = new SceneController();
         try {
+            SceneController controller = new SceneController();
+            ConstantAttributes.currentPlayer.setRequestStatus("logOut");
+            ConstantAttributes.currentPlayer.setStatus(0);
+            cliServer.sendChangeStatues(ConstantAttributes.currentPlayer);
             ClientConnection.closeSocket();
             controller.switchToMainScene(event);
             playerObserverlist.clear();
             listView.setItems(null);
             playerObserverlist = null;
             listView = null;
+
         } catch (IOException ex) {
             Logger.getLogger(PlayerVsPlayerController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(PlayerVsPlayerOnlineModeController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
+
     }
 }
 
@@ -195,6 +197,5 @@ class CustomListCell extends ListCell<Player> {
             setGraphic(null);
         }
     }
-    
-    
+
 }

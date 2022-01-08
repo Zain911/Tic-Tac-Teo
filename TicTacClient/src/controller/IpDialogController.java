@@ -9,7 +9,6 @@ import connection.ClientConnection;
 import helper.ConstantAttributes;
 import helper.CustomDialog;
 import java.io.IOException;
-import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -26,7 +25,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import org.apache.derby.impl.store.access.btree.BTree;
 
 /**
  * FXML Controller class
@@ -104,8 +102,6 @@ public class IpDialogController implements Initializable {
 
     @FXML
     private void onBackButtonClick(MouseEvent event) {
-
-        SceneController controller = new SceneController();
         try {
             controller.switchToMainScene(event);
         } catch (IOException ex) {

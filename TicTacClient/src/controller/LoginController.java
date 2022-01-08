@@ -24,7 +24,6 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -41,7 +40,6 @@ public class LoginController implements Initializable {
 
     LoginPlayer model = new LoginPlayer();
     boolean flageToggle = false;
-    private Label label;
     @FXML
     private TextField userName_Email;
     @FXML
@@ -62,7 +60,6 @@ public class LoginController implements Initializable {
     //for save the user's status
     Preferences preference;
     Boolean rememberMeFlag;
-
 
     @FXML
     private CheckBox rememberMe;
@@ -97,8 +94,6 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
-       
         preference = Preferences.userNodeForPackage(LoginController.class);
         if (preference != null) {
             if (preference.get("username", null) != null && !preference.get("password", null).isEmpty()) {
@@ -107,27 +102,18 @@ public class LoginController implements Initializable {
             }
         }
     }
-
-    /*private boolean isValidPrefernce() {
-        //for save the user's status
-        if (!(userName_Email.getText().isEmpty() && userPsaaword.getText().isEmpty())) {
-
-            return true;
-        }
-
-        return false;
-    }*/
+    
     private boolean isValidDta() {
-        if (!(isValidPassword())|!(usernameValidation()) ) {
+        if (!(isValidPassword()) | !(usernameValidation())) {
             return false;
         }
 
         return true;
     }
 
-     public boolean passwordValidation() {
+    public boolean passwordValidation() {
         if (model.getUserPassword().trim().length() == 0) {
-            
+
             emptypassword.setText("reqired");
             return false;
         } else if (model.getUserPassword().trim().length() < 5) {
@@ -141,8 +127,8 @@ public class LoginController implements Initializable {
             return true;
         }
     }
-    public boolean isValidPassword() {
 
+    public boolean isValidPassword() {
         if (model.getUserPassword().isEmpty()) {
             emptypassword.setText("password can't be empty");
             return false;
@@ -154,10 +140,11 @@ public class LoginController implements Initializable {
 
         return true;
     }
- public Boolean usernameValidation() {
-         String regex = "^[A-Za-z]\\w{5,10}$";
-         Pattern userNamePattern = Pattern.compile(regex);
-       if (model.getUsername().isEmpty()) {
+
+    public Boolean usernameValidation() {
+        String regex = "^[A-Za-z]\\w{5,10}$";
+        Pattern userNamePattern = Pattern.compile(regex);
+        if (model.getUsername().isEmpty()) {
             emptyUseName.setText("user name required");
             return false;
 
@@ -170,8 +157,8 @@ public class LoginController implements Initializable {
         }
 
     }
-    private boolean isValidateEmail() {
 
+    private boolean isValidateEmail() {
         String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."
                 + "[a-zA-Z0-9_+&*-]+)*@"
                 + "(?:[a-zA-Z0-9-]+\\.)+[a-z"
@@ -197,19 +184,18 @@ public class LoginController implements Initializable {
         model.setUserPassword(userPsaaword.getText());
     }
 
-   @FXML
+    @FXML
     private void login(ActionEvent event) throws IOException {
         ClientConnection cliServer = new ClientConnection();
 
         new Thread(() -> {
-            try {                
+            try {
                 LoginPlayer login = new LoginPlayer(userName_Email.getText(), userPsaaword.getText());
                 cliServer.sendLoginDataToServer(login);
                 Object serverResponse = cliServer.reciveLoginDataFromServer();
 
                 if (serverResponse instanceof Player) {
-                    
-                
+
                     Platform.runLater(() -> {
                         try {
                             ConstantAttributes.currentPlayer = (Player) serverResponse;
@@ -243,14 +229,9 @@ public class LoginController implements Initializable {
         }).start();
     }
 
-   
-
     @FXML
     private void register(MouseEvent event) {
         try {
-
-            
-            
             System.out.println("re");
             controller.switchToRegisterScene(event);
         } catch (IOException ex) {
@@ -259,52 +240,32 @@ public class LoginController implements Initializable {
 
     }
 
-   
-
-   
-
-   
-    
-    
-
     @FXML
     private void backToMain(MouseEvent event) {
-         try {
+        try {
             controller.switchToMainScene(event);
         } catch (IOException ex) {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
+
     }
 
     @FXML
     private void hiddenNameErrorMeesage(KeyEvent event) {
-        
-         emptyUseName.setText("");
+        emptyUseName.setText("");
     }
 
     @FXML
     private void hiddenPasswordErrorMeesage(KeyEvent event) {
         emptypassword.setText("");
-        
     }
 
     @FXML
     private void onUserNmaeKeyPreasd(KeyEvent event) {
-        if(event.getCode().equals(KeyCode.ENTER)){
-                userPsaaword.requestFocus();
-              
-            }
-        
-        
+        if (event.getCode().equals(KeyCode.ENTER)) {
+            userPsaaword.requestFocus();
+        }
+
     }
 
-
-   
-    
 }
-    
-    
-
-   
-

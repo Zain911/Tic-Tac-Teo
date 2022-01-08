@@ -5,7 +5,6 @@
  */
 package controller;
 
-import helper.AccessFile;
 import helper.CustomDialog;
 
 import static helper.DrawLine.colorBackgroundWinnerButtons;
@@ -18,17 +17,13 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonBar;
-import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import org.json.JSONException;
 
 /**
  * FXML Controller class
@@ -95,10 +90,6 @@ public class PlayervsComputerEasyModeController implements Initializable {
         imgo = new Image(getClass().getResourceAsStream("/resource/oimage.png"));
 
         imgx = new Image(getClass().getResourceAsStream("/resource/ximage.png"));
-
-        //to make computer start play
-        //button11.setText("O");
-        //XOCounter++;
     }
 
     @FXML
@@ -164,6 +155,7 @@ public class PlayervsComputerEasyModeController implements Initializable {
             if (cornerButtonsInit()[randomCorner].getText().isEmpty()) {
                cornerButtonsInit()[randomCorner].setTextFill(oForeground);
                 cornerButtonsInit()[randomCorner].setText("O");
+                cornerButtonsInit()[randomCorner].setGraphic(new ImageView(imgo));
                 cornerButtonsInit()[randomCorner].setStyle("-fx-text-fill:transparent;");
 
                 break;
@@ -432,8 +424,6 @@ public class PlayervsComputerEasyModeController implements Initializable {
 
             } else {
                 showLoserGif();
-        //winer=true;
-                // colorBackgroundWinnerButtons(button00, button01, button01);
             }
             winer = true;
 
@@ -532,7 +522,6 @@ public class PlayervsComputerEasyModeController implements Initializable {
             isGameEnded = true;
             playAginButton.setVisible(true);
             isPlayerTurn = true;
-            // isPlayerTurn = true;
             XOCounter = 0;
         }
 
@@ -579,14 +568,8 @@ public class PlayervsComputerEasyModeController implements Initializable {
             boardButton.setText("");
             boardButton.setStyle("-fx-background-color:");
                         boardButton.setGraphic(new ImageView());
-
         }
-
-        //to make computer start play
-        //button11.setText("O");
-        //XOCounter++;
     }
-
    
 
     private void showWinnerGif() {
@@ -597,12 +580,8 @@ public class PlayervsComputerEasyModeController implements Initializable {
         CustomDialog.creatLoseDialog();
     }
 
-  
-    
-
     @FXML
     private void onBackButtonClick(MouseEvent event) {
-        System.out.println("   back");
          SceneController controller = new SceneController();
         try {
             controller.switchToChooseLevelModeScene(event);
@@ -611,7 +590,5 @@ public class PlayervsComputerEasyModeController implements Initializable {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    
     
 }

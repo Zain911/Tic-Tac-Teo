@@ -5,8 +5,6 @@
  */
 package controller;
 
-import com.sun.javafx.fxml.BeanAdapter;
-import helper.AccessFile;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -15,7 +13,6 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
@@ -39,7 +36,7 @@ public class RecordListController implements Initializable {
   //  static String pathLocalFile = filePath.concat("\\src\\savedGame\\");
     static String pathLocalFile =filePath.concat("\\record\\savedGame");
     static String pathOnlineFile = filePath.concat("\\src\\savedOnlineGame\\");
-public static String selectedItemOfRecordList;
+    public static String selectedItemOfRecordList;
     @FXML
     private ImageView backButton;
     @FXML
@@ -48,26 +45,17 @@ public static String selectedItemOfRecordList;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        
         getList();
         System.out.println(results.get(0));
         listView.getItems().addAll(results);
        // scrollBar=getListViewScrollBar(listView);
         
-        
     }   
     private  void getList(){
-    
-        System.out.println("getList " + pathLocalFile);
       File directoryPath = new File(pathLocalFile);
       File filesList[] = directoryPath.listFiles();
-     // System.out.println("List of files and directories in the specified directory:");
       for(File file : filesList) {
            results.add(file.getName());
-         System.out.println("File name: "+file.getName());
-         System.out.println("File path: "+file.getAbsolutePath());
-         System.out.println("Size :"+file.getTotalSpace());
-         System.out.println(" ");
       }
    }
 
@@ -80,8 +68,6 @@ public static String selectedItemOfRecordList;
         } catch (IOException ex) {
             Logger.getLogger(RecordListController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
        
     }
 

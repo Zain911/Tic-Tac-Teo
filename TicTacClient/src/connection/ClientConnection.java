@@ -56,8 +56,8 @@ public class ClientConnection {
         objectOutputStream.flush();
     }
 
-    public void sendRequestOnlineUsers() throws IOException {
-        createOutObject().writeObject("onlinePlayers");
+    public void sendRequestOnlineUsers(String playerName) throws IOException {
+        createOutObject().writeObject(playerName);
         objectOutputStream.flush();
     }
 
@@ -78,5 +78,9 @@ public class ClientConnection {
         return createInputObject().readObject();
     }
 
+    public void sendChangeStatues(Player model) throws IOException, ClassNotFoundException {
+        createOutObject().writeObject(model);
+        objectOutputStream.flush();
+    }
     
 }

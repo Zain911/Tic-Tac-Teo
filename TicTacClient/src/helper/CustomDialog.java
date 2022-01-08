@@ -29,65 +29,63 @@ import javafx.scene.control.TextInputDialog;
  */
 public class CustomDialog {
 
-    
-     public static boolean askPlayAgain(String headerText ,String ButtonString )
-    {   
-        
-        ButtonType Yes = new ButtonType("Play Again"); 
+    public static boolean askPlayAgain(String headerText, String ButtonString) {
+        ButtonType Yes = new ButtonType("Play Again");
         ButtonType No = new ButtonType("NO", ButtonBar.ButtonData.CANCEL_CLOSE);
-        Alert a = new Alert(Alert.AlertType.NONE); 
+        Alert a = new Alert(Alert.AlertType.NONE);
         a.setTitle("Play Again");
-        a.getDialogPane().getButtonTypes().addAll(Yes,No);
-       // a.setHeaderText(headerText);
-        a.setContentText(headerText+" is winning");
-         a.showAndWait();
-        if(a.getResult()==Yes){  
-             return true; 
-        }else{
+        a.getDialogPane().getButtonTypes().addAll(Yes, No);
+        // a.setHeaderText(headerText);
+        a.setContentText(headerText + " is winning");
+        a.showAndWait();
+        if (a.getResult() == Yes) {
+            return true;
+        } else {
             return false;
         }
     }
     
-    
+
     public static void creatPlayersNamesDialog() {
         try {
 
             Dialog dialog = new Dialog();
             Parent root = FXMLLoader.load(CustomDialog.class.getResource("/view/PlayerNameDialog.fxml"));
             dialog.getDialogPane().setContent(root);
-            
+
             dialog.initStyle(StageStyle.TRANSPARENT);
-            
+
             dialog.show();
-            
+
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-        
+
     }
-    
+
     public static void creatWinDialog() {
         try {
-            
+
             Dialog dialog = new Dialog();
             Parent root = FXMLLoader.load(CustomDialog.class.getResource("/view/WinnerGifXML.fxml"));
             dialog.getDialogPane().setContent(root);
             dialog.initStyle(StageStyle.TRANSPARENT);
             dialog.show();
-            
+
         } catch (IOException ex) {
             ex.printStackTrace();
         }
     }
-     public static void creatDrawDialog() {
+
+    public static void creatDrawDialog() {
         try {
-            
+
             Dialog dialog = new Dialog();
             Parent root = FXMLLoader.load(CustomDialog.class.getResource("/view/WinnerGifXML.fxml"));
             dialog.getDialogPane().setContent(root);
             dialog.initStyle(StageStyle.TRANSPARENT);
             dialog.show();
-            
+
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -95,25 +93,25 @@ public class CustomDialog {
 
     public static void creatLoseDialog() {
         try {
-            
+
             Dialog dialog = new Dialog();
             Parent root = FXMLLoader.load(CustomDialog.class.getResource("/view/LoserGif.fxml"));
             dialog.getDialogPane().setContent(root);
             dialog.initStyle(StageStyle.TRANSPARENT);
             dialog.show();
-            
+
         } catch (IOException ex) {
             ex.printStackTrace();
         }
     }
-    
-    public  static void showAlertCantonnection() {
-		Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setTitle("Connection Result");
-                alert.setContentText("cant't Connect to network successfully!");
-                alert.showAndWait();
-	}
-    
+
+    public static void showAlertCantonnection() {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("Connection Result");
+        alert.setContentText("cant't Connect to network successfully!");
+        alert.showAndWait();
+    }
+
     public static void showIpDialog(ActionEvent event) {
 
         TextInputDialog dialog = new TextInputDialog();
@@ -137,7 +135,7 @@ public class CustomDialog {
 
                 Alert alert = new Alert(AlertType.ERROR);
                 alert.setTitle("Error occur");
-                
+
                 alert.setContentText("invalid ip Adderss");
 
                 alert.showAndWait();
@@ -160,9 +158,7 @@ public class CustomDialog {
         return false;
 
     }
-    
-    
-    
+
     public static void showLoginFailedDialog(String s) {
         ButtonType okBtn = new ButtonType("OK", ButtonBar.ButtonData.CANCEL_CLOSE);
         Alert a = new Alert(Alert.AlertType.NONE);
