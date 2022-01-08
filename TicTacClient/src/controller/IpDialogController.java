@@ -58,8 +58,8 @@ public class IpDialogController implements Initializable {
 
     @FXML
     public void onConnectedClicked(ActionEvent event) {
-        AnchorPane.setDisable(true);
-        System.out.println("cliclk connect");
+        
+       
 
         if (ipTextField.getText().isEmpty()) {
 

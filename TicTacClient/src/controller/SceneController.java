@@ -129,7 +129,9 @@ public class SceneController {
         stage.setOnCloseRequest(askToExit(false));
     }
 
-    public void switchToChooseLevelModeScene(MouseEvent event) throws IOException {
+
+    
+  public void switchToChooseLevelModeScene(MouseEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("/view/HardModeFXML.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);

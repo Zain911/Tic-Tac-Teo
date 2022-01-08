@@ -196,4 +196,8 @@ public class PlayerNameDialogController implements Initializable {
         }
     }
 
+    @FXML
+    private void onPlayerTwoKeyPressed(KeyEvent event) {
+    }
+
 }

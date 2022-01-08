@@ -10,5 +10,10 @@
          <image>
             <Image url="@../resource/loser.gif" />
          </image></ImageView>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="232.0" layoutY="217.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@loserName" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

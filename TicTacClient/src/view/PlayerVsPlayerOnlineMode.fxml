@@ -4,10 +4,9 @@
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
@@ -16,46 +15,26 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="531.0" prefWidth="697.0" styleClass="bodybg" stylesheets="@../css/Style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PlayerVsPlayerOnlineModeController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="646.0" prefWidth="1075.0" styleClass="bodybg" stylesheets="@../css/Style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PlayerVsPlayerOnlineModeController">
   <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="290.0" minWidth="10.0" prefWidth="190.0" />
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="451.0" minWidth="10.0" prefWidth="410.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="563.0" minWidth="10.0" prefWidth="381.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="707.0" minWidth="10.0" prefWidth="694.0" />
   </columnConstraints>
   <rowConstraints>
-    <RowConstraints maxHeight="188.0" minHeight="10.0" prefHeight="66.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="465.0" minHeight="10.0" prefHeight="465.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="188.0" minHeight="10.0" prefHeight="98.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="554.0" minHeight="10.0" prefHeight="548.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <SplitPane dividerPositions="0.12173913043478261" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" GridPane.rowIndex="1">
-        <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
-               <children>
-                  <Text layoutX="64.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Online Players">
-                     <font>
-                        <Font name="Berlin Sans FB Demi Bold" size="16.0" />
-                     </font>
-                  </Text>
-               </children>
-            </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
-               <children>
-                  <ListView fx:id="listView" layoutY="-2.0" onMouseClicked="#getItemFromListView" prefHeight="404.0" prefWidth="244.0" />
-               </children>
-            </AnchorPane>
-        </items>
-      </SplitPane>
-      <GridPane GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <GridPane prefHeight="462.0" prefWidth="673.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="220.0" minWidth="10.0" prefWidth="41.0" />
-          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="396.0" minWidth="10.0" prefWidth="375.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="425.0" minWidth="10.0" prefWidth="39.0" />
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="632.0" minWidth="10.0" prefWidth="632.0" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints maxHeight="310.0" minHeight="10.0" prefHeight="277.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="253.0" minHeight="10.0" prefHeight="188.0" valignment="CENTER" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="432.0" minHeight="10.0" prefHeight="312.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="253.0" minHeight="10.0" prefHeight="236.0" valignment="CENTER" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Group fx:id="groupAvailable" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Group fx:id="groupAvailable" visible="false" GridPane.rowIndex="1">
                <children>
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#83e072c9" height="138.0" stroke="BLACK" strokeType="INSIDE" width="273.0" />
                   <Text layoutX="21.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="this player is available to game">
@@ -70,11 +49,11 @@
                   </Button>
                </children>
             </Group>
-            <GridPane GridPane.columnIndex="1">
+            <GridPane prefHeight="274.0" prefWidth="325.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
               <columnConstraints>
-                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="196.0" minWidth="10.0" prefWidth="83.0" />
-                  <ColumnConstraints fillWidth="false" halignment="CENTER" hgrow="SOMETIMES" maxWidth="272.0" minWidth="10.0" prefWidth="216.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="260.0" minWidth="10.0" prefWidth="75.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="223.0" minWidth="10.0" prefWidth="174.0" />
+                  <ColumnConstraints fillWidth="false" halignment="CENTER" hgrow="SOMETIMES" maxWidth="292.0" minWidth="10.0" prefWidth="239.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="260.0" minWidth="10.0" prefWidth="132.0" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints maxHeight="90.0" minHeight="10.0" prefHeight="71.0" vgrow="SOMETIMES" />
@@ -82,8 +61,14 @@
                 <RowConstraints maxHeight="93.0" minHeight="10.0" prefHeight="73.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <ImageView fx:id="imgVs" fitHeight="103.0" fitWidth="193.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <ImageView fx:id="imgIconOne" fitHeight="71.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" />
+                  <ImageView fx:id="imgVs" fitHeight="103.0" fitWidth="193.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <image>
+                        <Image url="@../resource/vsicon.png" />
+                     </image></ImageView>
+                  <ImageView fx:id="imgIconOne" fitHeight="71.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
+                     <image>
+                        <Image url="@../resource/ponlineone.png" />
+                     </image></ImageView>
                   <Circle fill="#f7fa32ad" radius="25.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
                   <Circle fill="#f7fa32ad" radius="25.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" GridPane.rowIndex="2" />
                   <Text fx:id="txtPlayerTwoScore" fill="#345ce0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" GridPane.rowIndex="2">
@@ -106,10 +91,16 @@
                         <Font name="Bookman Old Style Bold" size="20.0" />
                      </font>
                   </Text>
-                  <ImageView fx:id="imgIconTwo" fitHeight="71.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                  <ImageView fx:id="imgIconTwo" fitHeight="71.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                     <image>
+                        <Image url="@../resource/ptwoonline.png" />
+                     </image></ImageView>
                </children>
+               <GridPane.margin>
+                  <Insets top="100.0" />
+               </GridPane.margin>
             </GridPane>
-            <Group fx:id="groupNotAvailable" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Group fx:id="groupNotAvailable" visible="false" GridPane.rowIndex="1">
                <children>
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e3784687" height="128.0" stroke="BLACK" strokeType="INSIDE" width="276.0" />
                   <Text layoutX="34.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="this player is already in game">
@@ -131,13 +122,26 @@
             </Group>
          </children>
       </GridPane>
-      <ImageView fx:id="backButton" fitHeight="62.0" fitWidth="65.0" onMouseClicked="#onBackButtonClick" pickOnBounds="true" preserveRatio="true" style="b: #ffffff;">
+      <ImageView fx:id="backButton" fitHeight="62.0" fitWidth="65.0" onMouseClicked="#onBackButtonClick" pickOnBounds="true" preserveRatio="true" style="b: #ffffff;" GridPane.valignment="TOP">
          <image>
             <Image url="@../resource/left.png" />
          </image>
          <GridPane.margin>
-            <Insets left="30.0" />
+            <Insets left="30.0" top="20.0" />
          </GridPane.margin>
       </ImageView>
+      <Text fill="#194c57" strokeType="OUTSIDE" strokeWidth="0.0" text="                    online player" wrappingWidth="388.13671875" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="24.0" />
+         </font>
+         <effect>
+            <Glow />
+         </effect>
+      </Text>
+      <ListView fx:id="listView" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets top="40.0" />
+         </GridPane.margin>
+      </ListView>
    </children>
 </GridPane>

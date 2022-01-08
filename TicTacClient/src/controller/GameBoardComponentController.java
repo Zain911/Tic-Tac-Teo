@@ -56,10 +56,10 @@ public class GameBoardComponentController implements Initializable {
     private boolean winner = false;
     public  static boolean gameEnded=false;
     private boolean display = false;
+    private boolean secodPlayerWinner = false;
     private boolean firstPlayerWinner = false;
-    private boolean secondPlayerWinner = false;
+    protected static int scondPlayerScore = 0;
     protected static int firstPlayerScore = 0;
-    protected static int secondPlayerScore = 0;
     
     Line line = new Line();
     BackgroundImage backgroundImage = new BackgroundImage(new Image(getClass().getResource("/resource/x_symbol.png").toExternalForm()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
@@ -189,9 +189,9 @@ public class GameBoardComponentController implements Initializable {
             drawLine(btn00, btn02);
 
             if (btn00.getText().equals("X")) {
-                firstPlayerWinner = true;
+                secodPlayerWinner = true;
             } else {
-                secondPlayerWinner = true;
+                firstPlayerWinner = true;
             }
             winner = true;
         } else if (btn10.getText().equals(btn11.getText())
@@ -200,9 +200,9 @@ public class GameBoardComponentController implements Initializable {
             colorBackgroundWinnerButtons(btn10, btn11, btn12);
             drawLine(btn10, btn12);
             if (btn10.getText().equals("X")) {
-                firstPlayerWinner = true;
+                secodPlayerWinner = true;
             } else {
-                secondPlayerWinner = true;
+                firstPlayerWinner = true;
             }
             winner = true;
         } else if (btn20.getText().equals(btn21.getText())
@@ -213,10 +213,10 @@ public class GameBoardComponentController implements Initializable {
             if (btn22.getText().equals("X")) {
                 System.out.println("x is winning");
 
-                firstPlayerWinner = true;
+                secodPlayerWinner = true;
             } else {
                 System.out.println("o is winning");
-                secondPlayerWinner = true;
+                firstPlayerWinner = true;
             }
             winner = true;
         }
@@ -229,10 +229,10 @@ public class GameBoardComponentController implements Initializable {
             drawLine(btn00, btn20);
             if (btn00.getText().equals("X")) {
                 System.out.println("x is winning");
-                firstPlayerWinner = true;
+                secodPlayerWinner = true;
             } else {
                 System.out.println("o is winning");
-                secondPlayerWinner = true;
+                firstPlayerWinner = true;
             }
             winner = true;
         } else if (btn01.getText().equals(btn11.getText())
@@ -241,9 +241,9 @@ public class GameBoardComponentController implements Initializable {
             colorBackgroundWinnerButtons(btn01, btn11, btn21);
             drawLine(btn01, btn21);
             if (btn01.getText().equals("X")) {
-                firstPlayerWinner = true;
+                secodPlayerWinner = true;
             } else {
-                secondPlayerWinner = true;
+                firstPlayerWinner = true;
             }
             winner = true;
         } else if (btn02.getText().equals(btn12.getText())
@@ -254,9 +254,9 @@ public class GameBoardComponentController implements Initializable {
             drawLine(btn02, btn22);
 
             if (btn02.getText().equals("X")) {
-                firstPlayerWinner = true;
+                secodPlayerWinner = true;
             } else {
-                secondPlayerWinner = true;
+                firstPlayerWinner = true;
             }
             winner = true;
         }
@@ -269,10 +269,10 @@ public class GameBoardComponentController implements Initializable {
             colorBackgroundWinnerButtons(btn00, btn11, btn22);
             drawLine(btn00, btn22);
             if (btn00.getText().equals("X")) {
-                firstPlayerWinner = true;
+                secodPlayerWinner = true;
             } else {
                 System.out.println("o is winning");
-                secondPlayerWinner = true;
+                firstPlayerWinner = true;
             }
             winner = true;
         } else if (btn02.getText().equals(btn11.getText())
@@ -282,10 +282,10 @@ public class GameBoardComponentController implements Initializable {
             drawLine(btn02, btn20);
             if (btn02.getText().equals("X")) {
                 System.out.println("x is winning");
-                firstPlayerWinner = true;
+                secodPlayerWinner = true;
             } else {
                 System.out.println("o is winning");
-                secondPlayerWinner = true;
+                firstPlayerWinner = true;
             }
             winner = true;
         }
@@ -312,31 +312,31 @@ public class GameBoardComponentController implements Initializable {
         checkRows();
         checkColumns();
         checkDiagonal();
-        if (firstPlayerWinner) {
+        if (secodPlayerWinner) {
             System.out.println("X is win");
-            firstPlayerScore += 5;
-            scorePlayerOne.setText(String.valueOf(firstPlayerScore));
+            scondPlayerScore += 1;
+            scorePlayerTwo.setText(String.valueOf(scondPlayerScore));
              gameEnded=true;
-             System.out.println(isRecord);
+             
             if (isRecord) {
-                System.out.println(" doaa write");
-                System.out.println( PlayerVsPlayerController.isRecord +"  record");
-                System.out.println("arrsize"+listOfMove.size());
+               
                 AccessFile.writeFile(listOfMove);
                 
             }
 
-        } else if (secondPlayerWinner) {
+        } else if (firstPlayerWinner) {
             System.out.println("O is win");
-            secondPlayerScore += 5;
-            scorePlayerTwo.setText(String.valueOf(secondPlayerScore));
+            firstPlayerScore += 1;
+            scorePlayerOne.setText(String.valueOf(firstPlayerScore));
                        gameEnded=true;
+                 
+
 
              if (isRecord) {
-                 System.out.println(" doaa write");
-                  System.out.println("arrsize"+listOfMove.size());
-                System.out.println( isRecord +"  record");
+                  
                 AccessFile.writeFile(listOfMove);
+                isRecord=false;
+                
             }
            
 
@@ -432,9 +432,9 @@ public class GameBoardComponentController implements Initializable {
 
     public void initPrefPlayer(Label scorePlayerOne, Label scorePlayerTwo) throws BackingStoreException {
 
-        if (firstPlayerScore != 0 || secondPlayerScore != 0) {
-            scorePlayerOne.setText(String.valueOf(firstPlayerScore));
-            scorePlayerTwo.setText(String.valueOf(secondPlayerScore));
+        if (scondPlayerScore != 0 || firstPlayerScore != 0) {
+            scorePlayerOne.setText(String.valueOf(scondPlayerScore));
+            scorePlayerTwo.setText(String.valueOf(firstPlayerScore));
 
         }
     }

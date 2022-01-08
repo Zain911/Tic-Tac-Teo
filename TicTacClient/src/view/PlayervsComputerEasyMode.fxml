@@ -23,7 +23,7 @@
             <DropShadow />
          </effect>
       </Text>
-      <Button fx:id="playAginButton" alignment="CENTER" disable="true" layoutX="514.0" layoutY="534.0" mnemonicParsing="false" onAction="#playAgin" prefHeight="35.0" prefWidth="107.0" style="-fx-background-color: #0D5F5F;" stylesheets="@../css/Style.css" text="playAgin" textFill="WHITE">
+      <Button fx:id="playAginButton" alignment="CENTER" layoutX="514.0" layoutY="534.0" mnemonicParsing="false" onAction="#playAgin" prefHeight="35.0" prefWidth="107.0" style="-fx-background-color: #0D5F5F;" stylesheets="@../css/Style.css" text="playAgin" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font>
@@ -38,24 +38,24 @@
             <Font size="14.0" />
          </font>
       </Text>
-      <Text fx:id="playerName" fill="#504ec6" layoutX="339.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="  Payer1" wrappingWidth="127.13671875">
+      <Text fx:id="playerName" fill="#4fbbc4" layoutX="339.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="  Payer1" wrappingWidth="127.13671875">
          <font>
             <Font name="Berlin Sans FB Demi Bold" size="18.0" />
          </font>
       </Text>
-      <Text fill="#ebc268" layoutX="630.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="computer" wrappingWidth="107.13671875">
+      <Text fill="#455897" layoutX="630.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="computer" wrappingWidth="107.13671875">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Text>
       <ImageView fitHeight="47.0" fitWidth="53.0" layoutX="256.0" layoutY="114.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../resource/player2.png" />
+            <Image url="@../resource/player1.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="49.0" fitWidth="49.0" layoutX="763.0" layoutY="105.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../resource/player1.png" />
+            <Image url="@../resource/player2.png" />
          </image>
       </ImageView>
       <Text fill="#105761" layoutX="371.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="        tic tac toe" textAlignment="JUSTIFY" wrappingWidth="298.13671875">
@@ -162,5 +162,15 @@
             <Line endX="96.4638671875" endY="175.70346069335938" layoutX="115.0" layoutY="115.0" startX="96.46446228027344" startY="-95.58943176269531" GridPane.columnIndex="2" GridPane.rowIndex="1" />
          </children>
       </GridPane>
+      <ImageView fitHeight="42.0" fitWidth="41.0" layoutX="767.0" layoutY="161.0" pickOnBounds="true">
+         <image>
+            <Image url="@../resource/oimage.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="35.0" fitWidth="47.0" layoutX="256.0" layoutY="167.0" pickOnBounds="true">
+         <image>
+            <Image url="@../resource/ximage.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
