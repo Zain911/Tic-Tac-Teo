@@ -54,7 +54,7 @@ public class SceneController {
         scene = new Scene(root);
 
         stage.setMaxWidth(1087);
-       stage.setMaxHeight(649);
+        stage.setMaxHeight(649);
         stage.setMaximized(false);
         stage.setScene(scene);
         stage.show();
@@ -147,19 +147,7 @@ public class SceneController {
     }
 
     
-        /*public void switchToChoosePlayerScene(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("/view/PlayerVsPlayerOnlineMode.fxml"));
->>>>>>> 143493edc3b0771d4ecaf9e86702d6844111fbea
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.centerOnScreen();
-
-        stage.setScene(scene);
-
-        stage.show();
-
-    }
-*/
+    
   public void switchToChooseLevelModeScene(MouseEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("/view/HardModeFXML.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

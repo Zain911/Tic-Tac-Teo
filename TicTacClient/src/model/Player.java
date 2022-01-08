@@ -13,6 +13,7 @@ public class Player implements Serializable{
     private int numberOfLose;
     private  int numberOfDraw;
     private boolean isplaying;
+    private String requestStatus;
 
     public Player(String username, String userPassword, int status, int numberOfWin, int numberOfLose, int numberOfDraw) {
         this.username = username;
@@ -45,6 +46,16 @@ public class Player implements Serializable{
         this.numberOfLose = numberOfLose;
         this.numberOfDraw = numberOfDraw;
     }
+
+    public String getRequestStatus() {
+        return requestStatus;
+    }
+
+    public void setRequestStatus(String requestStatus) {
+        this.requestStatus = requestStatus;
+    }
+    
+    
 
     public boolean isIsPasswordCorrect() {
         return isPasswordCorrect;

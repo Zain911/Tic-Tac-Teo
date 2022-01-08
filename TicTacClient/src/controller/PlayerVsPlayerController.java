@@ -125,8 +125,8 @@ public class PlayerVsPlayerController implements Initializable {
         SceneController controller = new SceneController();
         try {
             controller.switchToMainScene(event);
+            GameBoardComponentController.scondPlayerScore = 0;
             GameBoardComponentController.firstPlayerScore = 0;
-            GameBoardComponentController.secondPlayerScore = 0;
         } catch (IOException ex) {
             Logger.getLogger(PlayerVsPlayerController.class.getName()).log(Level.SEVERE, null, ex);
         }
