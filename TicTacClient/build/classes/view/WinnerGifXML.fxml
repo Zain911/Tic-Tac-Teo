@@ -10,10 +10,5 @@
          <image>
             <Image url="@../resource/winer.gif" />
          </image></ImageView>
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="230.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="winnerImage" />
-         </image>
-      </ImageView>
    </children>
 </AnchorPane>

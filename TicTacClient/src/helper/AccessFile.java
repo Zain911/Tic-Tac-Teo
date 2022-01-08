@@ -54,35 +54,8 @@ public class AccessFile {
             dir.mkdirs();
             file = new File(dir, preferencesLocalMode.get(CurrentDateTime.getCurrentDateTime(), ""));
 
-           // return file;
-        
-        /*if (listType.equals("local-mode")) {
-            preferencesLocalMode.put(CurrentDateTime.getCurrentDateTime(), CurrentDateTime.getCurrentDateTime());
-            File dir = new File("record/savedGame");
-            dir.mkdirs();
-            file = new File(dir, preferencesLocalMode.get(CurrentDateTime.getCurrentDateTime(), ""));
-
-            return file;*/
-       /* } else if (listType.equals("online-mode")) {
-            File dir = new File("record/savedOnlineGame");
-            dir.mkdirs();
-            preferencesOnlineMode.put(CurrentDateTime.getCurrentDateTime(), CurrentDateTime.getCurrentDateTime());
-            file = new File(dir, preferencesOnlineMode.get(CurrentDateTime.getCurrentDateTime(), ""));
-
-            return file;
-        }*/
-        try {
-            if (file.createNewFile()) {
-                System.out.println("file created");
-                System.out.println("vvv");
-            }
-        } catch (IOException ex) {
-            Logger.getLogger(AccessFile.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-     
-         System.out.println(filePath+"daoaa");
        
+     
         return file;
     }
 

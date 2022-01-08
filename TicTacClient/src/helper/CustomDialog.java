@@ -71,7 +71,7 @@ public class CustomDialog {
             dialog.getDialogPane().setContent(root);
             dialog.initStyle(StageStyle.TRANSPARENT);
             dialog.show();
-
+            System.out.println("GIF g");
         } catch (IOException ex) {
             ex.printStackTrace();
         }

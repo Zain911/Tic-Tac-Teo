@@ -103,4 +103,7 @@
          </BorderPane.margin>
       </Button>
    </bottom>
+   <left>
+      <Label minWidth="250.0" BorderPane.alignment="CENTER" />
+   </left>
 </BorderPane>

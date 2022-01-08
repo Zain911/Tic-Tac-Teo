@@ -58,16 +58,17 @@ public class PlayerVsPlayerController implements Initializable {
     private Text recordText;
     @FXML
     private ImageView recordImage;
-    
 
     @FXML
     public void replayAgain() {
         GameBoardComponentController.gameEnded = false;
+        GameBoardComponentController.isStart=false;
+        isRecord=false;
         System.out.println("bbb");
         isRecord = false;
         recordImage.setDisable(false);
         Image image = new Image(getClass().getResourceAsStream("/resource/oimage.png"));
-         System.out.println(image.isError());
+        System.out.println(image.isError());
         recordImage.setImage(image);
         Parent buttonParent;
         try {
@@ -93,6 +94,7 @@ public class PlayerVsPlayerController implements Initializable {
 
             FXMLLoader fXMLLoader = new FXMLLoader(getClass().getResource("/view/GameBoardComponent.fxml"));
             //fXMLLoader.setController(new GameBoardComponentController());
+
             borderPane.setCenter(fXMLLoader.load());
             GameBoardComponentController boardComponentController = fXMLLoader.getController();
             boardComponentController.setLabelScore(scorePlayerOne, scorePlayerTwo);
@@ -119,21 +121,26 @@ public class PlayerVsPlayerController implements Initializable {
             controller.switchToMainScene(event);
             GameBoardComponentController.scondPlayerScore = 0;
             GameBoardComponentController.firstPlayerScore = 0;
+            GameBoardComponentController.isStart = false;
+            isRecord=false;
+            GameBoardComponentController.gameEnded=false;
         } catch (IOException ex) {
             Logger.getLogger(PlayerVsPlayerController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-  
-
     @FXML
     private void onRecordGameClick(MouseEvent event) {
-         isRecord = true;
-        recordText.setText("Recording...");
-       recordImage.setDisable(true);
-       Image image = new Image(getClass().getResourceAsStream("/resource/recording.png"));
-         
-        recordImage.setImage(image);
-    }
+        if (!GameBoardComponentController.isStart) {
 
+            isRecord = true;
+            recordText.setText("Recording...");
+            recordImage.setDisable(true);
+            Image image = new Image(getClass().getResourceAsStream("/resource/recording.png"));
+
+            recordImage.setImage(image);
+        } else {
+            recordImage.setDisable(true);
+        }
+    }
 }

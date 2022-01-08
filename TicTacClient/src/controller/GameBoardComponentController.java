@@ -106,9 +106,10 @@ public class GameBoardComponentController implements Initializable {
 
     @FXML
     private GridPane buttonsGrid;
-
+public static boolean isStart=false;
     @FXML
     private void buttonOnePressed(ActionEvent event) {
+        isStart=true;
         Button buttonPressed = (Button) event.getSource();
         if (gameEnded==false&&buttonPressed.getText().equalsIgnoreCase("")) {
             gameSession.addMove(returnMove((Button) event.getSource()));
